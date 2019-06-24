@@ -1,0 +1,8 @@
+package org.edc.cdtu.yz.query;
+
+/**
+ * @author ${author}
+ * @since ${date}
+ */
+public class ${table.entityName}Query extends BaseQuery{
+}

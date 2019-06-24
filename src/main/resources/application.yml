@@ -1,0 +1,36 @@
+server:
+  port: 8080 # 访问端口
+  tomcat:
+    uri-encoding: utf-8
+#  servlet:
+#    context-path: /zq_blog  # 设置path
+
+spring:
+  # 连接mysql配置----------------------------------------------------------------------------------
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://www.xd999.online:3306/yz?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC  # 本地测试
+#    url: jdbc:mysql://服务器ip地址:3306/zq_blog?useUnicode=true&characterEncoding=utf-8  # 上线环境
+    username: guest
+    password: 88888888..
+
+mybatis-plus:  # Mybatis-Plus学习官方文档：https://baomidou.oschina.io/mybatis-plus-doc/#/quick-start
+  mapper-locations: classpath:org/edc/cdtu/yz/mapper/*Mapper.xml
+  type-aliases-package:org.edc.cdtu.yz.bean,org.edc.cdtu.yz.query  #别名
+
+
+#  # redis配置----------------------------------------------------------------------------------
+#  redis:
+##    host: 服务器ip地址  # 上线环境
+#    host: localhost   # 本地测试
+#    password: root
+#    database: 0
+#    port: 6347
+#    timeout: 5000
+#  messages:
+#    encoding: UTF-8
+#
+## 打印sql语句
+#logging:
+#  level: com.zhengqing.mapper
+#  debug: true
