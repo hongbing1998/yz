@@ -1,0 +1,158 @@
+package org.edc.cdtu.yz.bean;
+
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
+
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author wencheng
+ * @since 2019-06-25
+ */
+@TableName("tb_user")
+public class User extends Model<User> {
+
+    private static final long serialVersionUID = 1L;
+
+    private String id;
+    private String username;
+    private String upwd;
+    private String telphone;
+    private String qq;
+    private String email;
+    /**
+     *  外键
+     */
+    private String schoolId;
+    /**
+     * 虽然不满足三大范式 但是 这样避免了多表关联
+     */
+    private String schoolName;
+    private String gender;
+    private String birthdate;
+    private String address;
+    private String createDate;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUpwd() {
+        return upwd;
+    }
+
+    public void setUpwd(String upwd) {
+        this.upwd = upwd;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+        ", id=" + id +
+        ", username=" + username +
+        ", upwd=" + upwd +
+        ", telphone=" + telphone +
+        ", qq=" + qq +
+        ", email=" + email +
+        ", schoolId=" + schoolId +
+        ", schoolName=" + schoolName +
+        ", gender=" + gender +
+        ", birthdate=" + birthdate +
+        ", address=" + address +
+        ", createDate=" + createDate +
+        "}";
+    }
+}

@@ -1,8 +1,8 @@
-package ${package.Controller};
+package org.edc.cdtu.yz.controller;
 
-import ${package.Service}.${table.serviceName};
-import ${package.Entity}.${entity};
-import org.edc.cdtu.yz.query.${entity}Query;
+import org.edc.cdtu.yz.query.UserQuery;
+import org.edc.cdtu.yz.service.IUserService;
+import org.edc.cdtu.yz.bean.User;
 import org.edc.cdtu.yz.util.AjaxResult;
 import org.edc.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/${table.entityPath}")
-public class ${entity}Controller {
+@RequestMapping("/user")
+public class UserController {
     @Autowired
-    public ${table.serviceName} ${table.entityPath}Service;
+    public IUserService userService;
 
     /**
      * 保存、修改 【区分id即可】
-     * @param ${table.entityPath}  传递的实体
+     * @param user  传递的实体
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody ${entity} ${table.entityPath}){
+    public AjaxResult save(@RequestBody User user){
         try {
-            if(${table.entityPath}.getId()!=null){
-                    ${table.entityPath}Service.updateById(${table.entityPath});
+            if(user.getId()!=null){
+                    userService.updateById(user);
             }else{
-                    ${table.entityPath}Service.insert(${table.entityPath});
+                    userService.insert(user);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class ${entity}Controller {
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
-            ${table.entityPath}Service.deleteById(id);
+            userService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,16 +50,16 @@ public class ${entity}Controller {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public ${entity} get(@PathVariable("id")Long id)
+    public User get(@PathVariable("id")Long id)
     {
-        return ${table.entityPath}Service.selectById(id);
+        return userService.selectById(id);
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<${entity}> list(){
-        return ${table.entityPath}Service.selectList(null);
+    public List<User> list(){
+        return userService.selectList(null);
     }
 
 
@@ -69,9 +69,9 @@ public class ${entity}Controller {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<${entity}> json(@RequestBody ${entity}Query query) {
-        Page<${entity}> page = new Page<${entity}>(query.getPage(),query.getRows());
-        page = ${table.entityPath}Service.selectPage(page);
-        return new PageList<${entity}>(page.getTotal(),page.getRecords());
+    public PageList<User> json(@RequestBody UserQuery query) {
+        Page<User> page = new Page<User>(query.getPage(),query.getRows());
+        page = userService.selectPage(page);
+        return new PageList<User>(page.getTotal(),page.getRecords());
     }
 }

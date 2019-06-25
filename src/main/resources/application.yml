@@ -16,7 +16,7 @@ spring:
 
 mybatis-plus:  # Mybatis-Plus学习官方文档：https://baomidou.oschina.io/mybatis-plus-doc/#/quick-start
   mapper-locations: classpath:org/edc/cdtu/yz/mapper/*Mapper.xml
-  type-aliases-package:org.edc.cdtu.yz.bean,org.edc.cdtu.yz.query  #别名
+  type-aliases-package: org.edc.cdtu.yz.bean,org.edc.cdtu.yz.query  #别名
 
 
 #  # redis配置----------------------------------------------------------------------------------
