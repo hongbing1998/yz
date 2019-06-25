@@ -1,4 +1,4 @@
-package org.edc.cdtu.yz.query;
+package org.edu.cdtu.yz.query;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package org.edc.cdtu.yz;
+package org.edu.cdtu.yz;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;

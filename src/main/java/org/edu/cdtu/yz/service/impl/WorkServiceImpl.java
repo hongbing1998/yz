@@ -1,8 +1,8 @@
-package org.edc.cdtu.yz.service.impl;
+package org.edu.cdtu.yz.service.impl;
 
-import org.edc.cdtu.yz.bean.Work;
-import org.edc.cdtu.yz.mapper.WorkMapper;
-import org.edc.cdtu.yz.service.IWorkService;
+import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.mapper.WorkMapper;
+import org.edu.cdtu.yz.service.IWorkService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

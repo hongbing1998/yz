@@ -1,4 +1,4 @@
-package org.edc.cdtu.yz.bean;
+package org.edu.cdtu.yz.bean;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wencheng

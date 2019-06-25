@@ -1,6 +1,6 @@
-package org.edc.cdtu.yz.service;
+package org.edu.cdtu.yz.service;
 
-import org.edc.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.bean.User;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.service.IService;
  * @author wencheng
  * @since 2019-06-25
  */
-public interface IWorkService extends IService<Work> {
+public interface IUserService extends IService<User> {
 
 }

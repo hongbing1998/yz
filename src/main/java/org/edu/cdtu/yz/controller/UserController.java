@@ -1,10 +1,10 @@
-package org.edc.cdtu.yz.controller;
+package org.edu.cdtu.yz.controller;
 
-import org.edc.cdtu.yz.query.UserQuery;
-import org.edc.cdtu.yz.service.IUserService;
-import org.edc.cdtu.yz.bean.User;
-import org.edc.cdtu.yz.util.AjaxResult;
-import org.edc.cdtu.yz.util.PageList;
+import org.edu.cdtu.yz.query.UserQuery;
+import org.edu.cdtu.yz.service.IUserService;
+import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

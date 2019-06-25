@@ -1,4 +1,4 @@
-package org.edc.cdtu.yz.util;
+package org.edu.cdtu.yz.util;
 
 //Ajax请求响应对象的类
 public class AjaxResult {

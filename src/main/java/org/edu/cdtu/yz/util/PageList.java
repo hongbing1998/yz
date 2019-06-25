@@ -1,4 +1,4 @@
-package org.edc.cdtu.yz.util;
+package org.edu.cdtu.yz.util;
 
 import java.util.ArrayList;
 import java.util.List;

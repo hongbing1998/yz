@@ -1,6 +1,6 @@
-package org.edc.cdtu.yz.mapper;
+package org.edu.cdtu.yz.mapper;
 
-import org.edc.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.bean.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author wencheng
  * @since 2019-06-25
  */
-public interface WorkMapper extends BaseMapper<Work> {
+public interface UserMapper extends BaseMapper<User> {
 
 }
