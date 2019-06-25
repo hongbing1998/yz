@@ -9,13 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.zhengqing</groupId>
-    <artifactId>blog</artifactId>
+    <groupId>org.edc.cdtu</groupId>
+    <artifactId>yz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>MyBlog</name>
-    <description>基于Spring Boot搭建的郑清个人博客</description>
+    <name>Yz</name>
+    <description>基于Spring Boot Mybatis plus 的达内援藏项目</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
