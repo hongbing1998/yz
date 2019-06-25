@@ -66,7 +66,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirBase")+ "/org/ edu/cdtu/yz/bean/" + tableInfo.getEntityName() + ".java";
+                return rb.getString("OutputDirBase")+ "/org/edu/cdtu/yz/bean/" + tableInfo.getEntityName() + ".java";
             }
         });
 
@@ -74,7 +74,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/query.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirBase")+ "/org/ edu/cdtu/yz/query/" + tableInfo.getEntityName() + "Query.java";
+                return rb.getString("OutputDirBase")+ "/org/edu/cdtu/yz/query/" + tableInfo.getEntityName() + "Query.java";
             }
         });
         cfg.setFileOutConfigList(focList);
@@ -84,7 +84,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/controller.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDir")+ "/org/ edu/cdtu/yz/controller/" + tableInfo.getEntityName() + "Controller.java";
+                return rb.getString("OutputDir")+ "/org/edu/cdtu/yz/controller/" + tableInfo.getEntityName() + "Controller.java";
             }
         });
         cfg.setFileOutConfigList(focList);
@@ -94,7 +94,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/mapper.xml.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirXml")+ "/org/ edu/cdtu/yz/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return rb.getString("OutputDirXml")+ "/org/edu/cdtu/yz/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
         cfg.setFileOutConfigList(focList);
