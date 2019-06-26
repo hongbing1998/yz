@@ -2,7 +2,7 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.User;
-import org.edu.cdtu.yz.query.UserQuery;
+import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
@@ -70,7 +70,7 @@ public class UserController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<User> json(@RequestBody UserQuery query) {
+    public PageList<User> json(@RequestBody PageQuery query) {
         Page<User> page = new Page<User>(query.getPage(),query.getRows());
         page = userService.selectPage(page);
         return new PageList<User>(page.getTotal(),page.getRecords());

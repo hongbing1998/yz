@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+
 import java.util.*;
 
 public class GenerateCode {
@@ -36,9 +37,10 @@ public class GenerateCode {
         mpg.setDataSource(dsc);
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setTablePrefix(new String[] { "tb_" });// 此处可以修改为您的表前缀
+        strategy.setTablePrefix(new String[]{"tb_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略 t_user_xxx UserXxx
-        strategy.setInclude(new String[]{"tb_user"}); // TODO 需要生成的表
+        strategy.setInclude(new String[]{"tb_user"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_work"}); //  需要生成的表
         mpg.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();
@@ -66,17 +68,17 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirBase")+ "/org/edu/cdtu/yz/bean/" + tableInfo.getEntityName() + ".java";
+                return rb.getString("OutputDirBase") + "/org/edu/cdtu/yz/bean/" + tableInfo.getEntityName() + ".java";
             }
         });
 
         // 调整 query 生成目录演示
-        focList.add(new FileOutConfig("/templates/query.java.vm") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirBase")+ "/org/edu/cdtu/yz/query/" + tableInfo.getEntityName() + "Query.java";
-            }
-        });
+//        focList.add(new FileOutConfig("/templates/query.java.vm") {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                return rb.getString("OutputDirBase")+ "/org/edu/cdtu/yz/query/" + tableInfo.getEntityName() + "Query.java";
+//            }
+//        });
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
@@ -84,7 +86,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/controller.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDir")+ "/org/edu/cdtu/yz/controller/" + tableInfo.getEntityName() + "Controller.java";
+                return rb.getString("OutputDir") + "/org/edu/cdtu/yz/controller/" + tableInfo.getEntityName() + "Controller.java";
             }
         });
         cfg.setFileOutConfigList(focList);
@@ -94,7 +96,7 @@ public class GenerateCode {
         focList.add(new FileOutConfig("/templates/mapper.xml.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirXml")+ "/org/edu/cdtu/yz/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return rb.getString("OutputDirXml") + "/org/edu/cdtu/yz/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
         cfg.setFileOutConfigList(focList);

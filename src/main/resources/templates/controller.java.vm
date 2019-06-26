@@ -2,7 +2,7 @@ package ${package.Controller};
 
 import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${entity};
-import org.edc.cdtu.yz.query.${entity}Query;
+import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -69,7 +69,7 @@ public class ${entity}Controller {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<${entity}> json(@RequestBody ${entity}Query query) {
+    public PageList<${entity}> json(@RequestBody PageQuery query) {
         Page<${entity}> page = new Page<${entity}>(query.getPage(),query.getRows());
         page = ${table.entityPath}Service.selectPage(page);
         return new PageList<${entity}>(page.getTotal(),page.getRecords());

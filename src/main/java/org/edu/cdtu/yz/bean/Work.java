@@ -8,14 +8,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author wencheng
- * @since 2019-06-25
+ * @since 2019-06-26
  */
-@TableName("tb_work")
 @Data
+@TableName("tb_work")
 public class Work extends Model<Work> {
 
     private static final long serialVersionUID = 1L;
@@ -30,6 +30,4 @@ public class Work extends Model<Work> {
     protected Serializable pkVal() {
         return this.id;
     }
-
-
 }

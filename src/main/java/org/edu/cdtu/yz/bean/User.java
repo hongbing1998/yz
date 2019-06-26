@@ -8,11 +8,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author wencheng
- * @since 2019-06-25
+ * @since 2019-06-26
  */
 @Data
 @TableName("tb_user")
@@ -38,7 +38,6 @@ public class User extends Model<User> {
     private String birthdate;
     private String address;
     private String createDate;
-
 
 
 

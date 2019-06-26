@@ -1,6 +1,5 @@
 package org.edu.cdtu.yz.mapper;
 
-import org.apache.ibatis.annotations.Param;
 import org.edu.cdtu.yz.bean.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
@@ -10,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author wencheng
- * @since 2019-06-25
+ * @since 2019-06-26
  */
 public interface UserMapper extends BaseMapper<User> {
 

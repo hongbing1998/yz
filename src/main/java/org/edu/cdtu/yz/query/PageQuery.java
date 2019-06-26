@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 2019-06-25
  */
 @Data
-public class UserQuery {
+public class PageQuery {
     private  Integer page;
     private  Integer rows;
 }

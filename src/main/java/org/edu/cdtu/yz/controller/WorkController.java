@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.query.WorkQuery;
-import org.edu.cdtu.yz.service.IWorkService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IWorkService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -69,7 +70,7 @@ public class WorkController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Work> json(@RequestBody WorkQuery query) {
+    public PageList<Work> json(@RequestBody PageQuery query) {
         Page<Work> page = new Page<Work>(query.getPage(),query.getRows());
         page = workService.selectPage(page);
         return new PageList<Work>(page.getTotal(),page.getRecords());

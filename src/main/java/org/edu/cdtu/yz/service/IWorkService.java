@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author wencheng
- * @since 2019-06-25
+ * @since 2019-06-26
  */
 public interface IWorkService extends IService<Work> {
 

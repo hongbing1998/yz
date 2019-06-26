@@ -8,7 +8,7 @@ import java.util.List;
 // 2、layui 需4个属性，code,msg,count(总数),data（分页数据）实现分页
 public class PageList<T> {
 
-    private int code=0;
+    private int code=200;
     private String msg;
 
     private long count;//总条数
