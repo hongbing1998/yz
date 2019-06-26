@@ -2,10 +2,13 @@ package org.edu.cdtu.yz;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
@@ -16,8 +19,12 @@ import java.sql.SQLException;
 public class YzApplicationTests {
     @Autowired
     private DataSource dataSource;
+
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
+
+    @Autowired
+    private IUserService iUserService;
 
     @Test
     public void DataSourceTest() throws SQLException {
@@ -28,5 +35,11 @@ public class YzApplicationTests {
     @Test
     public void MybatisTest() {
         System.out.println("sqlSessionFactory = " + sqlSessionFactory);
+    }
+
+    @Test
+    public void MpTest(){
+        User user = iUserService.selectById(1);
+        System.out.println("user = " + user);
     }
 }

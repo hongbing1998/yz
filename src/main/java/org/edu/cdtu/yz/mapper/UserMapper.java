@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.edu.cdtu.yz.bean.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
