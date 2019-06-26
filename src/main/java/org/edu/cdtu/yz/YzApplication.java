@@ -11,4 +11,3 @@ public class YzApplication {
         SpringApplication.run(YzApplication.class, args);
     }
 }
-

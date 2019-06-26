@@ -7,8 +7,6 @@ import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +24,9 @@ public class UserController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+
     public AjaxResult save(@RequestBody User user) {
+
         try {
             if (user.getId() != null) {
                 userService.updateById(user);
