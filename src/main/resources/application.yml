@@ -2,6 +2,7 @@ server:
   port: 8080
   tomcat:
     uri-encoding: utf-8
+
 #  servlet:
 #    context-path: /zq_blog  # 设置path
 
@@ -29,6 +30,10 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
