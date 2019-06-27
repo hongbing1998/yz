@@ -1,7 +1,7 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IWorkService;
-import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.service.IRoleUserService;
+import org.edu.cdtu.yz.bean.RoleUser;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/work")
-public class WorkController {
+@RequestMapping("/roleUser")
+public class RoleUserController {
     @Autowired
-    public IWorkService workService;
+    public IRoleUserService roleUserService;
 
     /**
      * 保存、修改 【区分id即可】
-     * @param work  传递的实体
+     * @param roleUser  传递的实体
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody Work work){
+    public AjaxResult save(@RequestBody RoleUser roleUser){
         try {
-            if(work.getId()!=null){
-                    workService.updateById(work);
+            if(roleUser.getId()!=null){
+                    roleUserService.updateById(roleUser);
             }else{
-                    workService.insert(work);
+                    roleUserService.insert(roleUser);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class WorkController {
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
-            workService.deleteById(id);
+            roleUserService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,16 +50,16 @@ public class WorkController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Work get(@PathVariable("id")Long id)
+    public RoleUser get(@PathVariable("id")Long id)
     {
-        return workService.selectById(id);
+        return roleUserService.selectById(id);
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Work> list(){
-        return workService.selectList(null);
+    public List<RoleUser> list(){
+        return roleUserService.selectList(null);
     }
 
 
@@ -69,9 +69,9 @@ public class WorkController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Work> json(@RequestBody PageQuery query) {
-        Page<Work> page = new Page<Work>(query.getPage(),query.getRows());
-        page = workService.selectPage(page);
-        return new PageList<Work>(page.getTotal(),page.getRecords());
+    public PageList<RoleUser> json(@RequestBody PageQuery query) {
+        Page<RoleUser> page = new Page<RoleUser>(query.getPage(),query.getRows());
+        page = roleUserService.selectPage(page);
+        return new PageList<RoleUser>(page.getTotal(),page.getRecords());
     }
 }

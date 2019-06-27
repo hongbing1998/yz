@@ -41,6 +41,11 @@ public class GenerateCode {
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略 t_user_xxx UserXxx
         strategy.setInclude(new String[]{"tb_user"}); //  需要生成的表
 //        strategy.setInclude(new String[]{"tb_work"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_school"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_role"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_role_user"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_permission_role"}); //  需要生成的表
+//        strategy.setInclude(new String[]{"tb_permission"}); //  需要生成的表
         mpg.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();

@@ -1,6 +1,6 @@
 package org.edu.cdtu.yz.service;
 
-import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.bean.Permission;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.service.IService;
  * @author wencheng
  * @since 2019-06-27
  */
-public interface IWorkService extends IService<Work> {
+public interface IPermissionService extends IService<Permission> {
 
 }

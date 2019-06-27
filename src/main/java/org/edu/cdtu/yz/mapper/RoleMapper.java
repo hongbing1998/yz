@@ -1,6 +1,6 @@
 package org.edu.cdtu.yz.mapper;
 
-import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.bean.Role;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author wencheng
  * @since 2019-06-27
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface RoleMapper extends BaseMapper<Role> {
 
 }

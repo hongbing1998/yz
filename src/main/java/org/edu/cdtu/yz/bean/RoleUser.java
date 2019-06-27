@@ -13,18 +13,16 @@ import java.io.Serializable;
  * @author wencheng
  * @since 2019-06-27
  */
-@TableName("tb_work")
-public class Work extends Model<Work> {
+@TableName("tb_role_user")
+public class RoleUser extends Model<RoleUser> {
 
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private String title;
-    private String content;
     @TableField("user_id")
     private String userId;
-    @TableField("create_date")
-    private String createDate;
+    @TableField("role_id")
+    private String roleId;
 
 
     public String getId() {
@@ -35,22 +33,6 @@ public class Work extends Model<Work> {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getUserId() {
         return userId;
     }
@@ -59,12 +41,12 @@ public class Work extends Model<Work> {
         this.userId = userId;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -74,12 +56,10 @@ public class Work extends Model<Work> {
 
     @Override
     public String toString() {
-        return "Work{" +
+        return "RoleUser{" +
         ", id=" + id +
-        ", title=" + title +
-        ", content=" + content +
         ", userId=" + userId +
-        ", createDate=" + createDate +
+        ", roleId=" + roleId +
         "}";
     }
 }
