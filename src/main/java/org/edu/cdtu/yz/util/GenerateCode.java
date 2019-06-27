@@ -46,6 +46,12 @@ public class GenerateCode {
 //        strategy.setInclude(new String[]{"tb_role_user"}); //  需要生成的表
 //        strategy.setInclude(new String[]{"tb_permission_role"}); //  需要生成的表
 //        strategy.setInclude(new String[]{"tb_permission"}); //  需要生成的表
+        strategy.setInclude(new String[]{"tb_activity"}); //
+//        strategy.setInclude(new String[]{"tb_demand"}); //
+//        strategy.setInclude(new String[]{"tb_employment"}); //
+//        strategy.setInclude(new String[]{"tb_path"}); //
+//        strategy.setInclude(new String[]{"tb_policy"}); //
+//        strategy.setInclude(new String[]{"tb_apply"}); //
         mpg.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();
