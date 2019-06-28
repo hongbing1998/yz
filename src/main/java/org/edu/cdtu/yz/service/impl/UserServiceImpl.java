@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author wencheng
@@ -17,4 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Override
+    public String login(User user) {
+        User result = baseMapper.selectOne(user);
+        if (result == null || !result.getPassword().equals(user.getPassword())) {
+            return "登录失败";
+        } else {
+            return "登录成功";
+        }
+    }
 }

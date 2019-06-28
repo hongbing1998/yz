@@ -8,6 +8,8 @@ import org.edu.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -15,6 +17,11 @@ import java.util.List;
 public class UserController {
     @Autowired
     public IUserService userService;
+
+    @PostMapping("login")
+    public String login (@RequestBody User user) {
+        return userService.login(user);
+    }
 
     /**
      * 保存、修改 【区分id即可】
@@ -57,6 +64,7 @@ public class UserController {
 
 
     //查看所有的员工信息
+//    @RolesAllowed({"ADMIN"})
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<User> list(){
         return userService.selectList(null);

@@ -1,7 +1,5 @@
 server:
   port: 8080
-  tomcat:
-    uri-encoding: utf-8
 
 #  servlet:
 #    context-path: /zq_blog  # 设置path
@@ -32,13 +30,17 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   mvc:
     view:
-      prefix: /webapp/
+      prefix: /
       suffix: .jsp
+  security:
+    user:
+      name: admin
+      password: 888888
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
-  type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query  #别名
-
+  # 需要mybatis取别名bean所在的包
+  type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query
 
 #  # redis配置----------------------------------------------------------------------------------
 #  redis:
@@ -50,8 +52,7 @@ mybatis-plus:
 #    timeout: 5000
 #  messages:
 #    encoding: UTF-8
-#
-## 打印sql语句
+
 logging:
   file: yz.log
   level:
