@@ -32,12 +32,12 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   mvc:
     view:
-      prefix: /WEB-INF/
+      prefix: /webapp/
       suffix: .jsp
-  security:
-    user:
-      name: admin
-      password: 888888
+  #security:
+   # user:
+    #  name: admin
+     # password: 888888
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
@@ -57,7 +57,7 @@ mybatis-plus:
 #    encoding: UTF-8
 #
 ## 打印sql语句
-logging:
-  file: yz.log
-  level:
-    root: info
+#logging:
+ # file: yz.log
+  #level:
+    #root: info
