@@ -34,10 +34,15 @@ spring:
     view:
       prefix: /WEB-INF/
       suffix: .jsp
+  security:
+    user:
+      name: admin
+      password: 888888
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query  #别名
+  mapper-locations: classpath:mabatis/mapper/*.xml
+  # 需要mybatis取别名bean所在的包
+  type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query
 
 
 #  # redis配置----------------------------------------------------------------------------------

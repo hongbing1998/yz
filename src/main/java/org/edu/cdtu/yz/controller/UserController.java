@@ -6,7 +6,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.bean.User;
@@ -17,6 +16,8 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     public IUserService userService;
+
+
 
     /**
      * 保存、修改 【区分id即可】
@@ -71,6 +74,7 @@ public class UserController {
 
     //查看所有的员工信息
     @RequiresPermissions(value={"/user/list"},logical= Logical.OR)
+//    @RolesAllowed({"ADMIN"})
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<User> list(){
         return userService.selectList(null);
