@@ -1,9 +1,7 @@
 package org.edu.cdtu.yz.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.edu.cdtu.yz.bean.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import org.mybatis.spring.annotation.MapperScan;
 
 /**
  * <p>
