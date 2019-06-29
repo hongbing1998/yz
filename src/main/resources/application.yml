@@ -1,10 +1,5 @@
 server:
   port: 8080
-  tomcat:
-    uri-encoding: utf-8
-
-#  servlet:
-#    context-path: /zq_blog  # 设置path
 
 spring:
   datasource:
@@ -34,10 +29,6 @@ spring:
     view:
       prefix: /webapp/
       suffix: .jsp
-  #security:
-   # user:
-    #  name: admin
-     # password: 888888
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
