@@ -106,7 +106,7 @@ public class UserController {
         try{
             subject.login(token);
             result.put("status","200");
-            result.put("msg","success");
+            result.put("msg","successd");
 
         } catch (UnknownAccountException e){
             e.printStackTrace();
