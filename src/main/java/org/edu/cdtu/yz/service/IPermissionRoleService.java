@@ -1,7 +1,10 @@
 package org.edu.cdtu.yz.service;
 
+import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.bean.PermissionRole;
 import com.baomidou.mybatisplus.service.IService;
+
+import java.util.List;
 
 /**
  * <p>

@@ -4,7 +4,10 @@ import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.mapper.PermissionMapper;
 import org.edu.cdtu.yz.service.IPermissionService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
-
+@Autowired
+PermissionMapper permissionMapper;
+    @Override
+    public List<Permission> getPermissions(String id) {
+        return permissionMapper.selectPermissions(id);
+    }
 }
