@@ -18,12 +18,12 @@ public class DruidConfig {
      */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
-    public DruidDataSource druid() {
+    public DruidDataSource injectDruidDataSource() {
         return new DruidDataSource();
     }
 
     /**
-     * druid注入druid管理后台的数据监控对象
+     * 注入druid管理后台的数据监控对象
      */
     @Bean
     public ServletRegistrationBean injectServletRegistrationBean() {
@@ -38,7 +38,7 @@ public class DruidConfig {
     }
 
     /**
-     * 注入过滤器
+     * 注入数据源过滤器
      */
     @Bean
     public FilterRegistrationBean injectFilterRegistrationBean() {

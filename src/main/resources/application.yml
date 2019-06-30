@@ -24,11 +24,10 @@ spring:
     filters: stat,wall
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    connectionProperties: injectDruidDataSource.stat.mergeSql=true;injectDruidDataSource.stat.slowSqlMillis=500
   mvc:
     view:
       prefix: /webapp/
-      suffix: .jsp
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml

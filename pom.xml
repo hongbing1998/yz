@@ -46,11 +46,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!--lombok支持：简化代码-getter/setter、toString等代码-->
         <dependency>
             <groupId>org.projectlombok</groupId>
