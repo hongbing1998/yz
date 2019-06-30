@@ -73,9 +73,9 @@ public class ShiroConfig {
         // 设置 SecurityManager
         bean.setSecurityManager(securityManager);
         // 设置登录成功跳转Url
-        bean.setSuccessUrl("/main");
+        bean.setSuccessUrl("/index");
         // 设置登录跳转Url
-        bean.setLoginUrl("/toLogin");
+        bean.setLoginUrl("./toLogin");
         // 设置未授权提示Url
         bean.setUnauthorizedUrl("/error/unAuth");
 
@@ -87,12 +87,12 @@ public class ShiroConfig {
          * role：对应角色权限可访问
          **/
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/user/login","anon");
-        filterMap.put("/user/index","authc");
-        filterMap.put("/vip/index","roles[vip]");
-        filterMap.put("/druid/**", "anon");
-        filterMap.put("/static/**","anon");
-        filterMap.put("/**","authc");
+//        filterMap.put("/user/login","anon");
+//        filterMap.put("/user/index","authc");
+//        filterMap.put("/vip/index","roles[vip]");
+//        filterMap.put("/druid/**", "anon");
+//        filterMap.put("/static/**","anon");
+        filterMap.put("/**","anon");
         filterMap.put("/logout", "logout");
         bean.setFilterChainDefinitionMap(filterMap);
 
