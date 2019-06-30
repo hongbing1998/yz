@@ -107,17 +107,17 @@ public class ShiroConfig {
          * roles：对应角色权限可访问
          */
         Map<String, String> definitionMap = new LinkedHashMap<>();
-        definitionMap.put("/**", "authc");
-        definitionMap.put("/*.js", "anon");
-        definitionMap.put("/*.css", "anon");
-        definitionMap.put("/*.png", "anon");
-        definitionMap.put("/*.jpg", "anon");
-        definitionMap.put("/*.gif", "anon");
-        definitionMap.put("/*.bmp", "anon");
-        definitionMap.put("/login.html", "anon");
+        definitionMap.put("/**/*.js", "anon");
+        definitionMap.put("/**/*.css", "anon");
+        definitionMap.put("/**/*.png", "anon");
+        definitionMap.put("/**/*.jpg", "anon");
+        definitionMap.put("/**/*.gif", "anon");
+        definitionMap.put("/**/*.bmp", "anon");
+        definitionMap.put("/**/login.html", "anon");
         definitionMap.put("/druid/**", "anon");
         definitionMap.put("/static/**", "anon");
         definitionMap.put("/user/login", "anon");
+        definitionMap.put("/**", "authc");
         definitionMap.put("/user/index", "authc");
         definitionMap.put("/vip/index", "roles[vip]");
         definitionMap.put("/logout", "logout");

@@ -46,8 +46,7 @@ mybatis-plus:
 #  messages:
 #    encoding: UTF-8
 #
-## 打印sql语句
-#logging:
- # file: yz.log
-  #level:
-    #root: info
+logging:
+  file: yz.log
+  level:
+    root: info
