@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -7,17 +8,13 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
-import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.RolesAllowed;
 
 import java.util.HashMap;
 import java.util.List;
