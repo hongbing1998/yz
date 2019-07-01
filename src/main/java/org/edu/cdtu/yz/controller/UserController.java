@@ -14,6 +14,7 @@ import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -28,32 +29,31 @@ public class UserController {
     @Autowired
     public IUserService userService;
 
-
-
     /**
      * 保存、修改 【区分id即可】
-     * @param user  传递的实体
+     *
+     * @param user 传递的实体
      * @return Ajaxresult转换结果
      */
-    @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody User user){
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public AjaxResult save(@RequestBody User user) {
         try {
-            if(user.getId()!=null){
-                    userService.updateById(user);
-            }else{
-                    userService.insert(user);
+            if (user.getId() != null) {
+                userService.updateById(user);
+            } else {
+                userService.insert(user);
             }
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("保存对象失败！" + e.getMessage());
         }
     }
 
     //删除对象信息
 
-    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public AjaxResult delete(@PathVariable("id") Long id) {
         try {
             userService.deleteById(id);
             return AjaxResult.me();
