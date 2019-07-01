@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("营养探索馆-客服系统")
-                .description("powered by By-Health")
+                .title("达内援藏系统")
+                .description("powered by Panda Master")
                 .termsOfServiceUrl("http://www.by-health.com/")
                 //.contact(contact)
                 .version("1.0")
