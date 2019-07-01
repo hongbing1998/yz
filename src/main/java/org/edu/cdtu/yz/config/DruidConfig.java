@@ -13,12 +13,13 @@ import java.util.HashMap;
 
 @Configuration
 public class DruidConfig {
+
     /**
      * 定制配置druid数据源
      */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
-    public DruidDataSource injectDruidDataSource() {
+    public DruidDataSource druidDataSource() {
         return new DruidDataSource();
     }
 
@@ -26,7 +27,7 @@ public class DruidConfig {
      * 注入druid管理后台的数据监控对象
      */
     @Bean
-    public ServletRegistrationBean injectServletRegistrationBean() {
+    public ServletRegistrationBean servletRegistrationBean() {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean();
         HashMap<String, String> initParams = new HashMap<>();
         initParams.put("loginUsername", "admin");
@@ -41,7 +42,7 @@ public class DruidConfig {
      * 注入数据源过滤器
      */
     @Bean
-    public FilterRegistrationBean injectFilterRegistrationBean() {
+    public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         HashMap<String, String> initParams = new HashMap<>();
         initParams.put("exclusions", "*.js,*.css,*.druid/*");
