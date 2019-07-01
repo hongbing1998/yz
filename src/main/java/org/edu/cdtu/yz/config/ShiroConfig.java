@@ -113,7 +113,7 @@ public class ShiroConfig {
         definitionMap.put("/**/*.jpg", "anon");
         definitionMap.put("/**/*.gif", "anon");
         definitionMap.put("/**/*.bmp", "anon");
-        definitionMap.put("/swagger.*/", "anon");
+        definitionMap.put("/swagger*", "anon");
         definitionMap.put("/**/login.html", "anon");
         definitionMap.put("/druid/**", "anon");
         definitionMap.put("/static/**", "anon");

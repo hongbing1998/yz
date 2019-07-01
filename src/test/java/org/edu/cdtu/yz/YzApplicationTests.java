@@ -1,7 +1,6 @@
 package org.edu.cdtu.yz;
 
 
-import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.service.IUserService;
@@ -38,6 +37,7 @@ public class YzApplicationTests {
     }
 
     @Test
+//    @RolesAllowed({"user"})
     public void MpTest() {
         User user = iUserService.selectById(1);
         System.out.println("user = " + user);
