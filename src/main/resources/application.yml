@@ -51,3 +51,26 @@ logging:
   file: yz.log
   level:
     root: info
+    web: debug
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:
+          - autoconfig
+          - beans
+          - configprops
+          - dump
+          - env
+          - health
+          - info
+          - metrics
+          - mappings
+          - shutdown
+          - trace
+          - loggers
