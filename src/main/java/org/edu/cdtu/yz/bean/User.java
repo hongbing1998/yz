@@ -3,6 +3,10 @@ package org.edu.cdtu.yz.bean;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.sun.istack.internal.NotNull;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -14,12 +18,16 @@ import java.io.Serializable;
  * @since 2019-06-27
  */
 @TableName("tb_user")
+@ApiModel
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
     private String id;
+    @ApiModelProperty(notes = "用户名")
     private String username;
+
+    @ApiModelProperty(notes = "密码, 密码不能为空且不能为简单密码, 否则后端抛出异常")
     private String password;
     private String phone;
     private String qq;

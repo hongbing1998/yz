@@ -41,10 +41,10 @@ public class YzApplicationTests {
     public void MpTest() {
         User user = iUserService.selectById(1);
         System.out.println("user = " + user);
-        Page<User> page = new Page<>(1, 1);
-
-        Page<User> userPage = iUserService.selectPage(page, null);
-        System.out.println("userPage = " + userPage);
-        System.out.println("userPage = " + userPage.getRecords());
+//        Page<User> page = new Page<>(1, 1);
+//
+//        Page<User> userPage = iUserService.selectPage(page, null);
+//        System.out.println("userPage = " + userPage);
+//        System.out.println("userPage = " + userPage.getRecords());
     }
 }

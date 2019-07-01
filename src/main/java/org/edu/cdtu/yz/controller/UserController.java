@@ -29,42 +29,43 @@ public class UserController {
     @Autowired
     public IUserService userService;
 
+
+
     /**
      * 保存、修改 【区分id即可】
-     *
-     * @param user 传递的实体
+     * @param user  传递的实体
      * @return Ajaxresult转换结果
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public AjaxResult save(@RequestBody User user) {
+    @RequestMapping(value="/save",method= RequestMethod.POST)
+    public AjaxResult save(@RequestBody User user){
         try {
-            if (user.getId() != null) {
-                userService.updateById(user);
-            } else {
-                userService.insert(user);
+            if(user.getId()!=null){
+                    userService.updateById(user);
+            }else{
+                    userService.insert(user);
             }
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！" + e.getMessage());
+            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
         }
     }
 
     //删除对象信息
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id) {
+    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+    public AjaxResult delete(@PathVariable("id") Long id){
         try {
             userService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("删除对象失败！" + e.getMessage());
         }
     }
 
     //获取用户
-    @RequiresPermissions(value={"user"},logical= Logical.OR)
+//    @RequiresPermissions(value={"user"},logical= Logical.OR)
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public User get(@PathVariable("id")Long id)
     {
@@ -92,6 +93,8 @@ public class UserController {
         page = userService.selectPage(page);
         return new PageList<User>(page.getTotal(),page.getRecords());
     }
+
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public  Map<String,String> login(@RequestBody User user,@RequestParam boolean rememberMe) {
         Map<String,String> result=new HashMap<String,String>();
@@ -112,9 +115,10 @@ public class UserController {
             e.printStackTrace();
             result.put("status","200");
             result.put("msg","用户不存在");
-        } catch (IncorrectCredentialsException e){
-            result.put("status","400");
-            result.put("msg","密码错误");
+        } catch (IncorrectCredentialsException e) {
+            result.put("status", "400");
+            result.put("msg", "密码错误");
+
         }
         return result;
 

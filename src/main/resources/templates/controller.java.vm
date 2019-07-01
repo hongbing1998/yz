@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/${table.entityPath}")
+@Api(tags = "swagger使用规范", description = "用于展示swagger使用规范的接口列表")
 public class ${entity}Controller {
     @Autowired
     public ${table.serviceName} ${table.entityPath}Service;
