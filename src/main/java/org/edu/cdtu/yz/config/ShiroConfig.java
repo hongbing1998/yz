@@ -14,13 +14,14 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
+
+
     /**
      * 注入Shiro Bean的生命周期管理器
      */
@@ -83,12 +84,11 @@ public class ShiroConfig {
      * 需要先注入lifecycleBeanPostProcessor
      * 用来扫描上下文，寻找所有的Advistor，将这些Advistor应用到符合其定义的切入点(AOP)的Bean中
      */
-    @Bean("defaultAdvisorAutoProxyCreator")
-    @DependsOn({"lifecycleBeanPostProcessor"})
-    public DefaultAdvisorAutoProxyCreator injectDefaultAdvisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
-        creator.setProxyTargetClass(true);
-        return creator;
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
     }
 
     /**
@@ -141,23 +141,23 @@ public class ShiroConfig {
     }
 
     @Bean
-   public SimpleCookie rememberMeCookie(){
-               //System.out.println("ShiroConfiguration.rememberMeCookie()");
-               //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
-              SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
-               //<!-- 记住我cookie生效时间30天 ,单位秒;-->
-               simpleCookie.setMaxAge(259200);
-               return simpleCookie;
-        }
+    public SimpleCookie rememberMeCookie() {
+        //System.out.println("ShiroConfiguration.rememberMeCookie()");
+        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //<!-- 记住我cookie生效时间30天 ,单位秒;-->
+        simpleCookie.setMaxAge(259200);
+        return simpleCookie;
+    }
 
 
- public CookieRememberMeManager rememberMeManager(){
-              //System.out.println("ShiroConfiguration.rememberMeManager()");
-               CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-               cookieRememberMeManager.setCookie(rememberMeCookie());
-               //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
-               cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
-               return cookieRememberMeManager;
-         }
+    public CookieRememberMeManager rememberMeManager() {
+        //System.out.println("ShiroConfiguration.rememberMeManager()");
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
+        cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
+        return cookieRememberMeManager;
+    }
 
 }
