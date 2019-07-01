@@ -16,16 +16,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket createRestApi() {
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .apiInfo(getApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.edu.cdtu.yz.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo apiInfo() {
+    private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
                 .title("达内援藏系统")
                 .description("powered by Panda Master")

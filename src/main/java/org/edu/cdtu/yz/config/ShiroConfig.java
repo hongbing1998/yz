@@ -21,12 +21,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-
     /**
      * 注入Shiro Bean的生命周期管理器
      */
-    @Bean("lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor injectLifecycleBeanPostProcessor() {
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
 
@@ -34,8 +33,8 @@ public class ShiroConfig {
      * 注入证书认证匹配器
      * 自定义配置加密方式
      */
-    @Bean("hashedCredentialsMatcher")
-    public HashedCredentialsMatcher injectHashedCredentialsMatcher() {
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         credentialsMatcher.setHashAlgorithmName("MD5");// 指定加密方式为MD5
         credentialsMatcher.setHashIterations(1024);// 加密次数
@@ -46,8 +45,8 @@ public class ShiroConfig {
     /**
      * 注入自定义的ShiroRealm
      */
-    @Bean("shiroRealm")
-    public ShiroRealm injectShiroRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher matcher) {
+    @Bean
+    public ShiroRealm shiroRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher matcher) {
         ShiroRealm shiroRealm = new ShiroRealm();
         shiroRealm.setCredentialsMatcher(matcher);
         return shiroRealm;
@@ -57,13 +56,13 @@ public class ShiroConfig {
      * 注入安全管理器
      * 管理subject及其相关的登陆验证，授权等，需配置Realm和缓存管理
      */
-    @Bean("securityManager")
-    public DefaultWebSecurityManager injectDefaultWebSecurityManager(@Qualifier("hashedCredentialsMatcher")
-                                                                             HashedCredentialsMatcher hashedCredentialsMatcher) {
+    @Bean
+    public DefaultWebSecurityManager webSecurityManager(@Qualifier("hashedCredentialsMatcher")
+                                                                HashedCredentialsMatcher hashedCredentialsMatcher) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setCacheManager(injectCacheManager());// 配置缓存管理器
-        securityManager.setRememberMeManager(rememberMeManager());
-        securityManager.setRealm(injectShiroRealm(hashedCredentialsMatcher));// 配置Realm
+        securityManager.setCacheManager(ehCacheManager());// 配置缓存管理器
+        securityManager.setRememberMeManager(cookieRememberMeManager());
+        securityManager.setRealm(shiroRealm(hashedCredentialsMatcher));// 配置Realm
         return securityManager;
     }
 
@@ -71,8 +70,8 @@ public class ShiroConfig {
      * 注入AuthorizationAttributeSource通知器
      * 开启Shrio的AOP权限注解支持
      */
-    @Bean("authorizationAttributeSourceAdvisor")
-    public AuthorizationAttributeSourceAdvisor injectAuthorizationAttributeSourceAdvisor(@Qualifier("securityManager")
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("webSecurityManager")
                                                                                                  DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
@@ -81,7 +80,6 @@ public class ShiroConfig {
 
     /**
      * 注入默认的Advistor(通知器)自动代理创建器
-     * 需要先注入lifecycleBeanPostProcessor
      * 用来扫描上下文，寻找所有的Advistor，将这些Advistor应用到符合其定义的切入点(AOP)的Bean中
      */
     @Bean
@@ -94,8 +92,8 @@ public class ShiroConfig {
     /**
      * 注入Shiro的过滤器
      */
-    @Bean("shiroFilter")
-    public ShiroFilterFactoryBean injectShirFilter(@Qualifier("securityManager") DefaultWebSecurityManager securityManager) {
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(@Qualifier("webSecurityManager") DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);// 设置 SecurityManager
         shiroFilter.setSuccessUrl("/main");// 设置登录成功跳转Url
@@ -126,38 +124,40 @@ public class ShiroConfig {
         definitionMap.put("/logout", "logout");
         shiroFilter.setFilterChainDefinitionMap(definitionMap);
         return shiroFilter;
-
-
     }
 
     /**
      * 注入缓存管理器
      */
-    @Bean("cacheManager")
-    public EhCacheManager injectCacheManager() {
+    @Bean
+    public EhCacheManager ehCacheManager() {
         EhCacheManager cacheManager = new EhCacheManager();
         cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
         return cacheManager;
     }
 
+    /**
+     * 注入记住我的缓存管理器
+     */
     @Bean
-    public SimpleCookie rememberMeCookie() {
-        //System.out.println("ShiroConfiguration.rememberMeCookie()");
+    public CookieRememberMeManager cookieRememberMeManager() {
+        //System.out.println("ShiroConfiguration.cookieRememberMeManager()");
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(newRememberMeCookie());
+        //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
+        cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
+        return cookieRememberMeManager;
+    }
+
+    /**
+     * 创建用于记住我的SimpleCookie
+     */
+    private SimpleCookie newRememberMeCookie() {
+        //System.out.println("ShiroConfiguration.newRememberMeCookie()");
         //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //<!-- 记住我cookie生效时间30天 ,单位秒;-->
         simpleCookie.setMaxAge(259200);
         return simpleCookie;
     }
-
-    @Bean
-    public CookieRememberMeManager rememberMeManager() {
-        //System.out.println("ShiroConfiguration.rememberMeManager()");
-        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-        cookieRememberMeManager.setCookie(rememberMeCookie());
-        //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
-        cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
-        return cookieRememberMeManager;
-    }
-
 }
