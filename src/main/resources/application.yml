@@ -28,6 +28,7 @@ spring:
   mvc:
     view:
       prefix: /webapp/
+      suffix: .jsp
 
 mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
