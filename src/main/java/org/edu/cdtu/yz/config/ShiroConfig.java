@@ -80,7 +80,8 @@ public class ShiroConfig {
 
     /**
      * 注入默认的Advistor(通知器)自动代理创建器
-     * 用来扫描上下文，寻找所有的Advistor，将这些Advistor应用到符合其定义的切入点(AOP)的Bean中
+     * 用来扫描上下文，寻找所有的Advistor，将这些Advistor应用到符合其定义的切入点的Bean中
+     * 即开启AOP功能
      */
     @Bean
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
@@ -107,6 +108,7 @@ public class ShiroConfig {
          * roles：对应角色权限可访问
          */
         Map<String, String> definitionMap = new LinkedHashMap<>();
+        definitionMap.put("/actuator*", "anon");
         definitionMap.put("/**/*.js", "anon");
         definitionMap.put("/**/*.css", "anon");
         definitionMap.put("/**/*.png", "anon");
