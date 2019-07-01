@@ -1,7 +1,6 @@
 package org.edu.cdtu.yz.Relam;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -10,7 +9,6 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ByteSource;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.bean.Role;
 import org.edu.cdtu.yz.bean.User;
@@ -22,9 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static com.alibaba.druid.sql.visitor.SQLEvalVisitorUtils.eq;
 
 /**
  * 自定义ShiroRealm
@@ -75,7 +70,8 @@ public class ShiroRealm extends AuthorizingRealm {
                 System.out.println("role.getRoleName() = " + role.getRoleName());
                 List<Permission> permissions = permissionService.getPermissions(role.getId());// 获取该角色拥有的所有权限
                 for (Permission permission : permissions) {
-                    permissionCollection.add(permission.getPermissionUrl());
+
+                    permissionCollection.add(permission.getPerms());
                 }
             }
             info.addStringPermissions(permissionCollection);// 增加权限信息
