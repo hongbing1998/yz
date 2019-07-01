@@ -2,11 +2,16 @@ package org.edu.cdtu.yz.config;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -60,6 +65,7 @@ public class ShiroConfig {
                                                                              HashedCredentialsMatcher hashedCredentialsMatcher) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setCacheManager(injectCacheManager());// 配置缓存管理器
+        securityManager.setRememberMeManager(rememberMeManager());
         securityManager.setRealm(injectShiroRealm(hashedCredentialsMatcher));// 配置Realm
         return securityManager;
     }
@@ -124,6 +130,8 @@ public class ShiroConfig {
         definitionMap.put("/logout", "logout");
         shiroFilter.setFilterChainDefinitionMap(definitionMap);
         return shiroFilter;
+
+
     }
 
     /**
@@ -135,4 +143,32 @@ public class ShiroConfig {
         cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
         return cacheManager;
     }
+
+
+    @Bean
+    public EhCacheManager ehCacheManager(){
+        EhCacheManager cacheManager = new EhCacheManager();
+        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
+        return cacheManager;
+    }
+    @Bean
+   public SimpleCookie rememberMeCookie(){
+               //System.out.println("ShiroConfiguration.rememberMeCookie()");
+               //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+              SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+               //<!-- 记住我cookie生效时间30天 ,单位秒;-->
+               simpleCookie.setMaxAge(259200);
+               return simpleCookie;
+        }
+
+
+ public CookieRememberMeManager rememberMeManager(){
+              //System.out.println("ShiroConfiguration.rememberMeManager()");
+               CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+               cookieRememberMeManager.setCookie(rememberMeCookie());
+               //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
+               cookieRememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
+               return cookieRememberMeManager;
+         }
+
 }

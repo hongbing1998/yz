@@ -14,6 +14,7 @@ import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -59,7 +60,7 @@ public class UserController {
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("删除对象失败！" + e.getMessage());
         }
     }
 
@@ -93,8 +94,9 @@ public class UserController {
         return new PageList<User>(page.getTotal(),page.getRecords());
     }
 
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public  Map<String,String> login(@RequestBody User user) {
+    public  Map<String,String> login(@RequestBody User user,@RequestParam boolean rememberMe) {
         Map<String,String> result=new HashMap<String,String>();
         String userName = user.getUsername();
         String password = user.getPassword();
@@ -102,7 +104,7 @@ public class UserController {
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password,rememberMe);
         // 3.执行登录方法
         try{
             subject.login(token);
@@ -113,11 +115,11 @@ public class UserController {
             e.printStackTrace();
             result.put("status","200");
             result.put("msg","用户不存在");
-        } catch (IncorrectCredentialsException e){
-            result.put("status","400");
-            result.put("msg","密码错误");
+        } catch (IncorrectCredentialsException e) {
+            result.put("status", "400");
+            result.put("msg", "密码错误");
+
         }
         return result;
-
     }
 }
