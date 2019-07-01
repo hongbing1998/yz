@@ -150,7 +150,7 @@ public class ShiroConfig {
         return simpleCookie;
     }
 
-
+    @Bean
     public CookieRememberMeManager rememberMeManager() {
         //System.out.println("ShiroConfiguration.rememberMeManager()");
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
