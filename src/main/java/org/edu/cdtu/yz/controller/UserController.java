@@ -65,7 +65,7 @@ public class UserController {
     }
 
     //获取用户
-//    @RequiresPermissions(value={"user"},logical= Logical.OR)
+    @RequiresPermissions(value={"user"},logical= Logical.OR)
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public User get(@PathVariable("id")Long id)
     {
