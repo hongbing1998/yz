@@ -22,8 +22,6 @@
         <java.version>1.8</java.version>
     </properties>
 
-
-
     <dependencies>
         <!--Spring Boot Web启动器-->
         <dependency>

@@ -93,15 +93,15 @@ public class UserController {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public  Map<String,String> login(@RequestBody User user,@RequestParam boolean rememberMe) {
+    public Map<String, String> login(@RequestBody User user) {
         Map<String,String> result=new HashMap<String,String>();
         String userName = user.getUsername();
         String password = user.getPassword();
-
+        boolean remeberMe = user.isRemeberMe();
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password,rememberMe);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, remeberMe);
         // 3.执行登录方法
         try{
             subject.login(token);
