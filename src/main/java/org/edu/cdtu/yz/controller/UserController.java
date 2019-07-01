@@ -71,7 +71,7 @@ public class UserController {
 
 
     //查看所有的员工信息
-    @RequiresPermissions(value={"/user/list"},logical= Logical.OR)
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
 //    @RolesAllowed({"ADMIN"})
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<User> list(){
