@@ -146,12 +146,6 @@ public class ShiroConfig {
 
 
     @Bean
-    public EhCacheManager ehCacheManager(){
-        EhCacheManager cacheManager = new EhCacheManager();
-        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-        return cacheManager;
-    }
-    @Bean
    public SimpleCookie rememberMeCookie(){
                //System.out.println("ShiroConfiguration.rememberMeCookie()");
                //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
