@@ -89,7 +89,7 @@ public class UserController {
     public PageList<User> json(@RequestBody PageQuery query) {
         Page<User> page = new Page<User>(query.getPage(),query.getRows());
         page = userService.selectPage(page);
-        return new PageList<User>(page.getTotal(),page.getRecords());
+        return new PageList<User>(page.getPages(), page.getRecords());
     }
 
 

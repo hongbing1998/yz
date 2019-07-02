@@ -79,6 +79,6 @@ public class PathController {
     public PageList<Path> json(@RequestBody PageQuery query) {
         Page<Path> page = new Page<Path>(query.getPage(),query.getRows());
         page = pathService.selectPage(page);
-        return new PageList<Path>(page.getTotal(),page.getRecords());
+        return new PageList<Path>(page.getPages(), page.getRecords());
     }
 }

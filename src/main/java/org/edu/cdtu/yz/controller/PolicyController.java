@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IPolicyService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Policy;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IPolicyService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -72,6 +73,6 @@ public class PolicyController {
     public PageList<Policy> json(@RequestBody PageQuery query) {
         Page<Policy> page = new Page<Policy>(query.getPage(),query.getRows());
         page = policyService.selectPage(page);
-        return new PageList<Policy>(page.getTotal(),page.getRecords());
+        return new PageList<Policy>(page.getPages(), page.getRecords());
     }
 }
