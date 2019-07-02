@@ -1,7 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Role;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IRoleService;
@@ -63,12 +62,7 @@ public class RoleController {
         return AjaxResult.me().setResultObj(roleService.selectList(null));
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public AjaxResult listf() {
-        String id = ShiroRealm.getCurrentUser().getId();
 
-        return AjaxResult.me().setResultObj(roleService.selectList(null));
-    }
 
     /**
     * 分页查询数据：

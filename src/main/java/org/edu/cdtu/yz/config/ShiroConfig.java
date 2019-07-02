@@ -162,4 +162,5 @@ public class ShiroConfig {
         simpleCookie.setMaxAge(259200);
         return simpleCookie;
     }
+
 }

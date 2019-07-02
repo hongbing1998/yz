@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends GlobalDefaultExceptionHandler {
     @Autowired
     public IUserService userService;
 
@@ -39,7 +39,7 @@ public class UserController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody User user){
+    public AjaxResult save(@RequestBody User user) {
         try {
             if(user.getId()!=null){
                 Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
@@ -120,6 +120,7 @@ public class UserController {
             subject.login(token);
         } catch (UnknownAccountException e){
             e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");
         } catch (IncorrectCredentialsException e) {
             return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");
         }
