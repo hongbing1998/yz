@@ -36,77 +36,9 @@ public class Permission extends Model<Permission> {
     private String perms;
 
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFatherPermission() {
-        return fatherPermission;
-    }
-
-    public void setFatherPermission(String fatherPermission) {
-        this.fatherPermission = fatherPermission;
-    }
-
-    public String getPermissionName() {
-        return permissionName;
-    }
-
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
-    }
-
-    public String getPermissionUrl() {
-        return permissionUrl;
-    }
-
-    public void setPermissionUrl(String permissionUrl) {
-        this.permissionUrl = permissionUrl;
-    }
-
-    public String getPermissionDescribe() {
-        return permissionDescribe;
-    }
-
-    public void setPermissionDescribe(String permissionDescribe) {
-        this.permissionDescribe = permissionDescribe;
-    }
-
-    public BigDecimal getType() {
-        return type;
-    }
-
-    public void setType(BigDecimal type) {
-        this.type = type;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "Permission{" +
-        ", id=" + id +
-        ", fatherPermission=" + fatherPermission +
-        ", permissionName=" + permissionName +
-        ", permissionUrl=" + permissionUrl +
-        ", permissionDescribe=" + permissionDescribe +
-        ", type=" + type +
-        ", icon=" + icon +
-        "}";
-    }
 }

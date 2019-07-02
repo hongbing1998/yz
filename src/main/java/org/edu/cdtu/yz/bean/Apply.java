@@ -1,8 +1,10 @@
 package org.edu.cdtu.yz.bean;
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +15,7 @@ import java.io.Serializable;
  * @author wencheng
  * @since 2019-06-27
  */
+@Data
 @TableName("tb_apply")
 public class Apply extends Model<Apply> {
 
@@ -21,7 +24,7 @@ public class Apply extends Model<Apply> {
     /**
      * 报名表id
      */
-    private String id;
+    private Long id;
     /**
      * 报名时间
      */
@@ -48,68 +51,8 @@ public class Apply extends Model<Apply> {
     private String epmloymentId;
 
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getApplyDate() {
-        return applyDate;
-    }
-
-    public void setApplyDate(String applyDate) {
-        this.applyDate = applyDate;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getResumeUrl() {
-        return resumeUrl;
-    }
-
-    public void setResumeUrl(String resumeUrl) {
-        this.resumeUrl = resumeUrl;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getEpmloymentId() {
-        return epmloymentId;
-    }
-
-    public void setEpmloymentId(String epmloymentId) {
-        this.epmloymentId = epmloymentId;
-    }
-
     @Override
     protected Serializable pkVal() {
         return this.id;
-    }
-
-    @Override
-    public String toString() {
-        return "Apply{" +
-        ", id=" + id +
-        ", applyDate=" + applyDate +
-        ", userId=" + userId +
-        ", resumeUrl=" + resumeUrl +
-        ", status=" + status +
-        ", epmloymentId=" + epmloymentId +
-        "}";
     }
 }

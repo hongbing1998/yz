@@ -24,7 +24,7 @@ public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private Long id;
     @ApiModelProperty(notes = "用户名")
     private String username;
 
@@ -58,21 +58,4 @@ public class User extends Model<User> {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-        ", id=" + id +
-        ", username=" + username +
-        ", password=" + password +
-        ", phone=" + phone +
-        ", qq=" + qq +
-        ", email=" + email +
-        ", schoolId=" + schoolId +
-        ", schoolName=" + schoolName +
-        ", gender=" + gender +
-        ", birthdate=" + birthdate +
-        ", address=" + address +
-        ", createDate=" + createDate +
-        "}";
-    }
 }

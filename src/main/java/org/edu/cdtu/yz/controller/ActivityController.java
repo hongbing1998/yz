@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/activity")
@@ -52,16 +50,16 @@ public class ActivityController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Activity get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return activityService.selectById(id);
+        return AjaxResult.me().setResultObj(activityService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Activity> list(){
-        return activityService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(activityService.selectList(null));
     }
 
 
@@ -71,9 +69,9 @@ public class ActivityController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Activity> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Activity> page = new Page<Activity>(query.getPage(),query.getRows());
         page = activityService.selectPage(page);
-        return new PageList<Activity>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Activity>(page.getPages(), page.getRecords()));
     }
 }
