@@ -21,7 +21,7 @@ public class Path extends Model<Path> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     private String title;
     private String path;
     @TableField("user_id")

@@ -19,7 +19,7 @@ import java.io.Serializable;
 @TableName("tb_school")
 public class School extends Model<School> {
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private String id;
     @TableField("school_name")
     private String schoolName;
     @TableField("school_info")

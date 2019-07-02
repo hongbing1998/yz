@@ -21,7 +21,7 @@ public class Demand extends Model<Demand> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     private String title;
     /**
      * 1 :紧急 2非常紧急

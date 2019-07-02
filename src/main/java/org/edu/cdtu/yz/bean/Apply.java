@@ -24,7 +24,7 @@ public class Apply extends Model<Apply> {
     /**
      * 报名表id
      */
-    private Long id;
+    private String id;
     /**
      * 报名时间
      */

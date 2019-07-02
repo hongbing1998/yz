@@ -21,7 +21,7 @@ public class PermissionRole extends Model<PermissionRole> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     @TableField("permission_id")
     private String permissionId;
     private String roleId;

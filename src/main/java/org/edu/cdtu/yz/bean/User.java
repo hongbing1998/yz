@@ -24,7 +24,7 @@ public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     @ApiModelProperty(notes = "用户名")
     private String username;
 

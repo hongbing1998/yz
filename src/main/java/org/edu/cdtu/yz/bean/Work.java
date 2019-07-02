@@ -21,7 +21,7 @@ public class Work extends Model<Work> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     private String title;
     private String content;
     @TableField("user_id")

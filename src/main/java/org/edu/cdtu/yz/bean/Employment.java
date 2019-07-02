@@ -24,7 +24,7 @@ public class Employment extends Model<Employment> {
     /**
      * 招聘信息id
      */
-    private Long id;
+    private String id;
     /**
      * 招聘信息标题
      */
