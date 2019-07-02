@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IRoleUserService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.RoleUser;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IRoleUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -72,6 +73,6 @@ public class RoleUserController {
     public PageList<RoleUser> json(@RequestBody PageQuery query) {
         Page<RoleUser> page = new Page<RoleUser>(query.getPage(),query.getRows());
         page = roleUserService.selectPage(page);
-        return new PageList<RoleUser>(page.getTotal(),page.getRecords());
+        return new PageList<RoleUser>(page.getPages(), page.getRecords());
     }
 }

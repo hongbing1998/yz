@@ -5,18 +5,18 @@ import java.util.List;
 
 //分页工具：
 // 1、easyui只需2个属性，total(总数),datas（分页数据）就能实现分页
-// 2、layui 需4个属性，code,msg,count(总数),data（分页数据）实现分页
+// 2、layui 需4个属性，code,msg,pageCount(总数),data（分页数据）实现分页
 public class PageList<T> {
 
     private int code=200;
     private String msg;
 
-    private long count;//总条数
+    private long pageCount;//总条数
     private List<T> data = new ArrayList<>();//装前台当前页的数据
 
     //提供有参构造方法，方便测试
-    public PageList(long count, List<T> data) {
-        this.count = count;
+    public PageList(long pageCount, List<T> data) {
+        this.pageCount = pageCount;
         this.data = data;
     }
     //除了有参构造方法，还需要提供一个无参构造方法
@@ -38,12 +38,12 @@ public class PageList<T> {
         this.msg = msg;
     }
 
-    public long getCount() {
-        return count;
+    public long getpageCount() {
+        return pageCount;
     }
 
-    public void setCount(long count) {
-        this.count = count;
+    public void setpageCount(long pageCount) {
+        this.pageCount = pageCount;
     }
 
     public List<T> getData() {
@@ -59,7 +59,7 @@ public class PageList<T> {
         return "PageList{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
-                ", count=" + count +
+                ", pageCount=" + pageCount +
                 ", data=" + data +
                 '}';
     }
