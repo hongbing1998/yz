@@ -61,16 +61,4 @@ management:
     enabled-by-default: true
     web:
       exposure:
-        include:
-          - autoconfig
-          - beans
-          - configprops
-          - dump
-          - env
-          - health
-          - info
-          - metrics
-          - mappings
-          - shutdown
-          - trace
-          - loggers
+        include: "*"
