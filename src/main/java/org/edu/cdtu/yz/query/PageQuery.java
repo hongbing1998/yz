@@ -7,9 +7,11 @@ import lombok.Data;
  * @since 2019-06-25
  */
 @Data
-public class
+public class PageQuery {
+    private Integer page;
+    private Integer rows;
 
-PageQuery {
-    private  Integer page;
-    private  Integer rows;
+    public Integer getStart () {
+        return (page - 1 ) * rows;
+    }
 }

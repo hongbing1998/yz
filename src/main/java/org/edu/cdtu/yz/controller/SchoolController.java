@@ -43,7 +43,7 @@ public class SchoolController {
      * 删除对象信息
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id) {
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             schoolService.deleteById(id);
             return AjaxResult.me();
@@ -55,7 +55,7 @@ public class SchoolController {
 
     //获取用户
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public AjaxResult get(@PathVariable("id") Long id) {
+    public AjaxResult get(@PathVariable("id") String id) {
         return AjaxResult.me().setResultObj(schoolService.selectById(id));
     }
 

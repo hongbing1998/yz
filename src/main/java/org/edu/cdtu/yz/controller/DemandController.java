@@ -1,13 +1,19 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -18,60 +24,63 @@ public class DemandController {
 
     /**
      * 保存、修改 【区分id即可】
-     * @param demand  传递的实体
-     * @return Ajaxresult转换结果
      */
-    @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody Demand demand){
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public AjaxResult save(@RequestBody Demand demand) {
         try {
-            if(demand.getId()!=null){
-                    demandService.updateById(demand);
-            }else{
-                    demandService.insert(demand);
+            demand.setCreateDate(DateUtil.getFormatCurrentDate());
+            if (demand.getId() != null) {
+                demandService.updateById(demand);
+            } else {
+                demandService.insert(demand);
             }
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("保存对象失败！" + e.getMessage());
         }
     }
 
-    //删除对象信息
-    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id){
+    /**
+     * 删除对象信息
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             demandService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("删除对象失败！" + e.getMessage());
         }
     }
 
-    //获取用户
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public AjaxResult get(@PathVariable("id") Long id)
-    {
+    /**
+     * 获取需求
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public AjaxResult get(@PathVariable("id") String id) {
         return AjaxResult.me().setResultObj(demandService.selectById(id));
     }
 
 
-    //查看所有的员工信息
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    /**
+     * 查看所有需求信息
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(demandService.selectList(null));
     }
 
 
     /**
-    * 分页查询数据：
-    * @param query 查询对象
-    * @return PageList 分页对象
-    */
-    @RequestMapping(value = "/json",method = RequestMethod.POST)
+     * 分页查询数据
+     */
+    @RequestMapping(value = "/json", method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
-        Page<Demand> page = new Page<Demand>(query.getPage(),query.getRows());
+        Page<Demand> page = new Page<>(query.getPage(), query.getRows());
         page = demandService.selectPage(page);
-        return AjaxResult.me().setResultObj(new PageList<Demand>(page.getPages(), page.getRecords()));
+        List<Map<String, Object>> demands = new ArrayList<>();
+        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), page.getRecords()));
     }
 }
