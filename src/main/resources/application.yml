@@ -34,6 +34,8 @@ mybatis-plus:
   mapper-locations: classpath:mabatis/mapper/*.xml
   # 需要mybatis取别名bean所在的包
   type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query
+  global-config:
+    id-type: 3
 
 
 #  # redis配置----------------------------------------------------------------------------------

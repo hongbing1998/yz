@@ -21,7 +21,7 @@ public class RoleUser extends Model<RoleUser> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     @TableField("user_id")
     private String userId;
     @TableField("role_id")

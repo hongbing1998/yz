@@ -21,7 +21,7 @@ public class Policy extends Model<Policy> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     /**
      * 政策标题
      */

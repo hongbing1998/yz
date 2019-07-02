@@ -21,7 +21,7 @@ public class Role extends Model<Role> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     @TableField("role_name")
     private String roleName;
 

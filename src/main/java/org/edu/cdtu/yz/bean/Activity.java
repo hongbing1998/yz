@@ -21,7 +21,7 @@ public class Activity extends Model<Activity> {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String id;
     private String titel;
     private String content;
     /**
