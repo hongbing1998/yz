@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -8,8 +9,10 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IPathService;
 import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
@@ -20,12 +23,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
-@RequiresPermissions(value = {"user"}, logical = Logical.OR)
 public class UserController {
     @Autowired
     public IUserService userService;
+
+    @Autowired
+    public IPathService iPathService;
+
 
 
 
@@ -39,6 +46,13 @@ public class UserController {
         try {
             if(user.getId()!=null){
                     userService.updateById(user);
+                if (user.getUsername() != null) {
+                    Path path = new Path();
+                    path.setUserName(user.getUsername());
+                    iPathService.update(path, new EntityWrapper<Path>()
+                            .eq("user_name", user.getUsername())
+                    );
+                }
             }else{
                     userService.insert(user);
             }
