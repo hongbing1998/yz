@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wencheng
@@ -18,32 +18,21 @@ import java.io.Serializable;
 @Data
 @TableName("tb_demand")
 public class Demand extends Model<Demand> {
-
     private static final long serialVersionUID = 1L;
-
     private String id;
     private String title;
-    /**
-     * 1 :紧急 2非常紧急
-     */
     private Integer level;
-    /**
-     * school 主键  
-     */
     @TableField("school_id")
     private String schoolId;
-    /**
-     * 作者
-     */
     @TableField("user_id")
     private String userId;
     @TableField("create_date")
     private String createDate;
+    private String content;
 
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
-
 }

@@ -2,7 +2,11 @@ package org.edu.cdtu.yz;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.mapper.DemandMapper;
+import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +20,8 @@ import java.sql.SQLException;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class YzApplicationTests {
+    @Autowired
+    private IDemandService demandService;
     @Autowired
     private DataSource dataSource;
 
@@ -37,14 +43,16 @@ public class YzApplicationTests {
     }
 
     @Test
-//    @RolesAllowed({"user"})
     public void MpTest() {
         User user = iUserService.selectById(1);
         System.out.println("user = " + user);
-//        Page<User> page = new Page<>(1, 1);
-//
-//        Page<User> userPage = iUserService.selectPage(page, null);
-//        System.out.println("userPage = " + userPage);
-//        System.out.println("userPage = " + userPage.getRecords());
+    }
+
+    @Test
+    public void DemandMapperTest() {
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setPage(0);
+        pageQuery.setRows(1);
+        demandService.selectDemandsInfo(pageQuery);
     }
 }

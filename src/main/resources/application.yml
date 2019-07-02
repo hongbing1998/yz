@@ -27,7 +27,7 @@ spring:
     connectionProperties: druidDataSource.stat.mergeSql=true;druidDataSource.stat.slowSqlMillis=500
   mvc:
     view:
-      prefix: /webapp/
+      prefix: /
       suffix: .jsp
 
 mybatis-plus:
@@ -57,6 +57,8 @@ logging:
 
 management:
   endpoint:
+    health:
+      show-details: always
     shutdown:
       enabled: true
   endpoints:
