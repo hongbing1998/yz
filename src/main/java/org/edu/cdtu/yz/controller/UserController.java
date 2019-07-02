@@ -7,6 +7,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
@@ -38,8 +39,10 @@ public class UserController {
     public AjaxResult save(@RequestBody User user){
         try {
             if(user.getId()!=null){
+                Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
                     userService.updateById(user);
             }else{
+                Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
                     userService.insert(user);
             }
             return AjaxResult.me();
