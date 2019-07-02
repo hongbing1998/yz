@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/work")
@@ -52,16 +50,16 @@ public class WorkController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Work get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return workService.selectById(id);
+        return AjaxResult.me().setResultObj(workService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Work> list(){
-        return workService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(workService.selectList(null));
     }
 
 
@@ -71,9 +69,9 @@ public class WorkController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Work> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Work> page = new Page<Work>(query.getPage(),query.getRows());
         page = workService.selectPage(page);
-        return new PageList<Work>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Work>(page.getPages(), page.getRecords()));
     }
 }

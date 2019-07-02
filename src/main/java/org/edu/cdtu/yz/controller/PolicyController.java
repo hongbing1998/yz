@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/policy")
@@ -52,16 +50,16 @@ public class PolicyController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Policy get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return policyService.selectById(id);
+        return AjaxResult.me().setResultObj(policyService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Policy> list(){
-        return policyService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(policyService.selectList(null));
     }
 
 
@@ -71,9 +69,9 @@ public class PolicyController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Policy> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Policy> page = new Page<Policy>(query.getPage(),query.getRows());
         page = policyService.selectPage(page);
-        return new PageList<Policy>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Policy>(page.getPages(), page.getRecords()));
     }
 }
