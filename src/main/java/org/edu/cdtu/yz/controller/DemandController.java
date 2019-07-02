@@ -52,16 +52,16 @@ public class DemandController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Demand get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id")Long id)
     {
-        return demandService.selectById(id);
+        return AjaxResult.me().setResultObj(demandService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Demand> list(){
-        return demandService.selectList(null);
+    public AjaxResult list(){
+        return AjaxResult.me().setResultObj(demandService.selectList(null));
     }
 
 
@@ -71,9 +71,9 @@ public class DemandController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Demand> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Demand> page = new Page<Demand>(query.getPage(),query.getRows());
         page = demandService.selectPage(page);
-        return new PageList<Demand>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Demand>(page.getPages(), page.getRecords()));
     }
 }

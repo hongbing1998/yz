@@ -52,16 +52,16 @@ public class EmploymentController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Employment get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id")Long id)
     {
-        return employmentService.selectById(id);
+        return AjaxResult.me().setResultObj(employmentService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Employment> list(){
-        return employmentService.selectList(null);
+    public AjaxResult list(){
+        return AjaxResult.me().setResultObj(employmentService.selectList(null));
     }
 
 
@@ -71,9 +71,9 @@ public class EmploymentController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Employment> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Employment> page = new Page<Employment>(query.getPage(),query.getRows());
         page = employmentService.selectPage(page);
-        return new PageList<Employment>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Employment>(page.getPages(), page.getRecords()));
     }
 }

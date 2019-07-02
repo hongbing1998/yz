@@ -52,16 +52,16 @@ public class ApplyController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Apply get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id")Long id)
     {
-        return applyService.selectById(id);
+        return AjaxResult.me().setResultObj(applyService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Apply> list(){
-        return applyService.selectList(null);
+    public AjaxResult list(){
+        return AjaxResult.me().setResultObj(applyService.selectList(null));
     }
 
 
@@ -71,9 +71,9 @@ public class ApplyController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Apply> json(@RequestBody PageQuery query) {
-        Page<Apply> page = new Page<Apply>(query.getPage(),query.getRows());
+    public AjaxResult json(@RequestBody PageQuery query) {
+        Page<Apply> page = new Page<>(query.getPage(),query.getRows());
         page = applyService.selectPage(page);
-        return new PageList<Apply>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), page.getRecords()));
     }
 }
