@@ -39,7 +39,8 @@ public class ShiroRealm extends AuthorizingRealm {
         System.out.println("===执行认证===");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         System.out.println("token.getUsername() = " + token.getUsername());
-        User user = userService.selectOne(new EntityWrapper<User>().eq("username", token.getUsername()));
+        System.out.println(token.getUsername());
+        User user = userService.selectOne(new EntityWrapper<User>().eq("account", token.getUsername()));
         if (user == null) {
             throw new UnknownAccountException();
         }

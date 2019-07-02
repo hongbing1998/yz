@@ -1,7 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.query.PageQuery;

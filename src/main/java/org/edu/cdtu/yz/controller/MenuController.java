@@ -25,8 +25,8 @@ public class MenuController {
         try {
             Subject subject = SecurityUtils.getSubject();
             User user = (User) subject.getPrincipal();
-            System.out.println(user.getUsername());
-            List<Map<String, Object>> parentList = menuService.getMenu(user.getUsername());
+            System.out.println(user.getId());
+            List<Map<String, Object>> parentList = menuService.getMenu(user.getId());
             return AjaxResult.me().setResultObj(parentList);
         } catch (Exception e) {
             return AjaxResult.me().setSuccess(false).setMessage("服务器异常");

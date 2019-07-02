@@ -127,13 +127,13 @@ public class UserController extends GlobalDefaultExceptionHandler {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public AjaxResult login(@RequestBody User user) {
-        String userName = user.getUsername();
+        String account = user.getAccount();
         String password = user.getPassword();
         boolean remeberMe = user.isRemeberMe();
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, remeberMe);
+        UsernamePasswordToken token = new UsernamePasswordToken(account, password, remeberMe);
         // 3.执行登录方法
         try{
             subject.login(token);
