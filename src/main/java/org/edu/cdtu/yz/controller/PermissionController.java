@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IPermissionService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IPermissionService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -72,6 +73,6 @@ public class PermissionController {
     public PageList<Permission> json(@RequestBody PageQuery query) {
         Page<Permission> page = new Page<Permission>(query.getPage(),query.getRows());
         page = permissionService.selectPage(page);
-        return new PageList<Permission>(page.getTotal(),page.getRecords());
+        return new PageList<Permission>(page.getPages(), page.getRecords());
     }
 }

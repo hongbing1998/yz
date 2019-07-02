@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IEmploymentService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IEmploymentService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -72,6 +73,6 @@ public class EmploymentController {
     public PageList<Employment> json(@RequestBody PageQuery query) {
         Page<Employment> page = new Page<Employment>(query.getPage(),query.getRows());
         page = employmentService.selectPage(page);
-        return new PageList<Employment>(page.getTotal(),page.getRecords());
+        return new PageList<Employment>(page.getPages(), page.getRecords());
     }
 }

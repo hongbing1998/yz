@@ -1,13 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IDemandService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -72,6 +73,6 @@ public class DemandController {
     public PageList<Demand> json(@RequestBody PageQuery query) {
         Page<Demand> page = new Page<Demand>(query.getPage(),query.getRows());
         page = demandService.selectPage(page);
-        return new PageList<Demand>(page.getTotal(),page.getRecords());
+        return new PageList<Demand>(page.getPages(), page.getRecords());
     }
 }
