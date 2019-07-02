@@ -1,7 +1,10 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Role;
+import org.edu.cdtu.yz.bean.RoleUser;
+import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IRoleService;
 import org.edu.cdtu.yz.service.IRoleUserService;
@@ -10,7 +13,9 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -68,11 +73,20 @@ public class RoleController {
 
 
     @RequestMapping(value = "/getUserRoles", method = RequestMethod.GET)
-    public AjaxResult listr(@PathVariable("id") Long id) {
-//        List<String> roleuser=roleUserService.selectList();
+    public AjaxResult getUserRoles(@RequestBody User user) {
+        List<RoleUser> roleuser = roleUserService.selectList(new EntityWrapper<RoleUser>().eq("user_id", user.getId()));
         List<Role> roles = roleService.selectList(null);
-
-        return AjaxResult.me().setResultObj(roleService.selectList(null));
+        for (Role role : roles) {
+            for (RoleUser roleUser : roleuser) {
+                if (role.getId().equals(roleUser.getRoleId())) {
+                    role.setChoice(true);
+                }
+            }
+        }
+        Map<String, Object> roleusers = new HashMap<>();
+        roleusers.put("userId", user.getId());
+        roleusers.put("roles", roles);
+        return AjaxResult.me().setResultObj(roleusers);
     }
     /**
     * 分页查询数据：
