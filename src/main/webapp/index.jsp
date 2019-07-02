@@ -51,41 +51,41 @@
             dataType: "json",
             success: function (res) {
                 config = "[" + JSON.stringify(res) + "]";
-                alert(config);
-                config = [
-                    {
-                        "id": 1,
-                        "menu": [{
-                            "text": "系统管理",
-                            "items": [{"id": "3", "text": "权限管理", "href": "/permission"}, {
-                                "id": "2",
-                                "text": "角色管理",
-                                "href": "/role"
-                            }, {"id": "4", "text": "管理员管理", "href": "/user"}]
-                        }, {
-                            "text": "招聘管理",
-                            "items": [{"id": "13", "text": "援藏人员", "href": "/apply"}, {
-                                "id": "14",
-                                "text": "人员招聘",
-                                "href": "/employment"
-                            }]
-                        }, {
-                            "text": "援藏高校",
-                            "items": [{"id": "6", "text": "学校管理", "href": "/school"}, {
-                                "id": "7",
-                                "text": "需求管理",
-                                "href": "/demand"
-                            }]
-                        }, {
-                            "text": "援藏工作",
-                            "items": [{"id": "9", "text": "路线管理", "href": "/path"}, {
-                                "id": "10",
-                                "text": "工作动态",
-                                "href": "/activity"
-                            }, {"id": "11", "text": "援藏政策", "href": "/policy"}]
-                        }]
-                    }
-                ];
+                alert(config.toString());
+                // config = [
+                //     {
+                //         "id": 1,
+                //         "menu": [{
+                //             "text": "系统管理",
+                //             "items": [{"id": "3", "text": "权限管理", "href": "/permission"}, {
+                //                 "id": "2",
+                //                 "text": "角色管理",
+                //                 "href": "/role"
+                //             }, {"id": "4", "text": "管理员管理", "href": "/user"}]
+                //         }, {
+                //             "text": "招聘管理",
+                //             "items": [{"id": "13", "text": "援藏人员", "href": "/apply"}, {
+                //                 "id": "14",
+                //                 "text": "人员招聘",
+                //                 "href": "/employment"
+                //             }]
+                //         }, {
+                //             "text": "援藏高校",
+                //             "items": [{"id": "6", "text": "学校管理", "href": "/school"}, {
+                //                 "id": "7",
+                //                 "text": "需求管理",
+                //                 "href": "/demand"
+                //             }]
+                //         }, {
+                //             "text": "援藏工作",
+                //             "items": [{"id": "9", "text": "路线管理", "href": "/path"}, {
+                //                 "id": "10",
+                //                 "text": "工作动态",
+                //                 "href": "/activity"
+                //             }, {"id": "11", "text": "援藏政策", "href": "/policy"}]
+                //         }]
+                //     }
+                // ];
                 alert(config);
             },
         });
