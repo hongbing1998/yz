@@ -22,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@RequiresPermissions(value = {"user"}, logical = Logical.OR)
 public class UserController {
     @Autowired
     public IUserService userService;
@@ -62,7 +63,7 @@ public class UserController {
     }
 
     //获取用户
-    @RequiresPermissions(value={"user"},logical= Logical.OR)
+
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public User get(@PathVariable("id")Long id)
     {
@@ -107,6 +108,7 @@ public class UserController {
             subject.login(token);
             result.put("status","200");
             result.put("msg","successd");
+
 
         } catch (UnknownAccountException e){
             e.printStackTrace();
