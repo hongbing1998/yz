@@ -34,6 +34,8 @@ public class Policy extends Model<Policy> {
     private String userId;
     @TableField("create_data")
     private String createData;
+    @TableField("user_name")
+    private String userName;
 
 
     @Override

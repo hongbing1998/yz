@@ -32,6 +32,9 @@ public class Activity extends Model<Activity> {
     @TableField("create_date")
     private String createDate;
 
+    @TableField("user_name")
+    private String userName;
+
 
     @Override
     protected Serializable pkVal() {

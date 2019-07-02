@@ -23,10 +23,12 @@ import java.io.Serializable;
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
-
     private String id;
+    @ApiModelProperty(notes = "用户账号")
+    private String account;
     @ApiModelProperty(notes = "用户名")
     private String username;
+
 
     @ApiModelProperty(notes = "密码, 密码不能为空且不能为简单密码, 否则后端抛出异常")
     private String password;
