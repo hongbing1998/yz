@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/school")
 public class SchoolController {
@@ -26,9 +27,9 @@ public class SchoolController {
     public AjaxResult save(@RequestBody School school){
         try {
             if(school.getId()!=null){
-                    schoolService.updateById(school);
+                schoolService.updateById(school);
             }else{
-                    schoolService.insert(school);
+                schoolService.insert(school);
             }
             return AjaxResult.me();
         } catch (Exception e) {
@@ -51,8 +52,7 @@ public class SchoolController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public School get(@PathVariable("id")Long id)
-    {
+    public School get(@PathVariable("id")Long id) {
         return schoolService.selectById(id);
     }
 
@@ -65,10 +65,10 @@ public class SchoolController {
 
 
     /**
-    * 分页查询数据：
-    * @param query 查询对象
-    * @return PageList 分页对象
-    */
+     * 分页查询数据：
+     * @param query 查询对象
+     * @return PageList 分页对象
+     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public PageList<School> json(@RequestBody PageQuery query) {
         Page<School> page = new Page<School>(query.getPage(),query.getRows());

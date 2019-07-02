@@ -8,7 +8,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.bean.Role;
 import org.edu.cdtu.yz.bean.User;
@@ -56,8 +55,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("===进入授权===");
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
+        User user = getCurrentUser();
         if (user != null) {
             // 已登录，执行授权
             System.out.println("===已登录，执行授权===");
@@ -79,6 +77,13 @@ public class ShiroRealm extends AuthorizingRealm {
             return info;
         }
         return null;
+    }
+
+    /**
+     * 获取当前用户信息
+     */
+    public static User getCurrentUser() {
+        return (User) SecurityUtils.getSubject().getPrincipal();
     }
 
     public static void main(String[] args) {

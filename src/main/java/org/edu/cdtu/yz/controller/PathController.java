@@ -3,6 +3,7 @@ package org.edu.cdtu.yz.controller;
 import com.baomidou.mybatisplus.plugins.Page;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPathService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/path")
 public class PathController {
@@ -32,6 +34,8 @@ public class PathController {
                     pathService.updateById(path);
             }else{
                 path.setCreateDate(DateUtil.getFormatCurrentDate());
+                path.setUserId(ShiroRealm.getCurrentUser().getId());
+                path.setUserName(ShiroRealm.getCurrentUser().getUsername());
                     pathService.insert(path);
             }
             return AjaxResult.me();
