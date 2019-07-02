@@ -30,6 +30,7 @@ public class MenuserviceImpl implements IMenuService {
             List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
             for (Map<String, Object> cMenu : childList) {
                 if (cMenu.get("parentId").equals(pMenu.get("menuId"))) {
+                    cMenu.put("parentName", pMenu.get("name"));
                     list.add(cMenu);
                 }
             }

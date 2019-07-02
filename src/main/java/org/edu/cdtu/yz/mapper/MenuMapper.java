@@ -12,7 +12,7 @@ public interface MenuMapper {
             @Result(property = "parentId", column = "father_permission"),
             @Result(property = "menuId", column = "id"),
             @Result(property = "name", column = "permission_name"),
-            @Result(property = "url", column = "permission_url")
+            @Result(property = "router", column = "permission_url")
 
     })
     @Select("select DISTINCT p.father_permission,p.id,p.permission_name,p.permission_url" +

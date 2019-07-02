@@ -95,7 +95,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
     }
 
     //获取用户
-
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") Long id) {
         return AjaxResult.me().setResultObj(userService.selectById(id));
