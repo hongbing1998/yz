@@ -1,10 +1,12 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPolicyService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,9 @@ public class PolicyController {
             if(policy.getId()!=null){
                     policyService.updateById(policy);
             }else{
+                policy.setCreateData(DateUtil.getFormatCurrentDate());
+                policy.setUserId(ShiroRealm.getCurrentUser().getId());
+                policy.setUserName(ShiroRealm.getCurrentUser().getUsername());
                     policyService.insert(policy);
             }
             return AjaxResult.me();

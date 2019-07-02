@@ -1,10 +1,12 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Activity;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IActivityService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,9 @@ public class ActivityController {
             if(activity.getId()!=null){
                     activityService.updateById(activity);
             }else{
+                activity.setCreateDate(DateUtil.getFormatCurrentDate());
+                activity.setUserId(ShiroRealm.getCurrentUser().getId());
+                activity.setUserName(ShiroRealm.getCurrentUser().getUsername());
                     activityService.insert(activity);
             }
             return AjaxResult.me();

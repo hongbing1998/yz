@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/checkcenter")
 public class CheckCenterController {
 
-	
+
 	@ApiOperation(value="获取客服", notes="根据cid获取客服")
     @ApiImplicitParam(name = "cid", value = "客户id", required = true, dataType = "String")
 	@ResponseBody
@@ -26,8 +26,8 @@ public class CheckCenterController {
 		map.put("name","客服");
 		return map;
 	}
-	
-	@ApiOperation(value="获取客服", notes="根据cid获取客服")
+
+    @ApiOperation(value = "获取客服2", notes = "根据cid获取客服")
     @ApiImplicitParam(name = "cid", value = "客户id", required = true, dataType = "String")
 	@ResponseBody
 	@PostMapping("/getCenter/{cid}")

@@ -120,7 +120,7 @@ public class ShiroConfig {
         definitionMap.put("/druid/**", "anon");
         definitionMap.put("/static/**", "anon");
         definitionMap.put("/user/login", "anon");
-        definitionMap.put("/**", "authc");
+        definitionMap.put("/*", "authc");
         definitionMap.put("/user/index", "authc");
         definitionMap.put("/vip/index", "roles[vip]");
         definitionMap.put("/logout", "logout");
