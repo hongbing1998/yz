@@ -31,7 +31,7 @@
             <li><a href="">人员招聘</a></li>
         </ul>
         <!--登陆-->
-		<a href="../login.html" class="login">登录</a>
+        <a href="/user/toLogin" class="login">登录</a>
     </div>
 </header>
 <!--网页内容-->

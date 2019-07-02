@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +29,11 @@ public class MenuserviceImpl implements IMenuService {
         }
         for (Map<String, Object> pMenu : parentList) {
             List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+            Map<String, Object> m = new HashMap<>();
             for (Map<String, Object> cMenu : childList) {
                 if (cMenu.get("parentId").equals(pMenu.get("menuId"))) {
-                    cMenu.put("parentName", pMenu.get("name"));
+                  
+
                     list.add(cMenu);
                 }
             }

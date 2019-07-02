@@ -10,6 +10,7 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Activity;
 import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.bean.Policy;
@@ -22,10 +23,11 @@ import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController extends GlobalDefaultExceptionHandler {
     @Autowired
@@ -101,7 +103,23 @@ public class UserController extends GlobalDefaultExceptionHandler {
         return AjaxResult.me().setResultObj(userService.selectById(id));
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "main";
+    }
 
+    @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
+    public String login() {
+        User user = ShiroRealm.getCurrentUser();
+        //如果session中没有user，表示没登陆
+        if (user == null) {
+            return "redirect:login.jsp";
+        } else {
+            return "index";
+        }
+    }
     //查看所有的员工信息
     @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
 //    @RolesAllowed({"ADMIN"})
@@ -124,7 +142,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
         return AjaxResult.me().setResultObj(new PageList<User>(page.getPages(), page.getRecords()));
     }
 
-
+    @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public AjaxResult login(@RequestBody User user) {
         String account = user.getAccount();

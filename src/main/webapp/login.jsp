@@ -19,7 +19,7 @@
                 <h1></h1>
                 <div class="input username" id="username">
                     <label for="userName">用户名</label>
-                    <input type="text" id="userName" />
+                    <input type="text" id="account"/>
                 </div>
                 <div class="input psw" id="psw">
                     <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
@@ -58,7 +58,7 @@
 	$('select').select();
 
 	$("#valiDate").click(function(){
-		var username = $("#userName").val();
+        var account = $("#account").val();
 		var password = $("#passWord").val();
 
 		$.ajax({
@@ -66,10 +66,11 @@
 			type: "post",
 			async: true,
             contentType: 'application/json; charset=UTF-8',
-			data: JSON.stringify({"username": username, "password": password}),
+            dataType: "json",
+            data: JSON.stringify({"account": account, "password": password}),
 			success: function(res){
-				if(res == "success"){
-					window.location.href = "main.jsp";
+                if (res.success) {
+                    window.location.href = "index.jsp";
 				} else {
 					alert(res);
 				}
