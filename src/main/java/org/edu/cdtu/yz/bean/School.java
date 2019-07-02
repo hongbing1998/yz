@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wencheng
@@ -18,17 +18,23 @@ import java.io.Serializable;
 @Data
 @TableName("tb_school")
 public class School extends Model<School> {
-
     private static final long serialVersionUID = 1L;
-
     private Long id;
     @TableField("school_name")
     private String schoolName;
-
+    @TableField("school_info")
+    private String schoolInfo;
+    @TableField("school_need_help")
+    private Boolean schoolNeedHelp;
+    @TableField("school_operate_id")
+    private String schoolOperateId;
+    @TableField("school_operate_name")
+    private String schoolOperateName;
+    @TableField("school_operate_time")
+    private String schoolOperateTime;
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
-
 }

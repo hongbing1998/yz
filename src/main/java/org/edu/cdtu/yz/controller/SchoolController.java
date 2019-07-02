@@ -14,37 +14,38 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/school")
 public class SchoolController {
     @Autowired
-    public ISchoolService schoolService;
+    private ISchoolService schoolService;
 
     /**
      * 保存、修改 【区分id即可】
-     * @param school  传递的实体
+     *
+     * @param school 传递的实体
      * @return Ajaxresult转换结果
      */
-    @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody School school){
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public AjaxResult save(@RequestBody School school) {
         try {
-            if(school.getId()!=null){
+            if (school.getId() != null) {
                 schoolService.updateById(school);
-            }else{
+            } else {
                 schoolService.insert(school);
             }
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("保存对象失败！" + e.getMessage());
         }
     }
 
     //删除对象信息
-    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public AjaxResult delete(@PathVariable("id") Long id) {
         try {
             schoolService.deleteById(id);
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！"+e.getMessage());
+            return AjaxResult.me().setMessage("删除对象失败！" + e.getMessage());
         }
     }
 
@@ -64,6 +65,7 @@ public class SchoolController {
 
     /**
      * 分页查询数据：
+     *
      * @param query 查询对象
      * @return PageList 分页对象
      */
