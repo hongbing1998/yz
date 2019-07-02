@@ -74,3 +74,4 @@ management:
           - shutdown
           - trace
           - loggers
+debug: true

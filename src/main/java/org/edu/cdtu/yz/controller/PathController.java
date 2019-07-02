@@ -1,13 +1,17 @@
 package org.edu.cdtu.yz.controller;
 
-import org.edu.cdtu.yz.service.IPathService;
+import com.baomidou.mybatisplus.plugins.Page;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.service.IPathService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
-import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -27,6 +31,7 @@ public class PathController {
             if(path.getId()!=null){
                     pathService.updateById(path);
             }else{
+                path.setCreateDate(DateUtil.getFormatCurrentDate());
                     pathService.insert(path);
             }
             return AjaxResult.me();
@@ -49,6 +54,8 @@ public class PathController {
     }
 
     //获取用户
+    @ApiOperation(value = "获取客服", notes = "根据cid获取客服")
+    @ApiImplicitParam(name = "id", value = "路线id", required = true, dataType = "String")
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public Path get(@PathVariable("id")Long id)
     {
