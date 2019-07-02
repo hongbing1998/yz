@@ -1,10 +1,13 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.ISchoolService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +21,16 @@ public class SchoolController {
 
     /**
      * 保存、修改 【区分id即可】
-     *
-     * @param school 传递的实体
-     * @return Ajaxresult转换结果
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public AjaxResult save(@RequestBody School school) {
         try {
+            school.setSchoolOperateTime(DateUtil.getFormatCurrentDate());
             if (school.getId() != null) {
                 schoolService.updateById(school);
             } else {
+                school.setSchoolOperateId(ShiroRealm.getCurrentUser().getId());
+                school.setSchoolOperateName(ShiroRealm.getCurrentUser().getUsername());
                 schoolService.insert(school);
             }
             return AjaxResult.me();
@@ -37,7 +40,9 @@ public class SchoolController {
         }
     }
 
-    //删除对象信息
+    /**
+     * 删除对象信息
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id) {
         try {
@@ -50,14 +55,16 @@ public class SchoolController {
     }
 
     //获取用户
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") Long id) {
         return AjaxResult.me().setResultObj(schoolService.selectById(id));
     }
 
 
-    //查看所有的员工信息
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    /**
+     * 查看所有的员工信息
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(schoolService.selectList(null));
     }
@@ -65,14 +72,11 @@ public class SchoolController {
 
     /**
      * 分页查询数据：
-     *
-     * @param query 查询对象
-     * @return PageList 分页对象
      */
-    @RequestMapping(value = "/json",method = RequestMethod.POST)
+    @RequestMapping(value = "/json", method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
-        Page<School> page = new Page<School>(query.getPage(),query.getRows());
+        Page<School> page = new Page<>(query.getPage(), query.getRows());
         page = schoolService.selectPage(page);
-        return AjaxResult.me().setResultObj(new PageList<School>(page.getPages(), page.getRecords()));
+        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), page.getRecords()));
     }
 }
