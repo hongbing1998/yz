@@ -4,6 +4,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.service.IMenuService;
+import org.edu.cdtu.yz.util.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,15 @@ public class MenuController {
     IMenuService menuService;
 
     @RequestMapping("/list")
-    public List<Map<String, Object>> getMenu() {
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        System.out.println(user.getUsername());
-        List<Map<String, Object>> parentList = menuService.getMenu(user.getUsername());
-        return parentList;
+    public AjaxResult getMenu() {
+        try {
+            Subject subject = SecurityUtils.getSubject();
+            User user = (User) subject.getPrincipal();
+            System.out.println(user.getUsername());
+            List<Map<String, Object>> parentList = menuService.getMenu(user.getUsername());
+            return AjaxResult.me().setResultObj(parentList);
+        } catch (Exception e) {
+            return AjaxResult.me().setSuccess(false).setMessage("服务器异常");
+        }
     }
 }

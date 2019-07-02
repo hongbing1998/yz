@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/role")
@@ -52,16 +50,16 @@ public class RoleController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Role get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return roleService.selectById(id);
+        return AjaxResult.me().setResultObj(roleService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Role> list(){
-        return roleService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(roleService.selectList(null));
     }
 
 
@@ -71,9 +69,9 @@ public class RoleController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Role> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Role> page = new Page<Role>(query.getPage(),query.getRows());
         page = roleService.selectPage(page);
-        return new PageList<Role>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Role>(page.getPages(), page.getRecords()));
     }
 }

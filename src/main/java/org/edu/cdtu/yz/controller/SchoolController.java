@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/school")
@@ -51,17 +49,17 @@ public class SchoolController {
         }
     }
 
-    // 获取用户
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public School get(@PathVariable("id") Long id) {
-        return schoolService.selectById(id);
+    //获取用户
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public AjaxResult get(@PathVariable("id") Long id) {
+        return AjaxResult.me().setResultObj(schoolService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<School> list(){
-        return schoolService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(schoolService.selectList(null));
     }
 
 
@@ -71,10 +69,10 @@ public class SchoolController {
      * @param query 查询对象
      * @return PageList 分页对象
      */
-    @RequestMapping(value = "/json", method = RequestMethod.POST)
-    public PageList<School> json(@RequestBody PageQuery query) {
+    @RequestMapping(value = "/json",method = RequestMethod.POST)
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<School> page = new Page<School>(query.getPage(),query.getRows());
         page = schoolService.selectPage(page);
-        return new PageList<School>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<School>(page.getPages(), page.getRecords()));
     }
 }

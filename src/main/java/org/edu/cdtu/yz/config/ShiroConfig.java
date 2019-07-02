@@ -97,9 +97,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("webSecurityManager") DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);// 设置 SecurityManager
-        shiroFilter.setSuccessUrl("/main");// 设置登录成功跳转Url
-        shiroFilter.setLoginUrl("/login.html");// 设置登录跳转Url
-        shiroFilter.setUnauthorizedUrl("/error/unAuth");// 设置未授权提示Url
+        shiroFilter.setSuccessUrl("/main.jsp");// 设置登录成功跳转Url
+        shiroFilter.setLoginUrl("/main.jsp");// 设置登录跳转Url
+        shiroFilter.setUnauthorizedUrl("/main.jsp");// 设置未授权提示Url
         /*
          * anon：匿名用户可访问
          * authc：认证用户可访问
@@ -120,7 +120,7 @@ public class ShiroConfig {
         definitionMap.put("/druid/**", "anon");
         definitionMap.put("/static/**", "anon");
         definitionMap.put("/user/login", "anon");
-        definitionMap.put("/*", "authc");
+        definitionMap.put("/**", "authc");
         definitionMap.put("/user/index", "authc");
         definitionMap.put("/vip/index", "roles[vip]");
         definitionMap.put("/logout", "logout");

@@ -9,8 +9,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/permission")
@@ -52,16 +50,16 @@ public class PermissionController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Permission get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return permissionService.selectById(id);
+        return AjaxResult.me().setResultObj(permissionService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Permission> list(){
-        return permissionService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(permissionService.selectList(null));
     }
 
 
@@ -71,9 +69,9 @@ public class PermissionController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Permission> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Permission> page = new Page<Permission>(query.getPage(),query.getRows());
         page = permissionService.selectPage(page);
-        return new PageList<Permission>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Permission>(page.getPages(), page.getRecords()));
     }
 }

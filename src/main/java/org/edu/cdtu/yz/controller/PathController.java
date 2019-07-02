@@ -13,8 +13,6 @@ import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping("/path")
@@ -61,16 +59,16 @@ public class PathController {
     @ApiOperation(value = "获取客服", notes = "根据cid获取客服")
     @ApiImplicitParam(name = "id", value = "路线id", required = true, dataType = "String")
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Path get(@PathVariable("id")Long id)
+    public AjaxResult get(@PathVariable("id") Long id)
     {
-        return pathService.selectById(id);
+        return AjaxResult.me().setResultObj(pathService.selectById(id));
     }
 
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public List<Path> list(){
-        return pathService.selectList(null);
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(pathService.selectList(null));
     }
 
 
@@ -80,9 +78,9 @@ public class PathController {
     * @return PageList 分页对象
     */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public PageList<Path> json(@RequestBody PageQuery query) {
+    public AjaxResult json(@RequestBody PageQuery query) {
         Page<Path> page = new Page<Path>(query.getPage(),query.getRows());
         page = pathService.selectPage(page);
-        return new PageList<Path>(page.getPages(), page.getRecords());
+        return AjaxResult.me().setResultObj(new PageList<Path>(page.getPages(), page.getRecords()));
     }
 }
