@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends GlobalDefaultExceptionHandler {
     @Autowired
     public IUserService userService;
 
@@ -45,7 +45,8 @@ public class UserController {
      * @param user 传递的实体
      * @return Ajaxresult转换结果
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+
+    @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody User user) {
         try {
             if (user.getId() != null) {
@@ -94,7 +95,7 @@ public class UserController {
     }
 
     //获取用户
-
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") Long id) {
         return AjaxResult.me().setResultObj(userService.selectById(id));
@@ -126,18 +127,19 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public AjaxResult login(@RequestBody User user) {
-        String userName = user.getUsername();
+        String account = user.getAccount();
         String password = user.getPassword();
         boolean remeberMe = user.isRemeberMe();
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password, remeberMe);
+        UsernamePasswordToken token = new UsernamePasswordToken(account, password, remeberMe);
         // 3.执行登录方法
-        try {
+        try{
             subject.login(token);
-        } catch (UnknownAccountException e) {
+        } catch (UnknownAccountException e){
             e.printStackTrace();
+            return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");
         } catch (IncorrectCredentialsException e) {
             return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");
         }
