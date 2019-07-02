@@ -58,9 +58,9 @@ public class SchoolController {
     }
 
 
-    // 查看所有的学校信息
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<School> list() {
+    //查看所有的员工信息
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public List<School> list(){
         return schoolService.selectList(null);
     }
 
@@ -73,8 +73,8 @@ public class SchoolController {
      */
     @RequestMapping(value = "/json", method = RequestMethod.POST)
     public PageList<School> json(@RequestBody PageQuery query) {
-        Page<School> page = new Page<>(query.getPage(), query.getRows());
+        Page<School> page = new Page<School>(query.getPage(),query.getRows());
         page = schoolService.selectPage(page);
-        return new PageList<>(page.getPages(), page.getRecords());
+        return new PageList<School>(page.getPages(), page.getRecords());
     }
 }

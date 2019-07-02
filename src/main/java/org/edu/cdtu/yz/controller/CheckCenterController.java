@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@CrossOrigin
 @Api("客服接口")
 @Controller
 @RequestMapping("/checkcenter")

@@ -27,11 +27,11 @@ public class School extends Model<School> {
     @TableField("school_needhelp")
     private Boolean schoolNeedHelp;
     @TableField("school_operate_id")
-    private Boolean schoolOperateId;
+    private String schoolOperateId;
     @TableField("school_operate_name")
-    private Boolean schoolOperateName;
+    private String schoolOperateName;
     @TableField("school_operate_time")
-    private Boolean schoolOperateTime;
+    private String schoolOperateTime;
 
     @Override
     protected Serializable pkVal() {
