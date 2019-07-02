@@ -62,6 +62,11 @@ public class RoleController {
         return AjaxResult.me().setResultObj(roleService.selectList(null));
     }
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public AjaxResult listf() {
+      
+        return AjaxResult.me().setResultObj(roleService.selectList(null));
+    }
 
     /**
     * 分页查询数据：
