@@ -4,6 +4,7 @@ import org.edu.cdtu.yz.bean.Demand;
 import com.baomidou.mybatisplus.service.IService;
 import org.edu.cdtu.yz.query.PageQuery;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +16,5 @@ import java.util.Map;
  * @since 2019-06-27
  */
 public interface IDemandService extends IService<Demand> {
-    Map<String, Object> selectDemandsInfo(PageQuery pageQuery);
+    List<Map<String, Object>> selectDemandsInfo(PageQuery pageQuery);
 }

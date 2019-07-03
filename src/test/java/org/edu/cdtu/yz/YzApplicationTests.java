@@ -1,6 +1,7 @@
 package org.edu.cdtu.yz;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.User;
@@ -16,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -51,8 +54,16 @@ public class YzApplicationTests {
     @Test
     public void DemandMapperTest() {
         PageQuery pageQuery = new PageQuery();
-        pageQuery.setPage(0);
+        pageQuery.setPage(1);
         pageQuery.setRows(1);
-        demandService.selectDemandsInfo(pageQuery);
+        List<Map<String, Object>> maps = demandService.selectDemandsInfo(pageQuery);
+        System.out.println("maps = " + maps);
+    }
+
+    @Test
+    public void EntityWrapperTest() {
+        EntityWrapper<Map<String, Object>> entity = new EntityWrapper<>();
+
+        //entity.lt()
     }
 }

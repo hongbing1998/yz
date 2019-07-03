@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.entity.Column;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Demand;
@@ -78,9 +79,10 @@ public class DemandController {
      */
     @RequestMapping(value = "/json", method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
-        Page<Demand> page = new Page<>(query.getPage(), query.getRows());
-        page = demandService.selectPage(page);
-        List<Map<String, Object>> demands = new ArrayList<>();
-        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), page.getRecords()));
+        List<Map<String, Object>> maps = demandService.selectDemandsInfo(query);
+        Page<Map<String, Object>> page = new Page<>(query.getPage(), query.getRows());
+        EntityWrapper<Map<String, Object>> entity = new EntityWrapper<>();
+        Column column = new Column();
+        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), maps));
     }
 }
