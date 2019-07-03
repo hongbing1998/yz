@@ -38,35 +38,34 @@
 
     </style>
 </head>
-<form action="" method="post">
+<form action="/policy/save" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">编号</td>
-        <td><input type="text" id="id" name="id" value="1001" readonly="readonly"/></td>
+        <td><input type="text" id="id" name="id" value="${policy.id}" readonly="readonly"/></td>
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="测试标题" style="width: 360px;"/></td>
+        <td ><input type="text" id="title" name="title" value="${policy.title}" style="width: 360px;"/></td>
     </tr>
     <tr>
-    	<td class="tableleft">重新上传</td>
-    	<td>
-    		<div>
-		    	<input type="file" id="file" name="file"/>
-	    	</div>
-    	</td>
+        <td class="tableleft">详细信息</td>
+        <td>
+            <textarea  type="text" id="content" name="address"  style="width: 360px;height: 300px">
+                ${policy.address}
+            </textarea>
+        </td>
     </tr>
    
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button type="submit" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;<a href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
         </td>
     </tr>
 </table>
 </form>
 </body>
 <script type="text/javascript">
-
 </script>
 </html>
