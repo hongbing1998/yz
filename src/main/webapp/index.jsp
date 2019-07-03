@@ -42,7 +42,7 @@
 <script type="text/javascript" src="assets/js/config-min.js"></script>
 <script>
 
-    var config = null;
+    var config = [];
     $(document).ready(function () {
         $.ajax({
             url: "menu/list",
@@ -50,53 +50,14 @@
             async: false,
             dataType: "json",
             success: function (res) {
-                    alert(res);
-                    config = '['+res+']';
-                    alert(config);
-
+                config.push(eval(res));
+                console.log(config);
+                alert(config);
             },
         });
     })
     BUI.use('common/main',function(){
-        // config = [
-        //     {
-        //         id: '4', menu: [
-		// 	{text:'系统管理',
-		// 		items:[
-		// 			{id:'3',text:'角色管理',href:'#'},
-		// 			{id:'4',text:'权限管理',href:'#'},
-        //             {id: '12', text: '管理员管理', href: 'user/list'}
-		// 		]
-		// 	},
-		// 	{text:'援藏高校',
-		// 		items:[
-		// 			{id:'5',text:'学校管理',href:'#'},
-		// 			{id:'6',text:'需求管理',href:'#'}
-		// 		]
-		// 	},
-		// 	{text:'援藏工作',
-		// 		items:[
-		// 			{id:'7',text:'路线管理',href:'#'},
-		// 			{id:'8',text:'工作动态',href:'#'},
-		// 			{id:'9',text:'援藏政策',href:'#'}
-		// 		]
-		// 	},
-      	// 	{text:'招聘管理',
-	  	// 		items:[
-	  	// 			{id:'10',text:'援藏人员',href:'#'},
-	  	// 			{id:'11',text:'人才引进',href:'#'}
-	  	// 		]
-      	// 	}
-		// ]}
-            // ,
-            // {id:'7',homePage : '9',menu:[
-            // 	{text:'业务管理',
-            // 		items:[
-            // 			{id:'9',text:'查询业务',href:'#'}
-            // 		]
-            // 	}
-            // ]}
-	  // ];
+
         new PageUtil.MainPage({
             modulesConfig : config
         });

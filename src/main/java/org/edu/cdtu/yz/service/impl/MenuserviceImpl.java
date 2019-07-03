@@ -22,22 +22,28 @@ public class MenuserviceImpl implements IMenuService {
         List<Map<String, Object>> childList = new ArrayList<Map<String, Object>>();
         for (Map<String, Object> menu : allList) {
             if (menu.get("parentId").equals("0")) {
-                parentList.add(menu);
+                Map<String, Object> n = new HashMap<>();
+                n.put("text", menu.get("name"));
+                n.put("menuId", menu.get("menuId"));
+                parentList.add(n);
+
             } else {
                 childList.add(menu);
             }
         }
         for (Map<String, Object> pMenu : parentList) {
             List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-            Map<String, Object> m = new HashMap<>();
             for (Map<String, Object> cMenu : childList) {
                 if (cMenu.get("parentId").equals(pMenu.get("menuId"))) {
-                  
-
-                    list.add(cMenu);
+                    Map<String, Object> n = new HashMap<>();
+                    n.put("id", cMenu.get("menuId"));
+                    n.put("text", cMenu.get("name"));
+                    n.put("href", cMenu.get("router"));
+                    list.add(n);
                 }
             }
-            pMenu.put("childNode", list);
+            pMenu.remove("menuId");
+            pMenu.put("items", list);
 
         }
         return parentList;
