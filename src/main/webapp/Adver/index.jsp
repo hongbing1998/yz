@@ -39,50 +39,47 @@ body {
 </style>
 </head>
 <body>
-	<form class="form-inline definewidth m20" action=""
+	<form class="form-inline definewidth m20" action="/employment/list"
 		method="get">
-		标题： <input type="text" name="param" id="param"
+		标题： <input type="text" name="title"
 			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary">查询</button>
+		<input type="submit" class="btn btn-primary"value="查询">
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">新增需求</button>
+		<a class="btn btn-success" href="/Adver/add.jsp">新增需求</a>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
 			<tr>
 				<th>编号</th>
 				<th>标题</th>
-				<th>发布学校</th>
-				<th>阅读量</th>
 				<th>最后更新时间</th>
 				<th>发布者</th>
 				<th>操作</th>
 			</tr>
 		</thead>
-		<c:forEach items="${allAdver}" var="data">
+
+		<c:forEach items="${advers}" var="data">
 			<tr>
 				<td>${data.id}</td>
 				<td style="max-width: 220px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-					<a title="点击查看详情" href="#">${data.title}</a>
+					<a class="btn btn-primary" title="点击查看详情" href="/employment/Adver/${data.id}">${data.title}</a>
 				</td>
 				<td>${data.createDate}</td>
 				<td>${data.userName}</td>
 				<td>
-					<a class="option-button" href="">编辑</a>
-					|<a class="option-button" href="/employment">删除</a>
-					|<a class="option-button" href="#">查看</a>
+					<a class="btn btn-success" href="/employment/delete/${data.id}">删除</a>
 				</td>
 			</tr>
 		</c:forEach>
 
 	</table>
-	<div class="inline pull-right page">
-		10 条记录 1/2页 
-		<a href='#'>首页</a>
-		<a href='#'>上一页</a>
-		<a href='#'>下一页</a>
-		<a href='#'>尾页</a>
-	</div>
+	<%--<div class="inline pull-right page">--%>
+		<%--10 条记录 1/2页 --%>
+		<%--<a href='#'>首页</a>--%>
+		<%--<a href='#'>上一页</a>--%>
+		<%--<a href='#'>下一页</a>--%>
+		<%--<a href='#'>尾页</a>--%>
+	<%--</div>--%>
 </body>
 <script>
     

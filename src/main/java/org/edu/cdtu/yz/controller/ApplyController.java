@@ -1,20 +1,28 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Apply;
+import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IApplyService;
+import org.edu.cdtu.yz.service.IEmploymentService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
-@RestController
+@Controller
 @RequestMapping("/apply")
 public class ApplyController {
     @Autowired
     public IApplyService applyService;
+
 
     /**
      * 保存、修改 【区分id即可】
@@ -22,44 +30,50 @@ public class ApplyController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody Apply apply){
+    public String save(@RequestBody Apply apply,Model model){
         try {
             if(apply.getId()!=null){
                     applyService.updateById(apply);
             }else{
                     applyService.insert(apply);
             }
-            return AjaxResult.me();
+            model.addAttribute("allApply",applyService.selectList(null));
+            return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return "/error/unAuth";
         }
     }
 
     //删除对象信息
-    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id){
+    @RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
+    public String delete(@PathVariable("id") String id,Model model){
         try {
             applyService.deleteById(id);
-            return AjaxResult.me();
+            model.addAttribute("allApply",applyService.selectList(null));
+            return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！"+e.getMessage());
+            return "/error/unAuth";
         }
     }
 
     //获取用户
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public AjaxResult get(@PathVariable("id") Long id)
+    @RequestMapping(value = "/apply/{id}",method = RequestMethod.GET)
+    public String get(@PathVariable("id") String id,Model model)
     {
-        return AjaxResult.me().setResultObj(applyService.selectById(id));
+        model.addAttribute("Apply",applyService.selectById(id));
+        return "/helpteacher/show";
     }
-
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public AjaxResult list() {
-        return AjaxResult.me().setResultObj(applyService.selectList(null));
+    public String list(String name,Model model) {
+        List<Apply> employmentList =applyService.selectList(new EntityWrapper<Apply>()
+                .like("name", name)
+        );
+        model.addAttribute("allApply",employmentList);
+        return "/helpteacher/index";
     }
 
 

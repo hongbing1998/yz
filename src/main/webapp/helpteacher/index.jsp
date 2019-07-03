@@ -41,73 +41,28 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="manager/search" method="get">    
+<form class="form-inline definewidth m20" action="/apply/list" method="get">
     用户名称：
-    <input type="text" name="param" id="param" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>
+    <input type="text" name="name" id="param" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <input type="submit" class="btn btn-primary" value="查询">
 </form>
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
         <th>姓名</th>
-        <th>电话</th>
-        <th>QQ</th>
-        <th>课程名</th>
-        <th>学校名</th>
+        <th>报名标题</th>
+		<th>操作</th>
     </tr>
     </thead>
-	    <c:forEach items="${entername }" var="s">
+	<c:forEach items="${allApply }" var="s">
 		<tr>
-			<td>${s.userName }</td>
-			<td>${s.telephone}</td>
-			<td>${s.qq }</td>
-			<td>${s.courseName }</td>
-			<td>${s.schName }</td>
+			<td>${s.name }</td>
+			<td>${s.employTitle}</td>
+			<td>
+				<a class="btn btn-success" href="/apply/apply/${s.id}">查看</a>
+			</td>
 		</tr>
 	</c:forEach>
-</table>
-	<div class="inline pull-right page">
-		${total } 条记录 ${page.page }/${page.totalPage } 页 
-		<c:choose>
-			<c:when test="${page.page == 1 }">
-			</c:when>
-			<c:otherwise>
-				<a href='manager/all'>首页</a>
-				<a href='manager/all?page= ${page.page - 1 }'>上一页</a>
-			</c:otherwise>
-		</c:choose>
-		
-		<c:if test="${page.page - 3 > 0}">
-			<a href='manager/all?page= ${page.page - 3 }'>${page.page - 3 }</a>
-		</c:if>
-		<c:if test="${page.page - 2 > 0}">
-			<a href='manager/all?page= ${page.page - 2 }'>${page.page - 2 }</a>
-		</c:if>
-		<c:if test="${page.page - 1 > 0}">
-			<a href='manager/all?page= ${page.page - 1 }'>${page.page - 1 }</a>
-		</c:if>
-		
-		<span class='current'>${page.page }</span>
-		
-		<c:if test="${page.page + 1 <= page.totalPage}">
-			<a href='manager/all?page= ${page.page + 1 }'>${page.page + 1 }</a>
-		</c:if>
-		<c:if test="${page.page + 2 <= page.totalPage}">
-			<a href='manager/all?page= ${page.page + 2 }'>${page.page + 2 }</a>
-		</c:if>
-		<c:if test="${page.page + 3 <= page.totalPage}">
-			<a href='manager/all?page= ${page.page + 3 }'>${page.page + 3 }</a>
-		</c:if>
-		
-		<c:choose>
-			<c:when test="${page.page == page.totalPage }">
-			</c:when>
-			<c:otherwise>
-				<a href='manager/all?page= ${page.page + 1 }'>下一页</a>
-				<a href='manager/all?page=${page.totalPage }'>尾页</a>
-			</c:otherwise>
-		</c:choose>
-	</div>
 </body>
 </html>
 <script>

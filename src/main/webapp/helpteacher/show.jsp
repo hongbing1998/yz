@@ -35,35 +35,47 @@
 
     </style>
 </head>
-<form action="/employment/save" method="post">
+<form action="" method="post">
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width="10%" class="tableleft">信息编号</td>
-            <td><input type="text" name="id" value="${Adver.id}" readonly="ture"></td>
+            <td width="10%" class="tableleft">姓名</td>
+            <td>${Apply.name}</td>
         </tr>
         <tr>
-            <td class="tableleft">标题</td>
-            <td><input type="text" name="title" value="${Adver.title}"></td>
+            <td class="tableleft">QQ</td>
+            <td>${Apply.qq}</td>
         </tr>
         <tr>
-            <td class="tableleft">撰写人</td>
-            <td><input type="text"  value="${Adver.userName}" readonly="ture"></td>
+            <td class="tableleft">电话</td>
+            <td>${Apply.telephone}</td>
         </tr>
         <tr>
-            <td class="tableleft">时间</td>
-            <td><input type="text" value="${Avter.createDate} " readonly="ture"></td>
-        </tr>
-        <tr>
-
-            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;">${Adver.content}</textarea>
-            </td>
+            <td class="tableleft">学校</td>
+            <td>${Apply.school}</td>
 
         </tr>
+        <tr>
+            <td class="tableleft">课程</td>
+            <td>${Apply.crouse}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">招聘编号</td>
+            <td>${Apply.employId}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">招聘标题</td>
+            <td><a href="/employment/apply/${Apply.id}/${Apply.employId}">${Apply.employTitle}</a></td>
+        </tr>
+        <tr>
+            <td class="tableleft">报名时间</td>
+            <td>${Apply.applyDate}</td>
+        </tr>
+
         <tr>
             <td class="tableleft"></td>
             <td>
-                <a href="/employment/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
-                <input type="submit" class="btn btn-success">
+                <a href="/apply/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
+                <a href="/apply/delete/${Apply.id}" class="btn btn-success" name="backid" id="backid">不通过</a>
                 <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
             </td>
         </tr>

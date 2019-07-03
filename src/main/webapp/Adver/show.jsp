@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page deferredSyntaxAllowedAsLiteral="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page deferredSyntaxAllowedAsLiteral="true" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="${pageContext.request.contextPath}/" />
+    <base href="${pageContext.request.contextPath}/"/>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="./Css/style.css"/>
     <script type="text/javascript" src="./Js/jquery.js"></script>
     <script type="text/javascript" src="./Js/bootstrap.js"></script>
     <script type="text/javascript" src="./Js/ckform.js"></script>
@@ -18,6 +18,7 @@
         body {
             padding-bottom: 40px;
         }
+
         .sidebar-nav {
             padding: 9px 0;
         }
@@ -34,37 +35,42 @@
 
     </style>
 </head>
-<form action="" method="post">
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td width="10%" class="tableleft">需求编号</td>
-        <td>1001</td>
-    </tr>
-    <tr>
-        <td class="tableleft">标题</td>
-        <td >测试标题</td>
-    </tr>
-    <tr>
-    	<td class="tableleft">学校</td>
-    	<td>北京大学</td>
-    </tr>
-    <tr>
-    	<td class="tableleft">详细信息</td>
-    	<td>
-    		测试内容
-    	</td>
-    </tr>
+<form action="/employment/save" method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">信息编号</td>
+            <td><input type="text" name="id" value="${Adver.id}" readonly="ture"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">标题</td>
+            <td><input type="text" name="title" value="${Adver.title}"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">撰写人</td>
+            <td><input type="text"  value="${Adver.userName}" readonly="ture"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">时间</td>
+            <td><input type="text" value="${Avter.createDate} " readonly="ture"></td>
+        </tr>
+        <tr>
 
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-        </td>
-    </tr>
-</table>
+            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;">${Adver.content}</textarea>
+            </td>
+
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <a href="/employment/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
+                <input type="submit" class="btn btn-success" value="修改">
+                <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 <script type="text/javascript">
-    
+
 </script>
 </html>
