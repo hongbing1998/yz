@@ -3,9 +3,7 @@ package org.edu.cdtu.yz;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.User;
-import org.edu.cdtu.yz.mapper.DemandMapper;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.IMenuService;
@@ -25,18 +23,15 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 public class YzApplicationTests {
     @Autowired
-    private IDemandService demandService;
-    @Autowired
     private DataSource dataSource;
-
-    @Autowired
-    private SqlSessionFactory sqlSessionFactory;
-
     @Autowired
     private IUserService iUserService;
-
     @Autowired
     private IMenuService iMenuService;
+    @Autowired
+    private IDemandService demandService;
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
 
     @Test
     public void DataSourceTest() throws SQLException {
@@ -56,14 +51,7 @@ public class YzApplicationTests {
     }
 
     @Test
-    public void DemandMapperTest() {
-//        PageQuery pageQuery = new PageQuery();
-//        pageQuery.setPage(0);
-//        pageQuery.setRows(1);
-//        demandService.selectDemandsInfo(pageQuery);
-        List<Map<String, Object>> map = iMenuService.getMenu("11");
-        System.out.println(map);
-
+    public void DemandTest() {
         PageQuery pageQuery = new PageQuery();
         pageQuery.setPage(1);
         pageQuery.setRows(1);
@@ -72,9 +60,13 @@ public class YzApplicationTests {
     }
 
     @Test
+    public void MenuTest() {
+        List<Map<String, Object>> map = iMenuService.getMenu("11");
+        System.out.println(map);
+    }
+
+    @Test
     public void EntityWrapperTest() {
         EntityWrapper<Map<String, Object>> entity = new EntityWrapper<>();
-
-        //entity.lt()
     }
 }
