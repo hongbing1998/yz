@@ -1,18 +1,14 @@
 package org.edu.cdtu.yz.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.DateUtil;
-import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -78,9 +74,7 @@ public class DemandController {
      */
     @RequestMapping(value = "/json", method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
-        Page<Demand> page = new Page<>(query.getPage(), query.getRows());
-        page = demandService.selectPage(page);
-        List<Map<String, Object>> demands = new ArrayList<>();
-        return AjaxResult.me().setResultObj(new PageList<>(page.getPages(), page.getRecords()));
+        Page<Map<String, Object>> page = demandService.selectDemandsPage(query);
+        return AjaxResult.me().setResultObj(page);
     }
 }

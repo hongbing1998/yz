@@ -31,7 +31,7 @@ spring:
       suffix: .jsp
 
 mybatis-plus:
-  mapper-locations: classpath:mabatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
   # 需要mybatis取别名bean所在的包
   type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query
   global-config:
@@ -66,3 +66,4 @@ management:
     web:
       exposure:
         include: "*"
+debug: false

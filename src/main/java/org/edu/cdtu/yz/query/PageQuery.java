@@ -8,7 +8,13 @@ import lombok.Data;
  */
 @Data
 public class PageQuery {
+    /**
+     * 当前页码（从1开始）
+     */
     private Integer page;
+    /**
+     * 每页大小
+     */
     private Integer rows;
 
     public Integer getStart () {

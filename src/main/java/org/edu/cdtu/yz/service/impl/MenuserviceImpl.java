@@ -46,7 +46,6 @@ public class MenuserviceImpl implements IMenuService {
             pMenu.put("items", list);
 
         }
-        System.out.println("fdgddgd");
         return parentList;
 
     }

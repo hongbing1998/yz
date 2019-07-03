@@ -42,7 +42,7 @@
 <script type="text/javascript" src="assets/js/config-min.js"></script>
 <script>
 
-    var config = null;
+    var config = [];
     $(document).ready(function () {
         $.ajax({
             url: "menu/list",
@@ -50,9 +50,10 @@
             async: false,
             dataType: "json",
             success: function (res) {
-                config = "[" + JSON.stringify(res) + "]";
-
-
+                config.push(eval(res));
+                console.log(config);
+                alert(config);
+            },
         });
     })
     BUI.use('common/main',function(){
