@@ -63,34 +63,40 @@
     	<td class="tableleft">详细信息</td>
     	<td>
     		<div>
-		    	<!-- <textarea rows="5" cols="5"></textarea> -->
-		    	<script type="text/plain" id="info" name="info" style="width: 600px;height: 400px;"></script>
+                <!-- <textarea rows="5" cols="5"></textarea> -->
+                <script type="text/plain" id="info" name="info" style="width: 600px;height: 400px;"></script>
 	    	</div>	
     	</td>
     </tr>
     <tr>
     	<td class="tableleft">援藏历史</td>
-    	<td>
+                < td >
     	<div>
-		    <script type="text/plain" id="history" name="history" style="width: 600px;height: 400px;"></script>
+                < script
+            type = "text/plain"
+            id = "history"
+            name = "history"
+            style = "width: 600px;height: 400px;" ></script>
 	    </div>
-	    </td>
+        </td>
     </tr>
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button
+                type="button" class="btn btn-success" name="backid" id="backid">返回列表
+        </button>
         </td>
     </tr>
 </table>
 </form>
 </body>
 <script type="text/javascript">
-    var info = UE.getEditor("info",{
-    	autoFloatEnabled: false
+    var info = UE.getEditor("info", {
+        autoFloatEnabled: false
     });
-    var hist = UE.getEditor("history",{
-    	autoFloatEnabled: false
+    var hist = UE.getEditor("history", {
+        autoFloatEnabled: false
     });
     
   

@@ -39,19 +39,23 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" style="width: 360px;"/></td>
+        <td><input type="text" id="title" name="title" style="width: 360px;"/></td>
     </tr>
     <tr>
-    	<td class="tableleft">政策详情</td>
+        <td class="tableleft">政策详情</td>
     	<td>
-	    	<input type="text" id="address" name="address" />
+            <input type="text" id="address" name="address"/>
     	</td>
     </tr>
    
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;<a href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;<a
+                href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
+            返回列表
+        </button>
+        </a>
         </td>
     </tr>
 </table>

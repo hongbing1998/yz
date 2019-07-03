@@ -1,19 +1,28 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-ul,ol{list-style: none}
-a{text-decoration: none}
-.content{
+
+ul, ol {
+    list-style: none
+}
+
+a {
+    text-decoration: none
+}
+
+.content {
     width: 1000px;
     margin: 0 auto;
 }
-footer{
+
+footer {
     height: 200px;
     background: url("../image/ext2.bmp") repeat-x 0 0;
 }
-footer>div{
+
+footer > div {
     background: url("../image/footer.jpg") no-repeat center;
     height: 200px;
 }

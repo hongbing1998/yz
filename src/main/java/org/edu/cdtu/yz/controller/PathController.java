@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Path;
-import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPathService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -52,7 +51,7 @@ public class PathController {
     //删除对象信息
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") String id){
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             pathService.deleteById(id);
             return AjaxResult.me();
@@ -91,29 +90,28 @@ public class PathController {
         return AjaxResult.me().setResultObj(new PageList<Path>(page.getPages(), page.getRecords()));
     }
 
-    @RequestMapping(value = "/toindex",method = RequestMethod.GET)
-    public String  toindex(Model model) {
-        Page<Path> page = new Page<Path>(0,10);
+    @RequestMapping(value = "/toindex", method = RequestMethod.GET)
+    public String toindex(Model model) {
+        Page<Path> page = new Page<Path>(0, 10);
         page = pathService.selectPage(page);
-        model.addAttribute("resultObj",new PageList<Path>(page.getPages(), page.getCurrent(),page.getRecords()));
+        model.addAttribute("resultObj", new PageList<Path>(page.getPages(), page.getCurrent(), page.getRecords()));
         return "Process/index";
     }
+
     //去修改页面
-    @RequestMapping(value = "toedit/{id}",method = RequestMethod.GET)
-    public String toedit(@PathVariable("id") String id,Model model)
-    {
-        model.addAttribute("path",pathService.selectById(id));
+    @RequestMapping(value = "toedit/{id}", method = RequestMethod.GET)
+    public String toedit(@PathVariable("id") String id, Model model) {
+        model.addAttribute("path", pathService.selectById(id));
         return "Process/edit";
     }
 
     //去查询据结果页面
-    @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public String toQueryBytitle(String title,Model model)
-    {
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String toQueryBytitle(String title, Model model) {
         List<Path> paths = pathService.selectList(new EntityWrapper<Path>()
                 .like("title", title)
         );
-        model.addAttribute("paths",paths);
+        model.addAttribute("paths", paths);
         return "Process/index";
     }
 }

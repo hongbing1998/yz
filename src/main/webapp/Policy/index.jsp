@@ -37,40 +37,42 @@ body {
 	color:red;
 }
 </style>
-	<script type="text/javascript">
-		function test(id){
+    <script type="text/javascript">
+        function test(id) {
 
-			if(confirm("是否删除？")){
-				$.ajax({
-					url: "policy/"+id,
-					type: "DELETE",
-					async: false,
-					dataType: "json",
-					success: function (res) {
-						alert("删除成功！")
-						// window.location.href("policy/toPindex");
-						$.ajax({
-							url: "policy/toPindex",
-							type: "get",
-							async: false,
-							success: function (res) {
-								window.location.reload();
-							}
-						});
-					}
-				});
-			}
-		}
+            if (confirm("是否删除？")) {
+                $.ajax({
+                    url: "policy/" + id,
+                    type: "DELETE",
+                    async: false,
+                    dataType: "json",
+                    success: function (res) {
+                        alert("删除成功！")
+                        // window.location.href("policy/toPindex");
+                        $.ajax({
+                            url: "policy/toPindex",
+                            type: "get",
+                            async: false,
+                            success: function (res) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        }
 
-	</script>
+    </script>
 </head>
 <body>
-<form  action="/policy/search" method="post">
-	标题： <input type="text" name="title" id="param"
-			   class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
-	<button type="submit" class="btn btn-primary">查询</button>
+<form action="/policy/search" method="post">
+    标题： <input type="text" name="title" id="param"
+               class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp;
-		<a href="Policy/add.jsp"><button type="button" class="btn btn-success" id="addnew" >发布政策</button></a>
+    <a href="Policy/add.jsp">
+        <button type="button" class="btn btn-success" id="addnew">发布政策</button>
+    </a>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
@@ -83,36 +85,38 @@ body {
 			</tr>
 		</thead>
 
-		<c:forEach items="${resultObj.data}" var="data">
-			<tr>
-				<td>${data.id}</td>
-				<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-					${data.title}
-				</td>
-				<td>${data.createData}</td>
-				<td>${data.userName}</td>
-				<td>
-					<a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
-					|<button class="delete-button" id ="delete-button" onclick="test('${data.id}')">删除</button>
-					|<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
-				</td>
-			</tr>
-		</c:forEach>
-		<c:forEach items="${policyes}" var="data">
-			<tr>
-				<td>${data.id}</td>
-				<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-					${data.title}
-				</td>
-				<td>${data.createData}</td>
-				<td>${data.userName}</td>
-				<td>
-					<a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
-					|<button class="delete-button" id ="delete-buttonb" onclick="test('${data.id}')">删除</button>
-					|<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
-				</td>
-			</tr>
-		</c:forEach>
+        <c:forEach items="${resultObj.data}" var="data">
+            <tr>
+                <td>${data.id}</td>
+                <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                        ${data.title}
+                </td>
+                <td>${data.createData}</td>
+                <td>${data.userName}</td>
+                <td>
+                    <a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
+                    |
+                    <button class="delete-button" id="delete-button" onclick="test('${data.id}')">删除</button>
+                    |<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
+                </td>
+            </tr>
+        </c:forEach>
+        <c:forEach items="${policyes}" var="data">
+            <tr>
+                <td>${data.id}</td>
+                <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                        ${data.title}
+                </td>
+                <td>${data.createData}</td>
+                <td>${data.userName}</td>
+                <td>
+                    <a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
+                    |
+                    <button class="delete-button" id="delete-buttonb" onclick="test('${data.id}')">删除</button>
+                    |<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
+                </td>
+            </tr>
+        </c:forEach>
 
 	</table>
 	<div class="inline pull-right page">

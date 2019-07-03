@@ -138,7 +138,8 @@ layuiXtree.prototype.GetChecked = function () {
     var cks = document.getElementsByClassName('layui-xtree-checkbox');
     for (var i = 0; i < cks.length; i++) {
         if (cks[i].checked && cks[i].getAttribute('data-xend') == '1') {
-            arr[arrIndex] = cks[i]; arrIndex++;
+            arr[arrIndex] = cks[i];
+            arrIndex++;
         }
     }
     return arr;

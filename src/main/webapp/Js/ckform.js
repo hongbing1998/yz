@@ -96,6 +96,7 @@ var check_form = function (formname, opt) {
         return false;
     }
     return true;
+
     //校验主函数
     function docheck(el, jscheckrule) {
         var jscheckrule = jscheckrule || el.attr("jscheckrule");
@@ -309,7 +310,7 @@ var check_form = function (formname, opt) {
                 para_arr[l] = '下划线';
             }
         }
-        if (c_rule == "")    return true;
+        if (c_rule == "") return true;
         else {
             var t_rule = "^[" + c_rule + "]*$";
             if (cf_regexp(obj, t_rule)) return true;
@@ -322,7 +323,7 @@ var check_form = function (formname, opt) {
     function cf_regexp(obj, rx) {
         var str = obj.val();
         if (str == "") return true;
-        if (rx == "")return true;
+        if (rx == "") return true;
         var r_exp = new RegExp(rx, "ig");
         if (r_exp.test(str)) return true;
         obj.data('jscheckerror', '含有非法字符');

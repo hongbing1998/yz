@@ -16,7 +16,6 @@ import org.edu.cdtu.yz.service.IRoleService;
 import org.edu.cdtu.yz.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;

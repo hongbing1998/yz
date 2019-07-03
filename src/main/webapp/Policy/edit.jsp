@@ -46,12 +46,12 @@
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="${policy.title}" style="width: 360px;"/></td>
+        <td><input type="text" id="title" name="title" value="${policy.title}" style="width: 360px;"/></td>
     </tr>
     <tr>
         <td class="tableleft">详细信息</td>
         <td>
-            <textarea  type="text" id="content" name="address"  style="width: 360px;height: 300px">
+            <textarea type="text" id="content" name="address" style="width: 360px;height: 300px">
                 ${policy.address}
             </textarea>
         </td>
@@ -60,7 +60,11 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;<a href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;<a
+                href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
+            返回列表
+        </button>
+        </a>
         </td>
     </tr>
 </table>

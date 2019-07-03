@@ -20,13 +20,13 @@ public class PageList<T> {
     private List<T> data = new ArrayList<>();//装前台当前页的数据
 
     //提供有参构造方法，方便测试
-    public PageList(long pageCount, long currentPage,List<T> data) {
+    public PageList(long pageCount, long currentPage, List<T> data) {
         this.pageCount = pageCount;
         this.currentPage = currentPage;
         this.data = data;
     }
     //提供有参构造方法，方便测试
-    public PageList(long pageCount,List<T> data) {
+    public PageList(long pageCount, List<T> data) {
         this.pageCount = pageCount;
         this.data = data;
     }

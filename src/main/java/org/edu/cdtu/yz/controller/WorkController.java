@@ -3,8 +3,6 @@ package org.edu.cdtu.yz.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
-import org.edu.cdtu.yz.bean.Policy;
-import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IWorkService;
@@ -31,7 +29,7 @@ public class WorkController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save(Work work, Model model){
+    public String save(Work work, Model model) {
         try {
             if(work.getId()!=null){
                 work.setCreateDate(DateUtil.getFormatCurrentDate());
@@ -44,9 +42,9 @@ public class WorkController {
                 work.setSchoolId(ShiroRealm.getCurrentUser().getSchoolId());
                 workService.insert(work);
             }
-            Page<Work> page = new Page<Work>(0,10);
+            Page<Work> page = new Page<Work>(0, 10);
             page = workService.selectPage(page);
-            model.addAttribute("resultObj",new PageList<Work>(page.getPages(), page.getCurrent(),page.getRecords()));
+            model.addAttribute("resultObj", new PageList<Work>(page.getPages(), page.getCurrent(), page.getRecords()));
             return "Work/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +55,7 @@ public class WorkController {
     //删除对象信息
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") String id){
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             workService.deleteById(id);
             return AjaxResult.me();
@@ -94,36 +92,34 @@ public class WorkController {
         return AjaxResult.me().setResultObj(new PageList<Work>(page.getPages(), page.getRecords()));
     }
 
-    @RequestMapping(value = "/toindex",method = RequestMethod.GET)
-    public String  toIndex(Model model) {
-        Page<Work> page = new Page<Work>(0,10);
+    @RequestMapping(value = "/toindex", method = RequestMethod.GET)
+    public String toIndex(Model model) {
+        Page<Work> page = new Page<Work>(0, 10);
         page = workService.selectPage(page);
-        model.addAttribute("resultObj",new PageList<Work>(page.getPages(), page.getCurrent(),page.getRecords()));
+        model.addAttribute("resultObj", new PageList<Work>(page.getPages(), page.getCurrent(), page.getRecords()));
         return "Work/index";
     }
 
     //去修改页面
-    @RequestMapping(value = "toedit/{id}",method = RequestMethod.GET)
-    public String toedit(@PathVariable("id") String id,Model model)
-    {
-        model.addAttribute("work",workService.selectById(id));
+    @RequestMapping(value = "toedit/{id}", method = RequestMethod.GET)
+    public String toedit(@PathVariable("id") String id, Model model) {
+        model.addAttribute("work", workService.selectById(id));
         return "Work/edit";
     }
+
     //去添加页面
-    @RequestMapping(value = "/toadd",method = RequestMethod.GET)
-    public String toadd()
-    {
+    @RequestMapping(value = "/toadd", method = RequestMethod.GET)
+    public String toadd() {
         return "Work/add";
     }
 
     //去查询据结果页面
-    @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public String toQueryBytitle(String title,Model model)
-    {
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String toQueryBytitle(String title, Model model) {
         List<Work> works = workService.selectList(new EntityWrapper<Work>()
                 .like("title", title)
         );
-        model.addAttribute("works",works);
+        model.addAttribute("works", works);
         return "Work/index";
     }
 }
