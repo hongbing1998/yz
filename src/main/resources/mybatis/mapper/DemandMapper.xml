@@ -15,6 +15,6 @@
                  inner join tb_school ts on td.school_id = ts.id
                  inner join tb_user tu on td.user_id = tu.id
         order by level desc
-        limit ${page.start}, ${page.rows}
+        limit #{query.start}, #{query.rows}
     </select>
 </mapper>

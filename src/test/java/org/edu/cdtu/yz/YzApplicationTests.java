@@ -1,10 +1,8 @@
 package org.edu.cdtu.yz;
 
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
@@ -39,25 +37,19 @@ public class YzApplicationTests {
     public void DataSourceTest() throws SQLException {
         System.out.println("数据源：" + dataSource.getClass());
         System.out.println("数据库连接：" + dataSource.getConnection());
-    }
-
-    @Test
-    public void MybatisTest() {
         System.out.println("sqlSessionFactory = " + sqlSessionFactory);
     }
 
     @Test
-    public void MpTest() {
+    public void MybatisPlusTest() {
         User user = iUserService.selectById(1);
         System.out.println("user = " + user);
     }
 
     @Test
     public void DemandTest() {
-        PageQuery pageQuery = new PageQuery();
-        pageQuery.setPage(1);// 设置当前页码（从1开始）
-        pageQuery.setRows(1);// 设置每页大小
-        Page<Map<String, Object>> page = demandService.selectDemandsPage(pageQuery);
+        PageQuery query = new PageQuery(1, 1);
+        Page<Map<String, Object>> page = demandService.selectDemandsPage(query);
         System.out.println("page = " + page);
         System.out.println("page.getRecords() = " + page.getRecords());
     }
