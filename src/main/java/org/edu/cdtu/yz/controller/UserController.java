@@ -115,7 +115,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
         User user = ShiroRealm.getCurrentUser();
         //如果session中没有user，表示没登陆
         if (user == null) {
-            return null;
+            return "redirect:/login.jsp";
         } else {
             return "index";
         }
