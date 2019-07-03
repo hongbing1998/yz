@@ -37,6 +37,33 @@ body {
 	color:red;
 }
 </style>
+	<script type="text/javascript">
+		function test(id){
+
+			if(confirm("是否删除？")){
+				$.ajax({
+					url: "policy/"+id,
+					type: "DELETE",
+					async: false,
+					dataType: "json",
+					success: function (res) {
+						alert("删除成功！")
+						// window.location.href("policy/toPindex");
+						$.ajax({
+							url: "policy/toPindex",
+							type: "get",
+							async: false,
+							success: function (res) {
+								window.location.reload();
+							}
+						});
+					}
+				});
+			}
+		}
+
+
+	</script>
 </head>
 <body>
 	<form class="form-inline definewidth m20" action="policy/search"
@@ -45,7 +72,7 @@ body {
 			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">发布政策</button>
+		<a href="Policy/add.jsp"><button type="button" class="btn btn-success" id="addnew" >发布政策</button></a>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
@@ -57,20 +84,23 @@ body {
 				<th>操作</th>
 			</tr>
 		</thead>
-		
-		<tr>
-			<td>1001</td>
-			<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-				<a title="点击下载文件" href="#">测试标题</a>
-			</td>
-			<td>2018-04-20 08:00:00</td>
-			<td>admin</td>
-			<td>
-				 <a class="option-button" href="#">编辑</a>
-				|<a class="option-button" href="#">删除</a>
-				|<a class="option-button" href="#">查看</a>
-			</td>
-		</tr>
+
+		<c:forEach items="${resultObj.data}" var="data">
+			<tr>
+				<td>${data.id}</td>
+				<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+					<a title="点击下载文件" href="#">${data.title}</a>
+				</td>
+				<td>${data.createData}</td>
+				<td>${data.userName}</td>
+				<td>
+					<a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
+					|<button class="delete-button" id ="delete-button" onclick="test('${data.id}')">删除</button>
+					|<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
+				</td>
+			</tr>
+		</c:forEach>
+
 	</table>
 	<div class="inline pull-right page">
 		10 条记录 1/2页 
@@ -81,6 +111,5 @@ body {
 	</div>
 </body>
 <script>
-    
 </script>
 </html>

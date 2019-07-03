@@ -56,8 +56,7 @@
         <td >13800138000</td>
     </tr>
     <tr>
-
-        <td class="tableleft">级别</td>
+    	<td class="tableleft">级别</td>
     	<td>超级管理员</select>
     	</td>
     </tr>

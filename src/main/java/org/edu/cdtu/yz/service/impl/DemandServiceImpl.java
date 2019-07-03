@@ -8,7 +8,6 @@ import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,9 +21,7 @@ import java.util.Map;
 @Service
 public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> implements IDemandService {
     @Override
-    public Page<Map<String, Object>> selectDemandsPage(PageQuery pageQuery) {
-        Page<Map<String,Object>> page = new Page<>(pageQuery.getPage(), pageQuery.getRows());
-        List<Map<String, Object>> maps = baseMapper.selectDemandsInfo(pageQuery);
-        return page.setRecords(maps);
+    public Page<Map<String, Object>> selectDemandsPage(PageQuery query) {
+        return new Page<Map<String, Object>>().setRecords(baseMapper.selectDemandsInfo(query));
     }
 }

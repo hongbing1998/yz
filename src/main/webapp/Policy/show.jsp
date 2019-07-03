@@ -38,33 +38,35 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">需求编号</td>
-        <td>1001</td>
+        <td>${policy.id}</td>
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td >测试标题</td>
+        <td >${policy.title}</td>
     </tr>
     <tr>
     	<td class="tableleft">学校</td>
-    	<td>北京大学</td>
+    	<td>${policy.schoolName}</td>
     </tr>
     <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
-    		此处显示文件路径
+            <textarea  type="text" id="content" name="title"  style="width: 360px;height: 300px">
+                ${policy.address}
+            </textarea>
     	</td>
     </tr>
    
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <a href="/policy/toPindex"> <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
         </td>
     </tr>
 </table>
 </form>
 </body>
 <script type="text/javascript">
-    
+
 </script>
 </html>

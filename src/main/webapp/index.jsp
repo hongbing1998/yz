@@ -52,7 +52,6 @@
             success: function (res) {
                 config.push(eval(res));
                 console.log(config);
-                alert(config);
             },
         });
     })

@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.query.PageQuery;
@@ -19,7 +20,7 @@ public class DemandController {
     public IDemandService demandService;
 
     /**
-     * 保存、修改 【区分id即可】
+     * 保存数据，数据有id则根据id更新，无id则新增数据
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public AjaxResult save(@RequestBody Demand demand) {
@@ -38,7 +39,7 @@ public class DemandController {
     }
 
     /**
-     * 删除对象信息
+     * 根据id删除数据
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
@@ -52,28 +53,27 @@ public class DemandController {
     }
 
     /**
-     * 获取需求
+     * 根据id查询单条数据
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") String id) {
         return AjaxResult.me().setResultObj(demandService.selectById(id));
     }
 
-
     /**
-     * 查看所有需求信息
+     * 单表条件查询多条数据
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public AjaxResult list() {
-        return AjaxResult.me().setResultObj(demandService.selectList(null));
+    @RequestMapping(value = "/condition_quey", method = RequestMethod.POST)
+    public AjaxResult conditionQuery(@RequestBody(required = false) Demand demand) {
+        EntityWrapper<Demand> demandEntity = new EntityWrapper<>(demand);
+        return AjaxResult.me().setResultObj(demandService.selectList(demandEntity));
     }
 
-
     /**
-     * 分页查询数据
+     * 多表分页查询数据
      */
-    @RequestMapping(value = "/json", method = RequestMethod.POST)
-    public AjaxResult json(@RequestBody PageQuery query) {
+    @RequestMapping(value = "/page_query", method = RequestMethod.POST)
+    public AjaxResult pageQuery(@RequestBody PageQuery query) {
         Page<Map<String, Object>> page = demandService.selectDemandsPage(query);
         return AjaxResult.me().setResultObj(page);
     }

@@ -35,29 +35,28 @@
         }
     </style>
 </head>
-<form action="" method="post">
+<form action="/policy/save" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="" style="width: 360px;"/></td>
+        <td ><input type="text" id="title" name="title" value="11111dfgdg1111111111" style="width: 360px;"/></td>
     </tr>
     <tr>
-    	<td class="tableleft">上传附件</td>
+    	<td class="tableleft">政策详情</td>
     	<td>
-	    	<input type="file" id="file" name="file"/>
+	    	<input type="text" id="address" name="address" value="22222sdfdf2222222"/>
     	</td>
     </tr>
    
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button type="submit" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;<a href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
         </td>
     </tr>
 </table>
 </form>
 </body>
 <script type="text/javascript">
-    
 </script>
 </html>
