@@ -1,12 +1,15 @@
 package org.edu.cdtu.yz;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.IMenuService;
+import org.edu.cdtu.yz.service.ISchoolService;
 import org.edu.cdtu.yz.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +31,8 @@ public class YzApplicationTests {
     private IUserService iUserService;
     @Autowired
     private IMenuService iMenuService;
+    @Autowired
+    public ISchoolService schoolService;
     @Autowired
     private IDemandService demandService;
     @Autowired
@@ -58,5 +63,15 @@ public class YzApplicationTests {
     public void MenuTest() {
         List<Map<String, Object>> map = iMenuService.getMenu("11");
         System.out.println(map);
+    }
+
+    @Test
+    public void SchoolTest() {
+        EntityWrapper<School> entityWrapper = new EntityWrapper<>();
+        entityWrapper.setSqlSelect("id", "school_name", "school_info", "school_need_help");
+        List<School> schools = schoolService.selectList(entityWrapper);
+        for (School school : schools) {
+            System.out.println("school = " + school);
+        }
     }
 }
