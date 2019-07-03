@@ -36,12 +36,37 @@ body {
 </style>
 </head>
 <body>
-		<form class="layui-form" action="">
-			<div id="layui-xtree-demo1" style="width:300px;height:500px; border:1px solid black; margin:20px;"></div>
+<form action="/permissionRole/save" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover ">
+        <tr>
+            <td><input type="text" id="id" name="id" value="${role.id}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">角色名</td>
+            <td>${role.roleName}</td>
+        </tr>
 
-			<input type="button" value="提交" id="btn_getCk" />
+        <tr>
+            <td class="tableleft">角色</td>
+            <td>
+                <c:forEach items="${permissions}" var="permission">
+                    <input id="permissionIds[]" type="checkbox" value="${permission.id}" name="permissionIds[]"
+                           <c:if test="${permission.choice==true}">checked="checked"</c:if>>${permission.permissionName}
+                </c:forEach>
+            </td>
+        </tr>
 
-		</form>
+
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" id="submit-button" class="btn btn-primary">保存</button>
+                &nbsp;&nbsp;
+                <button onclick="toAdd()" type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
 	</body>
 
 </html>
@@ -50,5 +75,7 @@ body {
 <!--xtree的js文件-->
 <script src="assets/layui-xtree/layui-xtree.js"></script>
 <script type="text/javascript">
-
+    var toAdd = function () {
+        window.location.href = "/role/list";
+    }
 </script>

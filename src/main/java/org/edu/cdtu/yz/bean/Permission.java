@@ -34,7 +34,8 @@ public class Permission extends Model<Permission> {
     private BigDecimal type;
     private String icon;
     private String perms;
-
+    @TableField(exist = false)
+    private Boolean choice;
 
     @Override
     protected Serializable pkVal() {

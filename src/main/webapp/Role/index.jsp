@@ -46,22 +46,22 @@
     <tr>
         <th>id</th>
         <th>权限名称</th>
-        <th>描述</th>
-        <th>备注</th>
+
+
         <th>操作</th>
     </tr>
     </thead>
-		<tr>
-			<td>1001</td>
-			<td>
-				超级管理员
-			</td>
-			<td>测试内容</td>
-			<td>无</td>
-			<td>
-				 <a class="option-button" href="#">修改权限</a>
-			</td>
-		</tr>
+    <c:forEach items="${roles}" var="role">
+        <tr>
+            <td>${role.id}</td>
+            <td>
+                    ${role.roleName}
+            </td>
+            <td>
+                <a class="option-button" href="/role/getRolePerssion?id=${role.id}">修改权限</a>
+            </td>
+        </tr>
+    </c:forEach>
 </table>
 	<div class="inline pull-right page">
 		10 条记录 1/2页 

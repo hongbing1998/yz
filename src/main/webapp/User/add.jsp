@@ -44,51 +44,98 @@ body {
 </style>
 </head>
 <body>
-	<form action="user/add" method="post" class="definewidth m20">
-		<table class="table table-bordered table-hover ">
-			<tr>
-				<td class="tableleft">管理员名称</td>
-				<td><input type="text" id="userName" name="username"/></td>
-			</tr>
-			<tr>
-				<td class="tableleft">管理员密码</td>
-				<td><input type="text" id="passWord" name="password"/></td>
-			</tr>
-			<tr>
-				<td class="tableleft">所属学校</td>
-				<td>
-					<select id="schId" name="schoolid">
-						<c:forEach items="${schools }" var="school"> 
-							<option value="${school.id }">${school.schoolname }</option>
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="tableleft">电话</td>
-				<td><input type="text" id="telephone" name="telephone"/></td>
-			</tr>
-			<tr>
-				<td class="tableleft">级别</td>
-				<td><select id="roleId" name="level">
-						<option value="1" selected="selected">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td class="tableleft"></td>
-				<td>
-					<button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;
-					<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+<form action="/user/save" method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <a id="id" name="id" value="${user.id}"></a>
+        <tr>
+            <td class="tableleft">管理员名称</td>
+            <td><input type="text" value="${user.username}" id="username" name="username"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">账号</td>
+            <td><input type="text" value="${user.account}" id="account" name="account"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">管理员密码</td>
+            <td><input type="text" id="password" name="password"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所属学校</td>
+            <td>
+                <select id="schoolId" name="schoolId">
+                    <option value="${user.schoolId}">${user.schoolName}</option>
+                    <c:forEach items="${schools}" var="school">
+                        <option value="${school.id}">${school.schoolName}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">电话</td>
+            <td><input type="text" value="${user.phone}" id="phone" name="phone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">email</td>
+            <td><input type="text" value="${user.email}" id="email" name="email"/></td>
+        </tr>
+        <%--<tr>--%>
+        <%--<td class="tableleft">性别</td>--%>
+        <%--<td><input value="男" id="4" name="gender" type="radio" checked="checked"/>男--%>
+        <%--<input   value="女" id="f"  name="gender" type="radio" />女</td>--%>
+        <%--</tr>--%>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <input type="button" value="提交" id="valiDate" class="btn btn-primary"> &nbsp;&nbsp;
+                <button onclick="toAdd()" type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
 </body>
 <script type="text/javascript">
-	
+    var toAdd = function () {
+        window.location.href = "user/list";
+    }
+    $("#valiDate").click(function () {
+        var id = $("#id").val()
+        var account = $("#account").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var schoolId = $("#schoolId").val();
+
+
+        $.ajax({
+            url: "user/save",
+            type: "post",
+            async: true,
+            contentType: 'application/json; charset=UTF-8',
+            dataType: "json",
+            data: JSON.stringify({
+                "id": id,
+                "account": account,
+                "password": password,
+                "username": username,
+                "phone": phone,
+                "email": email,
+                "schoolId": schoolId
+            }),
+            success: function (res) {
+                if (res.success) {
+                    window.location.href = "user/list";
+                } else {
+                    alert("网络异常，请稍后再试！");
+                }
+            },
+            error: function (e) {
+                alert("网络异常，请稍后再试！");
+            }
+        });
+
+    });
 </script>
 </html>

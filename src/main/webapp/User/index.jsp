@@ -45,38 +45,39 @@
     用户名称：
     <input type="text" name="param" id="param" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
-    <button type="button" class="btn btn-success" onclick="toAdd()" id="addnew">新增用户</button>
+	<button type="button" class="btn btn-success" onclick="toAdd()" id="addnew">新增用户</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
-        <th>管理员id</th>
+		<th>管理员账户</th>
         <th>管理员名称</th>
         <th>所属学校</th>
         <th>电话</th>
-        <th>级别</th>
-        <th>创建时间</th>
-        <th>其它</th>
+		<%--<th>级别</th>--%>
+		<th>email</th>
         <th>操作</th>
     </tr>
     </thead>
-    <c:forEach items="${users }" var="user">
+	<c:forEach items="${users}" var="user">
     	<tr>
-			<td>${user.id }</td>
+			<td>${user.account }</td>
 			<td>
 				<a title="点击查看详情" href="#">
 					${user.username }
 				</a>
 			</td>
-			<td>${user.schoolname }</td>
-			<td>${user.telephone }</td>
-			<td>${user.level }</td>
-			<td>${user.createtime }</td>
-			<td>${user.other }</td>
+			<td>${user.schoolName }</td>
+			<td>${user.phone }</td>
+				<%--<td>${user.level }</td>--%>
+			<td>${user.email }</td>
+			schoolName
 			<td>
-				 <a class="option-button" href="#">编辑</a>
-				|<a class="option-button" href="#">删除</a>
+				<a class="option-button" href="/user/update?id=${user.id}">编辑</a>
+				|
+				<button class="delete-button" id="delete-button" onclick="test('${user.id}')">删除</button>
 				|<a class="option-button" href="#">查看</a>
+				|<a class="option-button" href="/role/getUserRoles?id=${user.id}">绑定角色</a>
 			</td>
 		</tr>
     </c:forEach>
@@ -108,6 +109,30 @@
 </html>
 <script>
    var toAdd = function(){
-	   window.location.href = "user/toadd";
+       window.location.href = "/user/add";
+   }
+
+   function test(id) {
+
+       if (confirm("是否删除？")) {
+           $.ajax({
+               url: "user/" + id,
+               type: "DELETE",
+               async: false,
+               dataType: "json",
+               success: function (res) {
+                   alert("删除成功！")
+                   // window.location.href("policy/toPindex");
+                   $.ajax({
+                       url: "user/list",
+                       type: "get",
+                       async: false,
+                       success: function (res) {
+                           window.location.reload();
+                       }
+                   });
+               }
+           });
+       }
    }
 </script>

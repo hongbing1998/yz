@@ -11,20 +11,20 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
-import org.edu.cdtu.yz.bean.Activity;
-import org.edu.cdtu.yz.bean.Path;
-import org.edu.cdtu.yz.bean.Policy;
-import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.bean.*;
 import org.edu.cdtu.yz.query.PageQuery;
-import org.edu.cdtu.yz.service.IActivityService;
-import org.edu.cdtu.yz.service.IPathService;
-import org.edu.cdtu.yz.service.IPolicyService;
-import org.edu.cdtu.yz.service.IUserService;
+import org.edu.cdtu.yz.service.*;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @CrossOrigin
 @Controller
@@ -39,7 +39,10 @@ public class UserController extends GlobalDefaultExceptionHandler {
     public IActivityService iActivityService;
     @Autowired
     public IPolicyService iPolicyService;
-
+    @Autowired
+    public IRoleService roleService;
+    @Autowired
+    public ISchoolService schoolService;
 
     /**
      * 保存、修改 【区分id即可】
@@ -47,12 +50,19 @@ public class UserController extends GlobalDefaultExceptionHandler {
      * @param user 传递的实体
      * @return Ajaxresult转换结果
      */
-
+    @ResponseBody
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody User user) {
+        Map<String, Object> msp = new HashMap<>();
+
         try {
-            if (user.getId() != null) {
-                Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
+            if (user.getId() != "") {
+                System.out.println("dscds");
+                if (user.getPassword() != "") {
+                    Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
+                }
+                String da = DateUtil.getFormatCurrentDate();
+                user.setCreateDate(da);
                 userService.updateById(user);
                 if (user.getUsername() != null) {
                     String username = user.getUsername();
@@ -73,20 +83,33 @@ public class UserController extends GlobalDefaultExceptionHandler {
                     );
                 }
             } else {
+                School school = schoolService.selectById(user.getSchoolId());
+                if (user.getPassword() == "") {
+                    AjaxResult.me().setSuccess(false);
+                }
                 Object r = new SimpleHash("MD5", user.getPassword(), null, 1024);
+
+                String m = r.toString();
+                String da = DateUtil.getFormatCurrentDate();
+                user.setCreateDate(da);
+                user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+                user.setPassword(m);
+                String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+                user.setSchoolName(school.getSchoolName());
                 userService.insert(user);
             }
+
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！" + e.getMessage());
+            return AjaxResult.me().setSuccess(false);
         }
     }
 
     //删除对象信息
-
+    @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id) {
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             userService.deleteById(id);
             return AjaxResult.me();
@@ -110,6 +133,16 @@ public class UserController extends GlobalDefaultExceptionHandler {
         return "main";
     }
 
+    //转跳到add.jsp
+//    @RequiresPermissions(value = {"toadd"}, logical = Logical.OR)
+//    @RolesAllowed({"ADMIN"})
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String toAdd(Model model) {
+        model.addAttribute("roles", roleService.selectList(null));
+        model.addAttribute("schools", schoolService.selectList(null));
+        return "User/add";
+    }
+
     @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
     public String login() {
         User user = ShiroRealm.getCurrentUser();
@@ -120,12 +153,21 @@ public class UserController extends GlobalDefaultExceptionHandler {
             return "index";
         }
     }
+
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public String get(String id, Model model) {
+        model.addAttribute("user", userService.selectById(id));
+        model.addAttribute("schools", schoolService.selectList(null));
+        return "User/add";
+    }
     //查看所有的员工信息
     @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
 //    @RolesAllowed({"ADMIN"})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public AjaxResult list() {
-        return AjaxResult.me().setResultObj(userService.selectList(null));
+    public String list(Model model) {
+        model.addAttribute("users", userService.selectList(null));
+        return "User/index";
     }
 
 
