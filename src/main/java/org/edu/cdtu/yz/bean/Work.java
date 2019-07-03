@@ -24,10 +24,17 @@ public class Work extends Model<Work> {
     private String id;
     private String title;
     private String content;
+    private String count;
     @TableField("user_id")
     private String userId;
     @TableField("create_date")
     private String createDate;
+    @TableField("user_name")
+    private String userName;
+    @TableField("school_name")
+    private String schoolName;
+    @TableField("school_id")
+    private String schoolId;
 
 
 

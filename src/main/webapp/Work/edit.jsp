@@ -38,36 +38,26 @@
 
     </style>
 </head>
-<form action="" method="post">
+<form action="/work/save" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">编号</td>
-        <td><input type="text" id="id" name="id" value="0001" readonly="readonly"/></td>
+        <td><input type="text" id="id" name="id" value="${work.id}" readonly="readonly"/></td>
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="测试标题" style="width: 360px;"/></td>
+        <td ><input type="text" id="title" name="title" value="${work.title}" style="width: 360px;"/></td>
     </tr>
     <tr>
     	<td class="tableleft">学校</td>
-    	<td>北京大学</td>
+    	<td>${work.schoolName}</td>
     </tr>
     <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
     		<div>
-		    	<<textarea rows="5" cols="5">
-						 测试内容
-				</textarea>
-	    	</div>
-    	</td>
-    </tr>
-	<tr>
-    	<td class="tableleft">援藏历史</td>
-    	<td>
-    		<div>
-		    	<textarea rows="5" cols="5">
-						 测试内容
+		    	<textarea type="text" id="content" name="content"  rows="5" cols="5">
+                ${work.content}
 				</textarea>
 	    	</div>
     	</td>
@@ -75,7 +65,7 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<a href="/work/toindex"><button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
         </td>
     </tr>
 </table>

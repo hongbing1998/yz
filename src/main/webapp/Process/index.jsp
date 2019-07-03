@@ -5,83 +5,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="UTF-8">
-    <base href="${pageContext.request.contextPath}/" />
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/style.css" />
-    <script type="text/javascript" src="./Js/jquery.js"></script>
-    <script type="text/javascript" src="./Js/bootstrap.js"></script>
-    <script type="text/javascript" src="./Js/ckform.js"></script>
-    <script type="text/javascript" src="./Js/common.js"></script>
+	<base href="${pageContext.request.contextPath}/" />
+	<title></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="./Css/style.css" />
+	<script type="text/javascript" src="./Js/jquery.js"></script>
+	<script type="text/javascript" src="./Js/bootstrap.js"></script>
+	<script type="text/javascript" src="./Js/ckform.js"></script>
+	<script type="text/javascript" src="./Js/common.js"></script>
 
- 
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
 
-    <style type="text/css">
-        body {
-            padding-bottom: 40px;
-        }
-        .sidebar-nav {
-            padding: 9px 0;
-        }
+		.sidebar-nav {
+			padding: 9px 0;
+		}
 
-        @media (max-width: 980px) {
-            /* Enable use of floated navbar text */
-            .navbar-text.pull-right {
-                float: none;
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-        }
+		@media ( max-width : 980px) {
+			/* Enable use of floated navbar text */
+			.navbar-text.pull-right {
+				float: none;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
 		.option-button:hover {
 			color:red;
 		}
+	</style>
+	<script type="text/javascript">
+		function test(id){
 
-    </style>
+			if(confirm("是否删除？")){
+				$.ajax({
+					url: "path/"+id,
+					type: "DELETE",
+					async: false,
+					success: function (res) {
+						alert("删除成功！")
+						$.ajax({
+							url: "/path/toindex",
+							type: "get",
+							async: false,
+							success: function (res) {
+								window.location.reload();
+							}
+						});
+					}
+				});
+			}
+		}
+
+
+	</script>
 </head>
 <body>
-	<form class="form-inline definewidth m20" action="process/search"
-		method="get">
-		标题： <input type="text" name="param" id="param"
-			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary">查询</button>
-		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">新增路线</button>
-	</form>
+<form class="form-inline definewidth m20" action="policy/search"
+	  method="get">
+	标题： <input type="text" name="param" id="param"
+			   class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+	<button type="submit" class="btn btn-primary">查询</button>
+	&nbsp;&nbsp;
+	<a href="Process/add.jsp"><button type="button" class="btn btn-success" id="addnew" >发布路线</button></a>
+</form>
 <table class="table table-bordered table-hover definewidth m10">
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>路线名称</th>
-        <th>创建时间</th>
-        <th>创建者</th>
-        <th>操作</th>
-    </tr>
-    </thead>
+	<thead>
+	<tr>
+		<th>编号</th>
+		<th>标题</th>
+		<th>最后更新时间</th>
+		<th>发布者</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+
+	<c:forEach items="${resultObj.data}" var="data">
 		<tr>
-			<td>1001</td>
-			<td>
-				四川大学援藏路线
+			<td>${data.id}</td>
+			<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+				${data.title}
 			</td>
-			<td>2018-04-20 08:00:00</td>
-			<td>admin</td>
+			<td>${data.createDate}</td>
+			<td>${data.userName}</td>
 			<td>
-				 <a class="option-button" href="">修改</a>
-				 |
-				 <a class="option-button" onclick="#">删除</a>
+				<a class="option-button" href="/path/toedit/${data.id}">编辑与查看</a>
+				|<button class="delete-button" id ="delete-button" onclick="test('${data.id}')">删除</button>
 			</td>
 		</tr>
+	</c:forEach>
+
 </table>
-	<div class="inline pull-right page">
-		10 条记录 1/2页 
-		<a href='#'>首页</a>
-		<a href='#'>上一页</a>
-		<a href='#'>下一页</a>
-		<a href='#'>尾页</a>
-	</div>
+<div class="inline pull-right page">
+	10 条记录 1/2页
+	<a href='#'>首页</a>
+	<a href='#'>上一页</a>
+	<a href='#'>下一页</a>
+	<a href='#'>尾页</a>
+</div>
 </body>
-</html>
 <script>
-    
 </script>
+</html>
