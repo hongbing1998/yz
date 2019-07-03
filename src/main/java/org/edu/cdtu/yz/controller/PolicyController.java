@@ -27,7 +27,6 @@ public class PolicyController {
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public String save( Policy policy,Model model){
-        System.out.println(",,,,,,,,,,,,,,,,,,,,,,");
         try {
             if(policy.getId()!=null){
                 policy.setCreateData(DateUtil.getFormatCurrentDate());
@@ -65,7 +64,7 @@ public class PolicyController {
 
     //去修改页面
     @RequestMapping(value = "toedit/{id}",method = RequestMethod.GET)
-    public String toedit(@PathVariable("id") Long id,Model model)
+    public String toedit(@PathVariable("id") String id,Model model)
     {
         model.addAttribute("policy",policyService.selectById(id));
         return "Policy/edit";
@@ -110,7 +109,6 @@ public class PolicyController {
     public String  toIndex(Model model) {
         Page<Policy> page = new Page<Policy>(0,10);
         page = policyService.selectPage(page);
-        System.out.println("...............................................");
         model.addAttribute("resultObj",new PageList<Policy>(page.getPages(), page.getCurrent(),page.getRecords()));
         return "Policy/index";
     }

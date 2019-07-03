@@ -89,7 +89,7 @@ body {
 			<tr>
 				<td>${data.id}</td>
 				<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-					<a title="点击下载文件" href="#">${data.title}</a>
+					${data.title}
 				</td>
 				<td>${data.createData}</td>
 				<td>${data.userName}</td>

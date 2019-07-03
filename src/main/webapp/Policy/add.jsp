@@ -39,12 +39,12 @@
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="11111dfgdg1111111111" style="width: 360px;"/></td>
+        <td ><input type="text" id="title" name="title" style="width: 360px;"/></td>
     </tr>
     <tr>
     	<td class="tableleft">政策详情</td>
     	<td>
-	    	<input type="text" id="address" name="address" value="22222sdfdf2222222"/>
+	    	<input type="text" id="address" name="address" />
     	</td>
     </tr>
    
