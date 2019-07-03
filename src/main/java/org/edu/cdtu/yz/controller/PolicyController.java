@@ -1,7 +1,9 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
+import org.edu.cdtu.yz.bean.Policy;
 import org.edu.cdtu.yz.bean.Policy;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPolicyService;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @Controller
@@ -110,6 +114,16 @@ public class PolicyController {
         Page<Policy> page = new Page<Policy>(0,10);
         page = policyService.selectPage(page);
         model.addAttribute("resultObj",new PageList<Policy>(page.getPages(), page.getCurrent(),page.getRecords()));
+        return "Policy/index";
+    }
+    //去查询据结果页面
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public String toQueryBytitle(String title,Model model)
+    {
+        List<Policy> policyes = policyService.selectList(new EntityWrapper<Policy>()
+                .like("title", title)
+        );
+        model.addAttribute("policyes",policyes);
         return "Policy/index";
     }
 }

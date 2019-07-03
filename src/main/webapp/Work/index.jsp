@@ -60,13 +60,11 @@
 			}
 		}
 
-
 	</script>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="policy/search"
-	  method="get">
-	标题： <input type="text" name="param" id="param"
+<form  action="/work/search" method="post">
+	标题： <input type="text" name="title" id="param"
 			   class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
 	<button type="submit" class="btn btn-primary">查询</button>
 	&nbsp;&nbsp;
@@ -98,6 +96,23 @@
 			<td>
 				<a class="option-button" href="/work/toedit/${data.id}">编辑与查看</a>
 				|<button class="delete-button" id ="delete-button" onclick="test('${data.id}')">删除</button>
+			</td>
+		</tr>
+	</c:forEach>
+
+	<c:forEach items="${works}" var="data">
+		<tr>
+			<td>${data.id}</td>
+			<td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+				${data.title}
+			</td>
+			<td>${data.schoolName}</td>
+			<td>${data.count}</td>
+			<td>${data.createDate}</td>
+			<td>${data.userName}</td>
+			<td>
+				<a class="option-button" href="/work/toedit/${data.id}">编辑与查看</a>
+				|<button class="delete-button" id ="delete-buttonb" onclick="test('${data.id}')">删除</button>
 			</td>
 		</tr>
 	</c:forEach>

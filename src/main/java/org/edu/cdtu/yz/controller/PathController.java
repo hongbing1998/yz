@@ -1,11 +1,12 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Path;
-import org.edu.cdtu.yz.bean.Policy;
+import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPathService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @Controller
@@ -101,5 +104,16 @@ public class PathController {
     {
         model.addAttribute("path",pathService.selectById(id));
         return "Process/edit";
+    }
+
+    //去查询据结果页面
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public String toQueryBytitle(String title,Model model)
+    {
+        List<Path> paths = pathService.selectList(new EntityWrapper<Path>()
+                .like("title", title)
+        );
+        model.addAttribute("paths",paths);
+        return "Process/index";
     }
 }

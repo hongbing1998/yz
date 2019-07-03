@@ -145,8 +145,8 @@
 <footer>
     <div></div>
 </footer>
-<script src="Js/jquery-3.3.1.min.js"></script>
-<script src="Js/vue.js"></script>
+<script src="index/js/jquery-3.3.1.min.js"></script>
+<script src="index/js/vue.js"></script>
 <script type="text/javascript">
     new Vue({
         el:'#app',

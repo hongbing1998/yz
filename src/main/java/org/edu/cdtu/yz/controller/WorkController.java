@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @Controller
@@ -111,5 +114,16 @@ public class WorkController {
     public String toadd()
     {
         return "Work/add";
+    }
+
+    //去查询据结果页面
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public String toQueryBytitle(String title,Model model)
+    {
+        List<Work> works = workService.selectList(new EntityWrapper<Work>()
+                .like("title", title)
+        );
+        model.addAttribute("works",works);
+        return "Work/index";
     }
 }
