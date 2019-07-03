@@ -17,5 +17,5 @@ import java.util.Map;
  * @since 2019-06-27
  */
 public interface DemandMapper extends BaseMapper<Demand> {
-    List<Map<String, Object>> selectDemandsInfo(@Param("page") PageQuery pageQuery);
+    List<Map<String, Object>> selectDemandsInfo(@Param("query") PageQuery query);
 }

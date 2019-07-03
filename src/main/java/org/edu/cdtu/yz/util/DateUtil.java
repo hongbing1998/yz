@@ -16,7 +16,7 @@ public class DateUtil {
      */
     public static String getFormatCurrentDate() {
         Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:MM:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
         String currentDateFormat = simpleDateFormat.format(date);
         return currentDateFormat;
     }

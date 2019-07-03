@@ -17,7 +17,16 @@ public class PageQuery {
      */
     private Integer rows;
 
-    public Integer getStart () {
-        return (page - 1 ) * rows;
+    public PageQuery() {
+    }
+
+    public PageQuery(Integer page, Integer rows) {
+        this.page = page;
+        this.rows = rows;
+    }
+
+
+    public Integer getStart() {
+        return (page - 1) * rows;
     }
 }
