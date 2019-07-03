@@ -2,7 +2,9 @@ package org.edu.cdtu.yz;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
@@ -53,20 +55,16 @@ public class YzApplicationTests {
     @Test
     public void DemandTest() {
         PageQuery pageQuery = new PageQuery();
-        pageQuery.setPage(1);
-        pageQuery.setRows(1);
-        List<Map<String, Object>> maps = demandService.selectDemandsInfo(pageQuery);
-        System.out.println("maps = " + maps);
+        pageQuery.setPage(1);// 设置当前页码（从1开始）
+        pageQuery.setRows(1);// 设置每页大小
+        Page<Map<String, Object>> page = demandService.selectDemandsPage(pageQuery);
+        System.out.println("page = " + page);
+        System.out.println("page.getRecords() = " + page.getRecords());
     }
 
     @Test
     public void MenuTest() {
         List<Map<String, Object>> map = iMenuService.getMenu("11");
         System.out.println(map);
-    }
-
-    @Test
-    public void EntityWrapperTest() {
-        EntityWrapper<Map<String, Object>> entity = new EntityWrapper<>();
     }
 }

@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.mapper.DemandMapper;
@@ -21,7 +22,9 @@ import java.util.Map;
 @Service
 public class DemandServiceImpl extends ServiceImpl<DemandMapper, Demand> implements IDemandService {
     @Override
-    public List<Map<String, Object>> selectDemandsInfo(PageQuery pageQuery) {
-        return baseMapper.selectDemandsInfo(pageQuery);
+    public Page<Map<String, Object>> selectDemandsPage(PageQuery pageQuery) {
+        Page<Map<String,Object>> page = new Page<>(pageQuery.getPage(), pageQuery.getRows());
+        List<Map<String, Object>> maps = baseMapper.selectDemandsInfo(pageQuery);
+        return page.setRecords(maps);
     }
 }
