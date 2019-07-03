@@ -100,7 +100,7 @@
                     人员招聘
                 </div>
                 <ul class="list">
-                    <li v-for="(value,index) in employment">{{value.content}}</li>
+                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display01.jsp" style="color: #0C0C0C">{{value.content}}</a></li>
                 </ul>
             </div>
         </div>
@@ -126,7 +126,7 @@
                     <a href="">更多</a>
                 </div>
                 <ul class="list">
-                    <li v-for="(value,index) in demand">{{value.title}}</li>
+                    <li v-for="(value,index) in demand" style="color: #0C0C0C"><a href="display02.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
                 </ul>
             </div>
             <div class="section02-right">
@@ -135,7 +135,7 @@
                     常见问题
                 </div>
                 <ul class="list">
-                    <li v-for="(value,index) in employment">{{value.title}}</li>
+                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display03.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
                 </ul>
             </div>
         </div>
@@ -164,7 +164,7 @@
                 data:'',
                 success:(result)=>{
                 if(result.success){
-                console.log(result.resultObj)
+               // console.log(result.resultObj)
                 this.employment=result.resultObj;
             }
         },
@@ -176,7 +176,7 @@
                 data:'',
                 success:(result)=>{
                 if(result.success){
-                console.log(result.resultObj)
+               // console.log(result.resultObj)
                 this.demand=result.resultObj;
             }
         },
