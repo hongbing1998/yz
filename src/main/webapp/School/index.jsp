@@ -45,7 +45,7 @@ body {
 			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-success" id="addnew">新增学校</button>
+		<button type="button" class="btn btn-success" onclick="toAdd()" id="addnew">新增学校</button>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
@@ -86,6 +86,8 @@ body {
 	</div>
 </body>
 <script>
-    
+    var toAdd = function(){
+    	window.location.href = "School/add.jsp";
+    }
 </script>
 </html>
