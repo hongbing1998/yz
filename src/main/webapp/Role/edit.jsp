@@ -50,5 +50,94 @@ body {
 <!--xtree的js文件-->
 <script src="assets/layui-xtree/layui-xtree.js"></script>
 <script type="text/javascript">
-
+	// 已经选中的菜单
+	var checkeds = '${checkeds }';
+		checkeds = eval(checkeds);
+	// 所有的菜单
+	var menus = '${menus }';
+		menus = eval(menus);
+	
+	var level = '${level }';	
+		
+	var json = [];
+	// 封装tree数据
+	for (var i = 0; i < menus.length; i++) {
+		var item = {
+				title : menus[i].menuname,
+				value : menus[i].id,
+				data: []
+		};
+		json.push(item);
+	}
+	
+	// 将数据渲染到页面
+	layui.use("form",function(){
+		var form = layui.form;
+		
+		var xtree = new layuiXtree({
+			elem : 'layui-xtree-demo1',
+			form : form,
+			data : json,
+			color : "#000",
+			icon : {
+				open : "&#xe7a0;",
+				close: "&#xe622;",
+				end  : "&#xe621;"
+			}
+		});
+		
+		// 默认选中
+		for (var i = 0; i < checkeds.length; i++) {
+			var id = checkeds[i].id;
+			id = "input-" + id;
+			var ele = document.getElementById(id);
+			var xtree_p = ele.parentNode.parentNode;
+			var xtree_all = xtree_p.getElementsByClassName("layui-xtree-item");
+			xtree_p.getElementsByClassName("layui-xtree-checkbox")[id].checked = true;
+			xtree_p.getElementsByClassName("layui-xtree-checkbox")[id].nextSibling.classList.add('layui-form-checked');
+		}
+		
+		// 点击提交
+		$("#btn_getCk").click(function(){
+			
+			var menuIds = "";
+			
+			// 获取已经选中的checkbox
+			var oCks = xtree.GetChecked();
+			
+			// 获取已选中的checkbox的value
+			for (var i = 0; i < oCks.length; i++) {
+				var value = oCks[i].value;
+				menuIds += value + ",";
+			}
+			
+			var param = "level=" + level + "&menuIds=" + menuIds;
+			
+			$.ajax({
+				url: "role/edit",
+				type: "post",
+				async: true,
+				data: param,
+				success: function(res){
+					if(res == "success"){
+						window.location.href = "role/list";
+					} else {
+						alert(res);
+					}
+				},
+				error: function(e){
+					alert("网络异常");
+				}
+			});
+			
+		});
+		
+		
+	});
+	
+	
+	
+	
+	
+	
 </script>

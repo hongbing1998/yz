@@ -26,6 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @CrossOrigin
 @Controller
 @RequestMapping("/user")
@@ -155,6 +157,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
         // 3.执行登录方法
         try{
             subject.login(token);
+
         } catch (UnknownAccountException e){
             e.printStackTrace();
             return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");

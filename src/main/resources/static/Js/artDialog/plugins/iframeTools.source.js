@@ -215,7 +215,7 @@ artDialog.open = function (url, options, cache) {
 			$iframe.bind('load', load);
 		},
 		close: function () {
-			$iframe.css('display', 'none').unbind('load', load);
+			$iframe.css('display01.jsp', 'none').unbind('load', load);
 			
 			if (options.close && options.close.call(this, iframe.contentWindow, top) === false) {
 				return false;

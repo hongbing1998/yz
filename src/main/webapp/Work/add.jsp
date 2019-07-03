@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="${pageContext.request.contextPath}/" />
+    <base href="${pageContext.request.contextPath}/" />
     <title></title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
@@ -35,38 +35,29 @@
         }
     </style>
 </head>
-<form action="" method="post">
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="" style="width: 360px;"/></td>
-    </tr>
-    <tr>
-    	<td class="tableleft">详细信息</td>
-    	<td>
-	    	<div>
-		    	<textarea rows="5" cols="5"></textarea>
-	    	</div>
-    	</td>
-    </tr>
-   <tr>
-    	<td class="tableleft">援藏历史</td>
-    	<td>
-	    	<div>
-		    	<textarea rows="5" cols="5"></textarea>
-	    	</div>
-    	</td>
-    </tr>
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="button" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-        </td>
-    </tr>
-</table>
+<form action="/work/save" method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td class="tableleft">标题</td>
+            <td ><input type="text" id="title" name="title" style="width: 360px;"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">政策详情</td>
+            <td>
+<%--                <textarea type="text" name ="content" rows="5" cols="5"></textarea>--%>
+                      <input type="text" id="content" name="content" />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" id="submit-button" class="btn btn-primary" >保存</button> &nbsp;<a href="/work/toindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 <script type="text/javascript">
-    
 </script>
 </html>

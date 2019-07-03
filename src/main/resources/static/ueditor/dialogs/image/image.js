@@ -483,7 +483,7 @@
                         percentages[ file.id ][ 1 ] = 0;
                     } else if (cur === 'progress') {
                         $info.hide();
-                        $prgress.css('display', 'block');
+                        $prgress.css('display01.jsp', 'block');
                     } else if (cur === 'complete') {
                     }
 

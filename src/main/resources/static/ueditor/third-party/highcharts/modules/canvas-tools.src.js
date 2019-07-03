@@ -938,7 +938,7 @@ if(!Array.prototype.indexOf){
 			// base render
 			this.render = function(ctx) {
 				// don't render display=none
-				if (this.style('display').value == 'none') return;
+				if (this.style('display01.jsp').value == 'none') return;
 				
 				// don't render visibility=hidden
 				if (this.attribute('visibility').value == 'hidden') return;
