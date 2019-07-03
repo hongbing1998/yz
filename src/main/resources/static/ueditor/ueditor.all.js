@@ -2825,7 +2825,7 @@ var domUtils = dom.domUtils = {
      * ```
      */
     isBlockElm:function (node) {
-        return node.nodeType == 1 && (dtd.$block[node.tagName] || styleBlock[domUtils.getComputedStyle(node, 'display')]) && !dtd.$nonChild[node.tagName];
+        return node.nodeType == 1 && (dtd.$block[node.tagName] || styleBlock[domUtils.getComputedStyle(node, 'display01.jsp')]) && !dtd.$nonChild[node.tagName];
     },
     /**
      * 检测node节点是否为body节点
@@ -22744,7 +22744,7 @@ UE.plugins['formatmatch'] = function(){
         if(img && imgT && imgT.tagName == 'IMG'){
             //trace:964
 
-            imgT.style.cssText += ';float:' + (img.style.cssFloat || img.style.styleFloat ||'none') + ';display:' + (img.style.display||'inline');
+            imgT.style.cssText += ';float:' + (img.style.cssFloat || img.style.styleFloat ||'none') + ';display:' + (img.style.display01||'inline');
 
             img = null;
         }else{
@@ -27543,7 +27543,7 @@ UE.ui = baidu.editor.ui = {};
             });
 
             for (var i = 0, node ; node = list[i++] ;) {
-                if (node.style.display != "none") {
+                if (node.style.display01 != "none") {
                     isSubMenuShow = true;
                 }
             }

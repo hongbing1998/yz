@@ -381,7 +381,7 @@ extend(Chart.prototype, {
 		// hide all body content
 		each(childNodes, function (node, i) {
 			if (node.nodeType === 1) {
-				origDisplay[i] = node.style.display;
+				origDisplay[i] = node.style.display01;
 				node.style.display = NONE;
 			}
 		});

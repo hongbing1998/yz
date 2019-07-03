@@ -35,7 +35,7 @@
     </div>
 </header>
 <!--网页内容-->
-<section>
+<section id="app">
     <div class="content">
         <div class="section01">
             <ul class="section01-left">
@@ -100,11 +100,7 @@
                     人员招聘
                 </div>
                 <ul class="list">
-                    <li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
+                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display01.jsp" style="color: #0C0C0C">{{value.content}}</a></li>
                 </ul>
             </div>
         </div>
@@ -130,11 +126,7 @@
                     <a href="">更多</a>
                 </div>
                 <ul class="list">
-                    <li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
-					<li>测试内容</li>
+                    <li v-for="(value,index) in demand" style="color: #0C0C0C"><a href="display02.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
                 </ul>
             </div>
             <div class="section02-right">
@@ -143,11 +135,7 @@
                     常见问题
                 </div>
                 <ul class="list">
-                    <li>更多精彩，敬请期待</li>
-                    <li>更多精彩，敬请期待</li>
-                    <li>更多精彩，敬请期待</li>
-                    <li>更多精彩，敬请期待</li>
-                    <li>更多精彩，敬请期待</li>
+                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display03.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
                 </ul>
             </div>
         </div>
@@ -157,5 +145,44 @@
 <footer>
     <div></div>
 </footer>
+<script src="index/js/jquery-3.3.1.min.js"></script>
+<script src="index/js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data:{
+            employment:[],
+            demand:[]
+        },
+        methods:{
+        },
+        created: function employ(){
+            $.ajax({
+                url:'/employment/list',
+                type:'get',
+                dataType:'json',
+                data:'',
+                success:(result)=>{
+                if(result.success){
+               // console.log(result.resultObj)
+                this.employment=result.resultObj;
+            }
+        },
+        });
+            $.ajax({
+                url:'/demand/list',
+                type:'get',
+                dataType:'json',
+                data:'',
+                success:(result)=>{
+                if(result.success){
+               // console.log(result.resultObj)
+                this.demand=result.resultObj;
+            }
+        },
+        });
+        }
+    })
+</script>
 </body>
 </html>
