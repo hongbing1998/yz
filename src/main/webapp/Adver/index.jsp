@@ -59,23 +59,22 @@ body {
 				<th>操作</th>
 			</tr>
 		</thead>
-		<tr>
-			<td>1001</td>
-			<td style="max-width: 220px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-				<a title="点击查看详情" href="#">测试标题</a>
-			</td>
-			<td style="max-width: 120px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-				北京大学
-			</td>
-			<td>0</td>
-			<td>2018-04-20 08:00:00</td>
-			<td>admin</td>
-			<td>
-				 <a class="option-button" href="#">编辑</a>
-				|<a class="option-button" href="#">删除</a>
-				|<a class="option-button" href="#">查看</a>
-			</td>
-		</tr>
+		<c:forEach items="${allAdver}" var="data">
+			<tr>
+				<td>${data.id}</td>
+				<td style="max-width: 220px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+					<a title="点击查看详情" href="#">${data.title}</a>
+				</td>
+				<td>${data.createDate}</td>
+				<td>${data.userName}</td>
+				<td>
+					<a class="option-button" href="">编辑</a>
+					|<a class="option-button" href="/employment">删除</a>
+					|<a class="option-button" href="#">查看</a>
+				</td>
+			</tr>
+		</c:forEach>
+
 	</table>
 	<div class="inline pull-right page">
 		10 条记录 1/2页 

@@ -17,6 +17,7 @@ public class GlobalDefaultExceptionHandler {
         result.put("msg", "对不起，你没有访问权限！");
         return AjaxResult.me().setSuccess(false).setResultObj(result);
     }
+    
 }
 
 
