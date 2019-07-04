@@ -85,7 +85,7 @@
                 success: (result) = > {
                 if(result.success)
             {
-                //console.log(result.resultObj)
+                console.log(result.resultObj)
                 this.employment = result.resultObj;
             }
         },
