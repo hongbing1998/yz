@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.bean.Apply;
 import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.bean.School;
@@ -58,6 +60,7 @@ public class ApplyController {
     }
 
     //删除对象信息
+    @RequiresPermissions(value = {"apply"}, logical = Logical.OR)
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") String id, Model model) {
         try {
@@ -74,6 +77,7 @@ public class ApplyController {
     }
 
     //获取用户
+    @RequiresPermissions(value = {"apply"}, logical = Logical.OR)
     @RequestMapping(value = "/apply/{id}", method = RequestMethod.GET)
     public String get(@PathVariable("id") String id, Model model)
     {
@@ -82,6 +86,7 @@ public class ApplyController {
     }
 
     //查看所有的报名人员信息
+    @RequiresPermissions(value = {"apply"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(String name, Model model) {
         List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
@@ -92,6 +97,7 @@ public class ApplyController {
     }
 
     //报名
+
     @RequestMapping(value = "/addlist", method = RequestMethod.GET)
     public String getList(Model model) {
         List<School> schools = schoolService.selectList(new EntityWrapper<School>()
@@ -111,6 +117,7 @@ public class ApplyController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @RequiresPermissions(value = {"apply"}, logical = Logical.OR)
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
         Page<Apply> page = new Page<>(query.getPage(), query.getRows());

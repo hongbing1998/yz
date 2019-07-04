@@ -1,6 +1,8 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Activity;
 import org.edu.cdtu.yz.query.PageQuery;
@@ -23,6 +25,7 @@ public class ActivityController {
      * @param activity  传递的实体
      * @return Ajaxresult转换结果
      */
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody Activity activity){
         try {
@@ -42,6 +45,7 @@ public class ActivityController {
     }
 
     //删除对象信息
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -54,6 +58,7 @@ public class ActivityController {
     }
 
     //获取用户
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") Long id)
     {
@@ -62,6 +67,7 @@ public class ActivityController {
 
 
     //查看所有的员工信息
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(activityService.selectList(null));
@@ -73,6 +79,7 @@ public class ActivityController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
         Page<Activity> page = new Page<Activity>(query.getPage(),query.getRows());

@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Demand;
 import org.edu.cdtu.yz.bean.School;
@@ -28,6 +30,7 @@ public class DemandController {
     /**
      * 跳转至添加需求页面，将学校信息带过去
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("schools", schoolService.selectList(null));
@@ -37,6 +40,7 @@ public class DemandController {
     /**
      * 跳转至编辑需求页面，将本条需求信息带过去
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable("id") String id) {
         model.addAttribute("demand", demandService.selectById(id));
@@ -47,6 +51,7 @@ public class DemandController {
     /**
      * 跳转至编辑需求页面，将需求信息带过去
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
     public String show(Model model, @PathVariable("id") String id) {
         model.addAttribute("demand", demandService.selectById(id));
@@ -56,6 +61,7 @@ public class DemandController {
     /**
      * 根据id删除数据
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") String id) {
         try {
@@ -70,6 +76,7 @@ public class DemandController {
     /**
      * 保存数据，数据有id则根据id更新，无id则新增数据
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Demand demand) {
         try {
@@ -93,6 +100,7 @@ public class DemandController {
     /**
      * 条件分页查询，跳转至需求管理主页
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/condition_query", method = RequestMethod.POST)
     public String conditionQuery(Model model, Demand demand) {
         EntityWrapper<Demand> ew = new EntityWrapper<>();
@@ -107,6 +115,7 @@ public class DemandController {
     /**
      * 分页查询数据
      */
+    @RequiresPermissions(value = {"demand"}, logical = Logical.OR)
     @RequestMapping(value = "/page_query/{current}/{size}", method = RequestMethod.GET)
     public String pageQuery(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
         Page<Demand> page = new Page<>(current, size);
