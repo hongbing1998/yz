@@ -34,7 +34,6 @@
 		for (var i = 0; i < arr.length; i++) {
 			path += arr[i]+"%";
 		}
-		alert(path)
 		$.ajax({
 			url: "path/save",
 			type: "post",
