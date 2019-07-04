@@ -57,11 +57,11 @@
         var account = $("#account").val();
 		var password = $("#passWord").val();
         var remeberMe = $("#remeberMe").val();
-        if (account == null || path == "") {
+        if (account == null || account == "") {
             alert("账户不能为空");
             return;
         }
-        if (password == null || path == "") {
+        if (password == null || password == "") {
             alert("密码不能为空");
             return;
         }

@@ -77,6 +77,13 @@
 		}
 		return true;
 	}
+	function isEmpty2() {
+		var name = document.getElementById("name").value;
+		if(name == null || name == ""   ){
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -88,7 +95,7 @@
 		<br />
 		<input value="" id="name" placeholder="点解流程节点可以删除" />
 	                                                                    	<!--如果isEmpty 返回 、true才执行后面的函数-->
-		<input type="button" id="adbten" value="增加" onclick="if (isEmpty()) add();getVal()" />
+		<input type="button" id="adbten" value="增加" onclick="if (isEmpty()) add();if (isEmpty2()) getVal()" />
 		<input type="button" value="提交" onclick="test()"/>
 	</div>
 </body>
