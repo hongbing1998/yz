@@ -40,8 +40,10 @@ public class Policy extends Model<Policy> {
     private String schoolName;
     @TableField("school_id")
     private String schoolId;
-    @TableField("url")
-    private String url;
+    @TableField("file_path")
+    private String filePath;
+    @TableField("file_name")
+    private String fileName;
 
 
     @Override

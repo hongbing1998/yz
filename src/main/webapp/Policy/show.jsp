@@ -51,12 +51,12 @@
     <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
-            <textarea type="text" id="content" name="title" style="width: 360px;height: 300px">
+            <textarea type="text" id="content" readonly="readonly" name="title" style="width: 360px;height: 300px">
                 ${policy.address}
             </textarea>
     	</td>
     </tr>
-   
+
     <tr>
         <td class="tableleft"></td>
         <td>
