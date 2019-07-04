@@ -51,14 +51,14 @@
     </tr>
     </thead>
     <c:forEach items="${roles }" var="role">
-    	<tr>
-			<td>${role.id }</td>
+        <tr>
+            <td>${role.id }</td>
 			<td>
-				${role.level }
+                    ${role.level }
 			</td>
-			<td>${role.rolename }</td>
+            <td>${role.rolename }</td>
 			<td>
-				 <a class="option-button" href="role/toEdit?level=${role.level }">修改权限</a>
+                <a class="option-button" href="role/toEdit?level=${role.level }">修改权限</a>
 			</td>
 		</tr>
     </c:forEach>

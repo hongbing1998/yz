@@ -114,12 +114,12 @@ $.fn = $.prototype = {
 	
 	/** 显示元素 */
 	show: function () {
-		return this.css('display01.jsp', 'block');
+        return this.css('display01.jsp', 'block');
 	},
 	
 	/** 隐藏元素 */
 	hide: function () {
-		return this.css('display01.jsp', 'none');
+        return this.css('display01.jsp', 'none');
 	},
 
     /**

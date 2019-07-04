@@ -36,6 +36,8 @@ mybatis-plus:
   type-aliases-package: org.edu.cdtu.yz.bean,org.edu.cdtu.yz.query
   global-config:
     id-type: 3
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 #  # redis配置----------------------------------------------------------------------------------

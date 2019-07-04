@@ -22744,7 +22744,7 @@ UE.plugins['formatmatch'] = function(){
         if(img && imgT && imgT.tagName == 'IMG'){
             //trace:964
 
-            imgT.style.cssText += ';float:' + (img.style.cssFloat || img.style.styleFloat ||'none') + ';display:' + (img.style.display01||'inline');
+            imgT.style.cssText += ';float:' + (img.style.cssFloat || img.style.styleFloat || 'none') + ';display:' + (img.style.display01 || 'inline');
 
             img = null;
         }else{

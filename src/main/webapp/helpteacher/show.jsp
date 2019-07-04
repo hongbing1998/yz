@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page deferredSyntaxAllowedAsLiteral="true" %>
 <!DOCTYPE html>
@@ -35,64 +35,54 @@
 
     </style>
 </head>
-<div style="margin-left:2%;"><a href="main.jsp"class="btn btn-success">返回首页</a></div>
-<div>
-<form action="work/edit" method="post" id="app">
-
-    <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in employment">
+<form action="" method="post">
+    <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width="10%" class="tableleft">编号</td>
-            <td>{{value.id}}</td>
+            <td width="10%" class="tableleft">姓名</td>
+            <td>${Apply.name}</td>
         </tr>
         <tr>
-            <td class="tableleft">标题</td>
-            <td>{{value.title}}</td>
+            <td class="tableleft">QQ</td>
+            <td>${Apply.qq}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">电话</td>
+            <td>${Apply.telephone}</td>
         </tr>
         <tr>
             <td class="tableleft">学校</td>
-            <td>{{value.content}}</td>
+            <td>${Apply.school}</td>
+
         </tr>
         <tr>
-            <td class="tableleft">详细信息</td>
-            <td>
-                {{value.createDate}}
-            </td>
+            <td class="tableleft">课程</td>
+            <td>${Apply.crouse}</td>
         </tr>
         <tr>
-            <td class="tableleft">援藏历史</td>
+            <td class="tableleft">招聘编号</td>
+            <td>${Apply.employId}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">招聘标题</td>
+            <td><a href="/employment/apply/${Apply.id}/${Apply.employId}">${Apply.employTitle}</a></td>
+        </tr>
+        <tr>
+            <td class="tableleft">报名时间</td>
+            <td>${Apply.applyDate}</td>
+        </tr>
+
+        <tr>
+            <td class="tableleft"></td>
             <td>
-                {{value.userId}}
+                <a href="/apply/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
+                <a href="/apply/delete/${Apply.id}" class="btn btn-success" name="backid" id="backid">不通过</a>
+                <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
             </td>
         </tr>
     </table>
 </form>
-</div>
 </body>
-<script src="index/js/jquery-3.3.1.min.js"></script>
-<script src="index/js/vue.js"></script>
 <script type="text/javascript">
-    new Vue({
-        el: '#app',
-        data: {
-            employment: [],
-        },
-        methods: {},
-        created: function employ() {
-            $.ajax({
-                url: '/employment/list',
-                type: 'get',
-                dataType: 'json',
-                data: '',
-                success: (result) = > {
-                if(result.success)
-            {
-                console.log(result.resultObj)
-                this.employment = result.resultObj;
-            }
-        },
-        })
-            ;
-        }
-    })
+
 </script>
 </html>

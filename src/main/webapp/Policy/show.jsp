@@ -42,16 +42,16 @@
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td >${policy.title}</td>
+        <td>${policy.title}</td>
     </tr>
     <tr>
     	<td class="tableleft">学校</td>
-    	<td>${policy.schoolName}</td>
+        <td>${policy.schoolName}</td>
     </tr>
     <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
-            <textarea  type="text" id="content" name="title"  style="width: 360px;height: 300px">
+            <textarea type="text" id="content" name="title" style="width: 360px;height: 300px">
                 ${policy.address}
             </textarea>
     	</td>
@@ -60,7 +60,9 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <a href="/policy/toPindex"> <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
+            <a href="/policy/toPindex">
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </a>
         </td>
     </tr>
 </table>

@@ -1,13 +1,17 @@
 package org.edu.cdtu.yz;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.edu.cdtu.yz.bean.User;
+import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.IMenuService;
 import org.edu.cdtu.yz.service.IUserService;
+import org.edu.cdtu.yz.service.IWorkService;
+import org.edu.cdtu.yz.util.AjaxResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,8 @@ public class YzApplicationTests {
     private IMenuService iMenuService;
     @Autowired
     private IDemandService demandService;
+    @Autowired
+    private IWorkService workService;
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
@@ -56,7 +62,11 @@ public class YzApplicationTests {
 
     @Test
     public void MenuTest() {
-        List<Map<String, Object>> map = iMenuService.getMenu("11");
-        System.out.println(map);
+        List<Work> works = workService.selectList(new EntityWrapper<Work>()
+                .like("title", "0")
+        );
+        AjaxResult ajaxResult = AjaxResult.me().setResultObj(works);
+        Object resultObj = ajaxResult.getResultObj();
+        System.out.println(resultObj.toString());
     }
 }

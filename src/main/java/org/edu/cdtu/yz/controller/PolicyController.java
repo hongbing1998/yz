@@ -1,5 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @Controller
@@ -26,7 +29,7 @@ public class PolicyController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save( Policy policy,Model model){
+    public String save(Policy policy, Model model) {
         try {
             if(policy.getId()!=null){
                 policy.setCreateData(DateUtil.getFormatCurrentDate());
@@ -39,9 +42,9 @@ public class PolicyController {
                 policy.setSchoolId(ShiroRealm.getCurrentUser().getSchoolId());
                     policyService.insert(policy);
             }
-            Page<Policy> page = new Page<Policy>(0,10);
+            Page<Policy> page = new Page<Policy>(0, 10);
             page = policyService.selectPage(page);
-            model.addAttribute("resultObj",new PageList<Policy>(page.getPages(), page.getCurrent(),page.getRecords()));
+            model.addAttribute("resultObj", new PageList<Policy>(page.getPages(), page.getCurrent(), page.getRecords()));
             return "Policy/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +55,7 @@ public class PolicyController {
     //删除对象信息
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") String id){
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             policyService.deleteById(id);
             return AjaxResult.me();
@@ -63,24 +66,23 @@ public class PolicyController {
     }
 
     //去修改页面
-    @RequestMapping(value = "toedit/{id}",method = RequestMethod.GET)
-    public String toedit(@PathVariable("id") String id,Model model)
-    {
-        model.addAttribute("policy",policyService.selectById(id));
+    @RequestMapping(value = "toedit/{id}", method = RequestMethod.GET)
+    public String toedit(@PathVariable("id") String id, Model model) {
+        model.addAttribute("policy", policyService.selectById(id));
         return "Policy/edit";
     }
+
     //去添加页面
-    @RequestMapping(value = "/toadd",method = RequestMethod.GET)
+    @RequestMapping(value = "/toadd", method = RequestMethod.GET)
     public String toadd()
     {
         return "Policy/add";
     }
 
     //去查看页面
-    @RequestMapping(value = "toshow/{id}",method = RequestMethod.GET)
-    public String toshow(@PathVariable("id") String id,Model model)
-    {
-        model.addAttribute("policy",policyService.selectById(id));
+    @RequestMapping(value = "toshow/{id}", method = RequestMethod.GET)
+    public String toshow(@PathVariable("id") String id, Model model) {
+        model.addAttribute("policy", policyService.selectById(id));
         return "Policy/show";
     }
 
@@ -105,11 +107,21 @@ public class PolicyController {
         return AjaxResult.me().setResultObj(new PageList<Policy>(page.getPages(), page.getRecords()));
     }
 
-    @RequestMapping(value = "/toPindex",method = RequestMethod.GET)
-    public String  toIndex(Model model) {
-        Page<Policy> page = new Page<Policy>(0,10);
+    @RequestMapping(value = "/toPindex", method = RequestMethod.GET)
+    public String toIndex(Model model) {
+        Page<Policy> page = new Page<Policy>(0, 10);
         page = policyService.selectPage(page);
-        model.addAttribute("resultObj",new PageList<Policy>(page.getPages(), page.getCurrent(),page.getRecords()));
+        model.addAttribute("resultObj", new PageList<Policy>(page.getPages(), page.getCurrent(), page.getRecords()));
+        return "Policy/index";
+    }
+
+    //去查询据结果页面
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String toQueryBytitle(String title, Model model) {
+        List<Policy> policyes = policyService.selectList(new EntityWrapper<Policy>()
+                .like("title", title)
+        );
+        model.addAttribute("policyes", policyes);
         return "Policy/index";
     }
 }

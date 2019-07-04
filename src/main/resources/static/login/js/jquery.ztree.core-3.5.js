@@ -1298,7 +1298,7 @@
 				tmp_icoObj = $$(parentNode, consts.id.ICON, setting);
 				view.replaceSwitchClass(parentNode, tmp_switchObj, consts.folder.DOCU);
 				view.replaceIcoClass(parentNode, tmp_icoObj, consts.folder.DOCU);
-				tmp_ulObj.css("display01.jsp", "none");
+                tmp_ulObj.css("display01.jsp", "none");
 
 			} else if (setting.view.showLine && childLength > 0) {
 				//old parentNode has child nodes

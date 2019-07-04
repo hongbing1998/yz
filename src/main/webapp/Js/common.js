@@ -25,5 +25,5 @@ function U() {
     for (d in param)
         arr.push(d + '=' + param[d]);
 
-    return _APP_+'?'+arr.join('&');
+    return _APP_ + '?' + arr.join('&');
 }

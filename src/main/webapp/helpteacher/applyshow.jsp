@@ -5,7 +5,7 @@
 <html>
 <head>
     <base href="${pageContext.request.contextPath}/"/>
-    <title>添加需求</title>
+    <title></title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css"/>
@@ -14,10 +14,6 @@
     <script type="text/javascript" src="./Js/bootstrap.js"></script>
     <script type="text/javascript" src="./Js/ckform.js"></script>
     <script type="text/javascript" src="./Js/common.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="./ueditor/lang/zh-cn/zh-cn.js"></script>
-
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -39,45 +35,44 @@
 
     </style>
 </head>
-<form action="/demand/save" method="post">
+<form action="/employment/save" method="post">
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
+            <td width="10%" class="tableleft">信息编号</td>
+            <td><input type="text" name="id" value="${Adver.id}" readonly="ture"></td>
+        </tr>
+        <tr>
             <td class="tableleft">标题</td>
-            <td><input type="text" id="title" name="title" value="" style="width: 360px;"/></td>
+            <td><input type="text" name="title" value="${Adver.title} " readonly="ture"></td>
         </tr>
         <tr>
-            <td class="tableleft">紧急状态</td>
-            <td>
-                <input type="radio" name="level" value="2" checked/> 非常紧急
-                <input type="radio" name="level" value="1"/> 紧急
+            <td class="tableleft">撰写人</td>
+            <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">时间</td>
+            <td><input type="text" value="${Avter.createDate} " readonly="ture"></td>
+        </tr>
+        <tr>
+
+            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;"
+                                      readonly="ture">${Adver.content}</textarea>
             </td>
+
         </tr>
         <tr>
-            <td class="tableleft">选择学校</td>
             <td>
-                <select name="schoolId">
-                    <c:forEach items="${schools}" var="school">
-                        <option value="${school.id}">${school.schoolName}</option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft">详细信息</td>
-            <td>
-                <div>
-                    <textarea name="content" rows="5" cols="5"></textarea>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft"></td>
-            <td>
-                <button type="submit" id="submit-button" class="btn btn-primary">保存</button>
-                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+                <%--<a href="/Adver/apply/${Adver.applyId}/${Adver.id}" class="btn btn-success" name="backid" id="backid">返回上一级</a>--%>
+                <a href="/apply/apply/${applyId}" class="btn btn-success" name="backid" id="backid">返回</a>
+                <%--<a href="/apply/delete/${Adver.applyId}" class="btn btn-success" name="backid" id="backid">不通过</a>--%>
+                <%--<input type="submit" class="btn btn-success">--%>
+                <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
             </td>
         </tr>
     </table>
 </form>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>

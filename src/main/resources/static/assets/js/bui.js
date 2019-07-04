@@ -11374,7 +11374,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
              */
             visibleMode:{
                 view:1,
-                value : 'display01.jsp'
+                value: 'display01.jsp'
             },
             /**
              * \u63a7\u4ef6\u662f\u5426\u53ef\u89c1
@@ -11585,7 +11585,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
 
                     visibility = el.css('visibility'),
                     visibleMode = _self.get('visibleMode');
-                if((display == 'none' && visibleMode == 'display01.jsp')  || (visibility == 'hidden' && visibleMode == 'visibility')){
+                if ((display == 'none' && visibleMode == 'display01.jsp') || (visibility == 'hidden' && visibleMode == 'visibility')) {
                     return false;
                 }
                 return true;
@@ -26748,7 +26748,7 @@ define('bui/calendar/calendar',['bui/picker','bui/calendar/monthpicker','bui/cal
           effect:'slide',
           duration:300
         },
-        visibleMode:'display01.jsp',
+          visibleMode: 'display01.jsp',
         success : function(){
           var picker = this;
           _self._setYearMonth(picker.get('year'),picker.get('month'));
@@ -29562,7 +29562,7 @@ define('bui/grid/grid',['bui/common','bui/mask','bui/toolbar','bui/list','bui/gr
         siblings = bodyEl.siblings();
 
       BUI.each(siblings,function(item){
-        if($(item).css('display01.jsp') !== 'none'){
+          if ($(item).css('display01.jsp') !== 'none') {
           bodyHeight -= $(item).outerHeight();
         }
       });
@@ -31470,7 +31470,7 @@ define('bui/grid/plugins/cascade',['bui/common'],function(require){
     //\u83b7\u53d6\u663e\u793a\u7684\u5217\u6570
     _getColumnCount : function(row){
       return $(row).children().filter(function(){
-        return $(this).css('display01.jsp') !== 'none';
+          return $(this).css('display01.jsp') !== 'none';
       }).length;
     },
     //\u8bbe\u7f6ecolspan

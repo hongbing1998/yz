@@ -35,25 +35,17 @@
         }
     </style>
 </head>
-<form action="" method="post">
+<form action="/employment/save" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td class="tableleft">标题</td>
         <td ><input type="text" id="title" name="title" value="" style="width: 360px;"/></td>
     </tr>
     <tr>
-    	<td class="tableleft">选择学校</td>
-    	<td>
-    		<select>
-    			<option value="0001">北京大学</option>
-    		</select>
-    	</td>
-    </tr>
-    <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
 	    	<div>
-		    	<textarea rows="5" cols="5"></textarea>
+                <textarea name="content" rows="5" cols="5"></textarea>
 	    	</div>
     	</td>
     </tr>
@@ -61,7 +53,8 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <input type="submit" class="btn btn-primary" value="保存">
+            <a href="/employment/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
         </td>
     </tr>
 </table>

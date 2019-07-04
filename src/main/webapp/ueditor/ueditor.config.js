@@ -19,7 +19,7 @@
      * 鍥犳锛孶Editor鎻愪緵浜嗛拡瀵逛笉鍚岄〉闈㈢殑缂栬緫鍣ㄥ彲鍗曠嫭閰嶇疆鐨勬牴璺緞锛屽叿浣撴潵璇达紝鍦ㄩ渶瑕佸疄渚嬪寲缂栬緫鍣ㄧ殑椤甸潰鏈�椤堕儴鍐欎笂濡備笅浠ｇ爜鍗冲彲銆傚綋鐒讹紝闇�瑕佷护姝ゅ鐨刄RL绛変簬瀵瑰簲鐨勯厤缃��
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-	window.UEDITOR_HOME_URL = "/cdtue/ueditor/";
+    window.UEDITOR_HOME_URL = "/cdtue/ueditor/";
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 
     /**
@@ -326,7 +326,6 @@
         //,tableDragable: true
 
 
-
         //sourceEditor
         //婧愮爜鐨勬煡鐪嬫柟寮�,codemirror 鏄唬鐮侀珮浜紝textarea鏄枃鏈,榛樿鏄痗odemirror
         //娉ㄦ剰榛樿codemirror鍙兘鍦╥e8+鍜岄潪ie涓娇鐢�
@@ -356,78 +355,78 @@
         //,allowDivTransToP:true      //鍏佽杩涘叆缂栬緫鍣ㄧ殑div鏍囩鑷姩鍙樻垚p鏍囩
         //,rgb2Hex:true               //榛樿浜у嚭鐨勬暟鎹腑鐨刢olor鑷姩浠巖gb鏍煎紡鍙樻垚16杩涘埗鏍煎紡
 
-		// xss 杩囨护鏄惁寮�鍚�,inserthtml绛夋搷浣�
-		,xssFilterRules: true
-		//input xss杩囨护
-		,inputXssFilter: true
-		//output xss杩囨护
-		,outputXssFilter: true
-		// xss杩囨护鐧藉悕鍗� 鍚嶅崟鏉ユ簮: https://raw.githubusercontent.com/leizongmin/js-xss/master/lib/default.js
-		,whitList: {
-			a:      ['target', 'href', 'title', 'class', 'style'],
-			abbr:   ['title', 'class', 'style'],
-			address: ['class', 'style'],
-			area:   ['shape', 'coords', 'href', 'alt'],
-			article: [],
-			aside:  [],
-			audio:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'class', 'style'],
-			b:      ['class', 'style'],
-			bdi:    ['dir'],
-			bdo:    ['dir'],
-			big:    [],
-			blockquote: ['cite', 'class', 'style'],
-			br:     [],
-			caption: ['class', 'style'],
-			center: [],
-			cite:   [],
-			code:   ['class', 'style'],
-			col:    ['align', 'valign', 'span', 'width', 'class', 'style'],
-			colgroup: ['align', 'valign', 'span', 'width', 'class', 'style'],
-			dd:     ['class', 'style'],
-			del:    ['datetime'],
-			details: ['open'],
-			div:    ['class', 'style'],
-			dl:     ['class', 'style'],
-			dt:     ['class', 'style'],
-			em:     ['class', 'style'],
-			font:   ['color', 'size', 'face'],
-			footer: [],
-			h1:     ['class', 'style'],
-			h2:     ['class', 'style'],
-			h3:     ['class', 'style'],
-			h4:     ['class', 'style'],
-			h5:     ['class', 'style'],
-			h6:     ['class', 'style'],
-			header: [],
-			hr:     [],
-			i:      ['class', 'style'],
-			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
-			ins:    ['datetime'],
-			li:     ['class', 'style'],
-			mark:   [],
-			nav:    [],
-			ol:     ['class', 'style'],
-			p:      ['class', 'style'],
-			pre:    ['class', 'style'],
-			s:      [],
-			section:[],
-			small:  [],
-			span:   ['class', 'style'],
-			sub:    ['class', 'style'],
-			sup:    ['class', 'style'],
-			strong: ['class', 'style'],
-			table:  ['width', 'border', 'align', 'valign', 'class', 'style'],
-			tbody:  ['align', 'valign', 'class', 'style'],
-			td:     ['width', 'rowspan', 'colspan', 'align', 'valign', 'class', 'style'],
-			tfoot:  ['align', 'valign', 'class', 'style'],
-			th:     ['width', 'rowspan', 'colspan', 'align', 'valign', 'class', 'style'],
-			thead:  ['align', 'valign', 'class', 'style'],
-			tr:     ['rowspan', 'align', 'valign', 'class', 'style'],
-			tt:     [],
-			u:      [],
-			ul:     ['class', 'style'],
-			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
-		}
+        // xss 杩囨护鏄惁寮�鍚�,inserthtml绛夋搷浣�
+        , xssFilterRules: true
+        //input xss杩囨护
+        , inputXssFilter: true
+        //output xss杩囨护
+        , outputXssFilter: true
+        // xss杩囨护鐧藉悕鍗� 鍚嶅崟鏉ユ簮: https://raw.githubusercontent.com/leizongmin/js-xss/master/lib/default.js
+        , whitList: {
+            a: ['target', 'href', 'title', 'class', 'style'],
+            abbr: ['title', 'class', 'style'],
+            address: ['class', 'style'],
+            area: ['shape', 'coords', 'href', 'alt'],
+            article: [],
+            aside: [],
+            audio: ['autoplay', 'controls', 'loop', 'preload', 'src', 'class', 'style'],
+            b: ['class', 'style'],
+            bdi: ['dir'],
+            bdo: ['dir'],
+            big: [],
+            blockquote: ['cite', 'class', 'style'],
+            br: [],
+            caption: ['class', 'style'],
+            center: [],
+            cite: [],
+            code: ['class', 'style'],
+            col: ['align', 'valign', 'span', 'width', 'class', 'style'],
+            colgroup: ['align', 'valign', 'span', 'width', 'class', 'style'],
+            dd: ['class', 'style'],
+            del: ['datetime'],
+            details: ['open'],
+            div: ['class', 'style'],
+            dl: ['class', 'style'],
+            dt: ['class', 'style'],
+            em: ['class', 'style'],
+            font: ['color', 'size', 'face'],
+            footer: [],
+            h1: ['class', 'style'],
+            h2: ['class', 'style'],
+            h3: ['class', 'style'],
+            h4: ['class', 'style'],
+            h5: ['class', 'style'],
+            h6: ['class', 'style'],
+            header: [],
+            hr: [],
+            i: ['class', 'style'],
+            img: ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
+            ins: ['datetime'],
+            li: ['class', 'style'],
+            mark: [],
+            nav: [],
+            ol: ['class', 'style'],
+            p: ['class', 'style'],
+            pre: ['class', 'style'],
+            s: [],
+            section: [],
+            small: [],
+            span: ['class', 'style'],
+            sub: ['class', 'style'],
+            sup: ['class', 'style'],
+            strong: ['class', 'style'],
+            table: ['width', 'border', 'align', 'valign', 'class', 'style'],
+            tbody: ['align', 'valign', 'class', 'style'],
+            td: ['width', 'rowspan', 'colspan', 'align', 'valign', 'class', 'style'],
+            tfoot: ['align', 'valign', 'class', 'style'],
+            th: ['width', 'rowspan', 'colspan', 'align', 'valign', 'class', 'style'],
+            thead: ['align', 'valign', 'class', 'style'],
+            tr: ['rowspan', 'align', 'valign', 'class', 'style'],
+            tt: [],
+            u: [],
+            ul: ['class', 'style'],
+            video: ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
+        }
     };
 
     function getUEBasePath(docUrl, confUrl) {
@@ -440,7 +439,7 @@
 
         var configPath = document.getElementsByTagName('script');
 
-        return configPath[ configPath.length - 1 ].src;
+        return configPath[configPath.length - 1].src;
 
     }
 
@@ -467,7 +466,7 @@
 
     function optimizationPath(path) {
 
-        var protocol = /^[a-z]+:\/\//.exec(path)[ 0 ],
+        var protocol = /^[a-z]+:\/\//.exec(path)[0],
             tmp = null,
             res = [];
 
@@ -475,11 +474,11 @@
 
         path = path.replace(/\\/g, '/').split(/\//);
 
-        path[ path.length - 1 ] = "";
+        path[path.length - 1] = "";
 
         while (path.length) {
 
-            if (( tmp = path.shift() ) === "..") {
+            if ((tmp = path.shift()) === "..") {
                 res.pop();
             } else if (tmp !== ".") {
                 res.push(tmp);
