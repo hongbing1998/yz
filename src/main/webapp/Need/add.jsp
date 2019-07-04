@@ -39,7 +39,7 @@
 
     </style>
 </head>
-<form action="/demand/save" method="post">
+<form action="/demand/save" method="post" id="form">
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td class="tableleft">标题</td>
@@ -66,18 +66,38 @@
             <td class="tableleft">详细信息</td>
             <td>
                 <div>
-                    <textarea name="content" rows="5" cols="5"></textarea>
+                    <textarea id="content" name="content" rows="5" cols="5"></textarea>
                 </div>
             </td>
         </tr>
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" id="submit-button" class="btn btn-primary">保存</button>
+                <button type="button" id="submit-button" class="btn btn-primary">保存</button>
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>
 </form>
 </body>
+<script type="text/javascript">
+    $("#backid").click(function () {
+        window.location.href = "demand/page_query/1/5";
+    });
+    $("#submit-button").click(function () {
+        let param1 = $("#title");
+        let param2 = $("#content");
+        if (param1.val() == "") {
+            alert("标题不能为空");
+            param1.focus();
+            return;
+        }
+        if (param2.val() == "") {
+            alert("详细信息不能为空");
+            param2.focus();
+            return;
+        }
+        $("#form").submit();
+    });
+</script>
 </html>

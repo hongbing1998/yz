@@ -46,4 +46,5 @@ function add() {
     p.setAttribute("onclick", "deletediv(this);");
     div.appendChild(p);
     body.appendChild(div);
+
 }

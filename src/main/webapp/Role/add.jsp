@@ -49,7 +49,7 @@
         <input id="id" name="id" style="display: none" value="${role.id}">
         <tr>
             <td class="tableleft">角色名</td>
-            <td><input type="text" id="rolename" name="rolename"/></td>
+            <td><input type="text" id="rolename" name="rolename" value="${role.roleName}"/></td>
         </tr>
         <%--<tr>--%>
         <%--<td class="tableleft">性别</td>--%>
@@ -75,7 +75,7 @@
     $("#valiDate").click(function () {
         var rolename = $("#rolename").val();
         var id = $("#id").val();
-        if (rolename == null || path == "") {
+        if (rolename == null || rolename == "") {
             alert("角色名不能为空");
             return;
         }

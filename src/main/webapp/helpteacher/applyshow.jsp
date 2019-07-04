@@ -49,9 +49,10 @@
             <td class="tableleft">撰写人</td>
             <td>${Adver.userName}</td>
         </tr>
+
         <tr>
-            <td class="tableleft">时间</td>
-            <td>${Avter.createDate}</td>
+            <td class="tableleft">编辑时间</td>
+            <td>${Adver.createDate}</td>
         </tr>
         <tr>
 
