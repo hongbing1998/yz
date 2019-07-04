@@ -83,7 +83,7 @@
                 type: 'get',
                 dataType: 'json',
                 data: '',
-                success: (result) = > {
+                success: function (result) {
                 if(result.success)
             {
                 //console.log(result.resultObj)
