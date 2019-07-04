@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="index/css/public.css">
     <link rel="stylesheet" href="index/css/index.css">
 </head>
-<body>
+<body onload="flag(${flag})">
 <!--网页头部-->
 <header>
     <div class="content">
@@ -100,6 +100,7 @@
                     人员招聘
                 </div>
                 <ul class="list">
+                    <a href="/apply/addlist " class="btn btn-primary">在线报名</a>
                     <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display01.jsp" style="color: #0C0C0C">{{value.content}}</a></li>
                 </ul>
             </div>
@@ -183,6 +184,16 @@
         });
         }
     })
+
+    function flag(falg) {
+
+        if (falg == 1) {
+            alert("报名成功");
+        }
+        if (falg == -1) {
+            alert("报名失败");
+        }
+    }
 </script>
 </body>
 </html>
