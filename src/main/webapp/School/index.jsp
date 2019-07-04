@@ -39,13 +39,12 @@ body {
 </style>
 </head>
 <body>
-	<form class="form-inline definewidth m20" action=""
-		method="get">
-		学校名称： <input type="text" name="param" id="param"
-			class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+<form class="form-inline definewidth m20" action="/school/condition_query" method="get">
+	学校名称： <input type="text" name="param" id="param" class="abc input-default" placeholder="输入要查询的学校名称"
+				 value="${schoolName}">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary">查询</button>
-		&nbsp;&nbsp;
-        <button type="button" class="btn btn-success" onclick="toAdd()" id="addnew">新增学校</button>
+	<button type="button" class="btn btn-success" onclick="window.location.href='School/add.jsp'" id="addnew">新增学校
+	</button>
 	</form>
 	<table class="table table-bordered table-hover definewidth m10">
 		<thead>
@@ -58,31 +57,35 @@ body {
 			</tr>
 		</thead>
 		<tr>
-			<td>0001</td>
+			<td>${school.id}</td>
 			<td style="max-width: 220px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-				<a title="点击查看详情" href="">
-					北京大学
-				</a>
+				<a title="点击查看详情" href="/school/show/${school.id}">${school.schoolName}</a>
 			</td>
+			<td>是</td>
+			<td>否</td>
 			<td>
-				是
-			</td>
-			<td>
-				否
-			</td>
-			<td>
-				 <a class="option-button" href="#">编辑</a>
-				|<a class="option-button" href="#">删除</a>
-				|<a class="option-button" href="#">查看</a>
+				<a class="option-button" href="/school/edit/${school.id}">编辑</a>
+				<a class="option-button" href="/school/delete/${school.id}">删除</a>
+				<a class="option-button" href="/school/show/${school.id}">查看</a>
 			</td>
 		</tr>
 	</table>
 	<div class="inline pull-right page">
-		10 条记录 1/2页 
-		<a href='#'>首页</a>
-		<a href='#'>上一页</a>
-		<a href='#'>下一页</a>
-		<a href='#'>尾页</a>
+		${page.total}条记录 ${page.current}/${page.pages}页
+		<a href='/school/page_query/1/${page.size}'>首页 |</a>
+		<c:if test="${page.hasPrevious()}">
+			<a href='/school/page_query/${page.current - 1}/${page.size}'>上一页 |</a>
+		</c:if>
+		<c:if test="${not page.hasPrevious()}">
+			上一页 |
+		</c:if>
+		<c:if test="${page.hasNext()}">
+			<a href='/school/page_query/${page.current + 1}/${page.size}'>下一页 |</a>
+		</c:if>
+		<c:if test="${not page.hasNext()}">
+			下一页 |
+		</c:if>
+		<a href='/school/page_query/${page.pages}/${page.size}'>尾页</a>
 	</div>
 </body>
 <script>
