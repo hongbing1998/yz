@@ -1,6 +1,8 @@
 package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPermissionService;
@@ -23,6 +25,7 @@ public class PermissionController {
      * @param permission  传递的实体
      * @return Ajaxresult转换结果
      */
+
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody Permission permission){
         try {
@@ -57,12 +60,11 @@ public class PermissionController {
         return AjaxResult.me().setResultObj(permissionService.selectById(id));
     }
 
-
+    @RequiresPermissions(value = {"permission"}, logical = Logical.OR)
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("permissions", permissionService.selectList(null));
-
         return "Pems/index";
     }
 
