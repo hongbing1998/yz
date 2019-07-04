@@ -41,6 +41,9 @@
     </style>
 </head>
 <body>
+<form class="form-inline definewidth m20" action="manager/search" method="get">
+    <button type="button" class="btn btn-success" onclick="toAdd()" id="addnew">新增用户</button>
+</form>
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
@@ -59,6 +62,10 @@
             </td>
             <td>
                 <a class="option-button" href="/role/getRolePerssion?id=${role.id}">修改权限</a>
+                |
+                <button class="delete-button" id="delete-button" onclick="test('${role.id}')">删除</button>
+                |<a class="option-button" href="/role/update?id=${role.id}">编辑</a>
+
             </td>
         </tr>
     </c:forEach>
@@ -73,5 +80,30 @@
 </body>
 </html>
 <script>
-    
+    var toAdd = function () {
+        window.location.href = "Role/add.jsp";
+    }
+
+    function test(id) {
+        if (confirm("是否删除？")) {
+            $.ajax({
+                url: "role/" + id,
+                type: "DELETE",
+                async: false,
+                dataType: "json",
+                success: function (res) {
+                    alert("删除成功！")
+                    // window.location.href("policy/toPindex");
+                    $.ajax({
+                        url: "role/list",
+                        type: "get",
+                        async: false,
+                        success: function (res) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        }
+    }
 </script>

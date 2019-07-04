@@ -79,14 +79,14 @@
         methods: {},
         created: function employ() {
             $.ajax({
-                url: '/employment/list',
+                url: '/employment/employmentList',
                 type: 'get',
                 dataType: 'json',
                 data: '',
-                success: (result) = > {
+                success: (result)=>{
                 if(result.success)
             {
-                console.log(result.resultObj)
+                //console.log(result.resultObj)
                 this.employment = result.resultObj;
             }
         },

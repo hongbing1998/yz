@@ -81,7 +81,6 @@
         }
 
         return true;
-
     }
 </script>
 </html>

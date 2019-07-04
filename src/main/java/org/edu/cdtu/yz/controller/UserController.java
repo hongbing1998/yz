@@ -63,7 +63,12 @@ public class UserController extends GlobalDefaultExceptionHandler {
                 }
                 String da = DateUtil.getFormatCurrentDate();
                 user.setCreateDate(da);
+                if (user.getPassword() == "") {
+                    User uses = userService.selectOne(new EntityWrapper<User>().eq("id", user.getId()));
+                    user.setPassword(uses.getPassword());
+                }
                 userService.updateById(user);
+
                 if (user.getUsername() != null) {
                     String username = user.getUsername();
                     Path path = new Path();
@@ -190,6 +195,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
         String account = user.getAccount();
         String password = user.getPassword();
         boolean remeberMe = user.isRemeberMe();
+        System.out.println(remeberMe);
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据

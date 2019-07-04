@@ -6,15 +6,13 @@ import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IEmploymentService;
+import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,7 +43,10 @@ public class EmploymentController {
                     employmentService.insert(employment);
             }
             ;
-            model.addAttribute("allAdver", employmentService.selectList(null));
+            List<Employment> employmentList = employmentService.selectList(new EntityWrapper<Employment>()
+                    .orderBy("create_date", false)
+            );
+            model.addAttribute("advers", employmentList);
             return "/Adver/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,12 +54,22 @@ public class EmploymentController {
         }
     }
 
+    /**
+     * 查询所有招聘
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/employmentList", method = RequestMethod.GET)
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(employmentService.selectList(null));
+    }
+
     //删除对象信息
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") String id, Model model) {
         try {
             employmentService.deleteById(id);
-            model.addAttribute("allAdver", employmentService.selectList(null));
             return "/Adver/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +80,8 @@ public class EmploymentController {
     //获取用户
     @RequestMapping(value = "/Adver/{id}", method = RequestMethod.GET)
     public String get(@PathVariable("id") String id, Model model) {
-        model.addAttribute("Adver", employmentService.selectById(id));
+        Employment employment = employmentService.selectById(id);
+        model.addAttribute("Adver", employment);
         return "/Adver/show";
     }
 
@@ -83,18 +95,11 @@ public class EmploymentController {
     }
 
 
-//    //查看所有的员工信息
-//    @RequestMapping(value = "/list",method = RequestMethod.GET)
-//    public String list(Model model) {
-//        model.addAttribute("allAdver",employmentService.selectList(null));
-//        return "/Adver/index";
-//    }
-
-    //条件查看所有的员工信息
+    //条件查看所有的招聘信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String qurelist(String title, Model model) {
         List<Employment> employmentList = employmentService.selectList(new EntityWrapper<Employment>()
-                .like("title", title)
+                .like("title", title).orderBy("create_date", false)
         );
         model.addAttribute("advers", employmentList);
         return "/Adver/index";

@@ -22,6 +22,14 @@
 			for (var i = 0; i < arr.length; i++) {
 				path += arr[i]+"%";
 			}
+			if(processName == null || processName == ""){
+				alert("标题不能为空");
+				return;
+			}
+			if(path == null || path == " "){
+				alert("路径不能为空");
+				return;
+			}
 			$.ajax({
 				url: "path/save",
 				type: "post",
