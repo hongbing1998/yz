@@ -87,7 +87,7 @@
                 if(result.success)
             {
                 console.log(result.resultObj)
-                //this.employment = result.resultObj;
+                this.employment = result.resultObj;
             }
         },
         })
