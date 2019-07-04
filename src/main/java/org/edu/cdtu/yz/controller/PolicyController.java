@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.util.List;
 
@@ -29,12 +30,36 @@ public class PolicyController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save(Policy policy, Model model) {
+    public String save(@RequestParam("file") CommonsMultipartFile file, Policy policy, Model model) {
         try {
             if(policy.getId()!=null){
+//                if (!file.isEmpty()) {
+//                    String filename = file.getOriginalFilename();
+//                    String filePath = "../webapp/file" + File.separator + filename;
+////						System.out.println("uploadFiles-filePath:" + filePath);
+//                    // 转存文件
+//                    File storeDirectory = new File(filePath);// 即代表文件又代表目录
+//                    if (!storeDirectory.exists()) {
+//                        storeDirectory.mkdirs();// 创建一个指定的目录
+//                    }
+//                    file.transferTo(new File(filePath));
+//                    policy.setUrl(filePath);
+//                }
                 policy.setCreateData(DateUtil.getFormatCurrentDate());
                     policyService.updateById(policy);
             }else{
+//                if (!file.isEmpty()) {
+//                    String filename = file.getOriginalFilename();
+//                    String filePath = "../webapp/file" + File.separator + filename;
+////						System.out.println("uploadFiles-filePath:" + filePath);
+//                    // 转存文件
+//                    File storeDirectory = new File(filePath);// 即代表文件又代表目录
+//                    if (!storeDirectory.exists()) {
+//                        storeDirectory.mkdirs();// 创建一个指定的目录
+//                    }
+//                    file.transferTo(new File(filePath));
+//                    policy.setUrl(filePath);
+//                }
                 policy.setCreateData(DateUtil.getFormatCurrentDate());
                 policy.setUserId(ShiroRealm.getCurrentUser().getId());
                 policy.setUserName(ShiroRealm.getCurrentUser().getUsername());

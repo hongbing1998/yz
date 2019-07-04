@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @CrossOrigin
 @Controller
@@ -38,24 +39,36 @@ public class RoleController {
      * @param role  传递的实体
      * @return Ajaxresult转换结果
      */
+    @ResponseBody
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody Role role){
+    public AjaxResult save(@RequestBody Role role) {
         try {
-            if(role.getId()!=null){
-                    roleService.updateById(role);
-            }else{
+            System.out.println(role.getId());
+            if (role.getId() != "") {
+                System.out.println("ch");
+                roleService.update(role, new EntityWrapper<Role>().eq("id", role.getId()));
+            } else {
+                System.out.println("vv");
+                role.setId(UUID.randomUUID().toString().replaceAll("-", ""));
                     roleService.insert(role);
             }
             return AjaxResult.me();
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return AjaxResult.me().setSuccess(false);
         }
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public String get(String id, Model model) {
+        model.addAttribute("role", roleService.selectById(id));
+        System.out.println(roleService.selectById(id).getId());
+        return "Role/add";
+    }
     //删除对象信息
+    @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") Long id){
+    public AjaxResult delete(@PathVariable("id") String id) {
         try {
             roleService.deleteById(id);
             return AjaxResult.me();
@@ -67,7 +80,7 @@ public class RoleController {
 
     //获取用户
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public AjaxResult get(@PathVariable("id") Long id)
+    public AjaxResult get(@PathVariable("id") String id)
     {
         return AjaxResult.me().setResultObj(roleService.selectById(id));
     }

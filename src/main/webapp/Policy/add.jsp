@@ -47,7 +47,12 @@
             <input type="text" id="address" name="address"/>
     	</td>
     </tr>
-   
+    <tr>
+        <td class="tableleft">政策文件</td>
+        <td>
+            <input type="file" name="fileUpload"/>
+        </td>
+    </tr>
     <tr>
         <td class="tableleft"></td>
         <td>

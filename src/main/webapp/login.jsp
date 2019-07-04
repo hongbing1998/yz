@@ -26,14 +26,10 @@
                     <input type="password" id="passWord" />
                 </div>
 
-                <!--
-                <div class="input validate" id="validate">
-                    <label for="valiDate">验证码</label>
-                    <input type="text" id="valiDate" />
-                    <div class="value">X3D5</div>
-                </div>
-                 -->
+
                 <div id="btn" class="loginButton" style="margin-left: -264px;">
+                    <label>记住我</label>
+                    <input type="checkbox" id="remeberMe" value="true"/>
                     <input type="button" id="valiDate" class="button" value="登录"  />
                 </div>
             </div>
@@ -60,6 +56,15 @@
 	$("#valiDate").click(function(){
         var account = $("#account").val();
 		var password = $("#passWord").val();
+        var remeberMe = $("#remeberMe").val();
+        if (account == null || path == "") {
+            alert("账户不能为空");
+            return;
+        }
+        if (password == null || path == "") {
+            alert("密码不能为空");
+            return;
+        }
 
 		$.ajax({
 			url: "user/login",
@@ -67,12 +72,12 @@
 			async: true,
             contentType: 'application/json; charset=UTF-8',
             dataType: "json",
-            data: JSON.stringify({"account": account, "password": password}),
+            data: JSON.stringify({"account": account, "password": password, "remeberMe": remeberMe}),
 			success: function(res){
                 if (res.success) {
                     window.location.href = "index.jsp";
 				} else {
-					alert(res);
+                    alert("用户名密码错误");
 				}
 			},
 			error: function(e){

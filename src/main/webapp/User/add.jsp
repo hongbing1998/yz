@@ -46,7 +46,7 @@ body {
 <body>
 <form action="/user/save" method="post">
     <table class="table table-bordered table-hover definewidth m10">
-        <a id="id" name="id" value="${user.id}"></a>
+        <<input style="display: none" id="id" name="id" value="${user.id}"></input>
         <tr>
             <td class="tableleft">管理员名称</td>
             <td><input type="text" value="${user.username}" id="username" name="username"/></td>
@@ -107,8 +107,23 @@ body {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var schoolId = $("#schoolId").val();
-
-
+        if (username == null || path == "") {
+            alert("用户名不能为空");
+            return;
+        }
+        if (id == null || path == "") {
+            if (password == null) {
+                alert("密码不能为空");
+            }
+        }
+        if (account == null || path == "") {
+            alert("账户不能为空");
+            return;
+        }
+        if (schoolId == null || path == "") {
+            alert("学校不能为空");
+            return;
+        }
         $.ajax({
             url: "user/save",
             type: "post",
@@ -128,7 +143,7 @@ body {
                 if (res.success) {
                     window.location.href = "user/list";
                 } else {
-                    alert("网络异常，请稍后再试！");
+                    alert("账号重复");
                 }
             },
             error: function (e) {
