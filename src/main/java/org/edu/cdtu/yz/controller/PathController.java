@@ -9,6 +9,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.bean.Path;
+import org.edu.cdtu.yz.bean.Path;
+import org.edu.cdtu.yz.bean.Path;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPathService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -34,7 +36,7 @@ public class PathController {
      * @return Ajaxresult转换结果
      */
     @ResponseBody
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody  Path path) {
         try {
@@ -55,7 +57,7 @@ public class PathController {
     }
 
     //删除对象信息
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
@@ -69,7 +71,7 @@ public class PathController {
     }
 
     //获取用户
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @ApiOperation(value = "获取客服", notes = "根据cid获取客服")
     @ApiImplicitParam(name = "id", value = "路线id", required = true, dataType = "String")
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -80,7 +82,7 @@ public class PathController {
 
 
     //查看所有的员工信息
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(pathService.selectList(null));
@@ -92,7 +94,7 @@ public class PathController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
         Page<Path> page = new Page<Path>(query.getPage(),query.getRows());
@@ -100,12 +102,14 @@ public class PathController {
         return AjaxResult.me().setResultObj(new PageList<Path>(page.getPages(), page.getRecords()));
     }
 
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
-    @RequestMapping(value = "/toindex", method = RequestMethod.GET)
-    public String toindex(Model model) {
-        Page<Path> page = new Page<Path>(0, 10);
-        page = pathService.selectPage(page);
-        model.addAttribute("resultObj", new PageList<Path>(page.getPages(), page.getCurrent(), page.getRecords()));
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
+    @RequestMapping(value = "//page_query/{current}/{size}", method = RequestMethod.GET)
+    public String toIndex(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
+        Page<Path> page = new Page<>(current, size);
+        EntityWrapper<Path> ew = new EntityWrapper<>();
+        ew.orderBy("create_date", false);
+        page = pathService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Process/index";
     }
 
@@ -118,13 +122,15 @@ public class PathController {
     }
 
     //去查询据结果页面
-    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"path"}, logical = Logical.OR)
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String toQueryBytitle(String title, Model model) {
-        List<Path> paths = pathService.selectList(new EntityWrapper<Path>()
-                .like("title", title)
-        );
-        model.addAttribute("paths", paths);
+        EntityWrapper<Path> ew = new EntityWrapper<>();
+        ew.like("title", title);
+        ew.orderBy("create_date", false);
+        Page page = new Page(1, 5);
+        pathService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Process/index";
     }
 }

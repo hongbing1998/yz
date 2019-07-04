@@ -57,12 +57,9 @@ public class DemandController {
      * 根据id删除数据
      */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(Model model, @PathVariable("id") String id) {
+    public String delete(@PathVariable("id") String id) {
         try {
             demandService.deleteById(id);
-            Page page = new Page(1, 5);
-            page = demandService.selectPage(page, getOrderByEw("level", false));
-            model.addAttribute("page", page);
             return "redirect:../page_query/1/5";
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,17 +105,6 @@ public class DemandController {
     }
 
     /**
-     * 初始进入需求管理
-     */
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(Model model) {
-        Page page = new Page(1, 5);
-        page = demandService.selectPage(page, getOrderByEw("level, create_date", false));
-        model.addAttribute("page", page);
-        return "Need/index";
-    }
-
-    /**
      * 分页查询数据
      */
     @RequestMapping(value = "/page_query/{current}/{size}", method = RequestMethod.GET)
@@ -129,11 +115,5 @@ public class DemandController {
         page = demandService.selectPage(page, ew);
         model.addAttribute("page", page);
         return "Need/index";
-    }
-
-    private EntityWrapper<Demand> getOrderByEw(String columns, Boolean isAsc) {
-        EntityWrapper<Demand> ew = new EntityWrapper<>();
-        ew.orderBy(columns, isAsc);// 按level降序排列
-        return ew;
     }
 }

@@ -39,7 +39,7 @@
 				data: JSON.stringify({"title": processName, "path": path}),
 				success: function(res){
 					if (res.success) {
-						window.location.href = "path/toindex";
+						window.location.href = "/path/page_query/1/5";
 					} else {
 						alert(res);
 					}
@@ -49,6 +49,22 @@
 				}
 			});
 		}
+
+		function isEmpty() {
+			var name = document.getElementById("name").value;
+			if(name == null || name == ""   ){
+				alert("不能添加空节点");
+				return false;
+			}
+			return true;
+		}
+		function isEmpty2() {
+			var name = document.getElementById("name").value;
+			if(name == null || name == ""   ){
+				return false;
+			}
+			return true;
+		}
 	</script>
 </head>
 <body>
@@ -57,8 +73,13 @@
 			<input type="text" id="processName" value=""/>
 			<br />
 			<input id="name" placeholder="点解流程节点可以删除" />
-			<input type="button" value="增加" onclick="getVal();add()" />
+			<input type="hidden" id="hidden" value="${path.path}"/>
+			<input type="button" value="增加" onclick="if (isEmpty()) add();if (isEmpty2()) getVal()" />
 			<input type="button" value="提交" onclick="test()"/>
+		<a href="/path/page_query/1/5">
+
+			<input type="button" value="返回列表"/>
+		</a>
 	</div>
 </body>
 

@@ -47,17 +47,17 @@
             <input type="text" id="address" name="address"/>
     	</td>
     </tr>
-    <tr>
-        <td class="tableleft">政策文件</td>
-        <td>
-            <input type="file" name="fileUpload"/>
-        </td>
-    </tr>
+<%--    <tr>--%>
+<%--        <td class="tableleft">政策文件</td>--%>
+<%--        <td>--%>
+<%--            <input type="file" name="fileUpload"/>--%>
+<%--        </td>--%>
+<%--    </tr>--%>
     <tr>
         <td class="tableleft"></td>
         <td>
             <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;<a
-                href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
+                href="/policy/page_query/1/5">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
             返回列表
         </button>
         </a>

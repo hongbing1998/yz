@@ -22,11 +22,9 @@
         body {
             padding-bottom: 40px;
         }
-
         .sidebar-nav {
             padding: 9px 0;
         }
-
         @media (max-width: 980px) {
             /* Enable use of floated navbar text */
             .navbar-text.pull-right {
@@ -35,8 +33,6 @@
                 padding-right: 5px;
             }
         }
-
-
     </style>
 </head>
 <form action="/demand/save" method="post" id="form">
