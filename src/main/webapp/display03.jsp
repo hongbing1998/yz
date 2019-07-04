@@ -34,6 +34,8 @@
 
     </style>
 </head>
+<div style="margin-left:2%;"><a href="main.jsp"class="btn btn-success">返回首页</a></div>
+<div>
 <form action="work/edit" method="post" id="app">
     <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in employment">
         <tr>
@@ -62,6 +64,7 @@
         </tr>
     </table>
 </form>
+</div>
 </body>
 <script src="index/js/jquery-3.3.1.min.js"></script>
 <script src="index/js/vue.js"></script>

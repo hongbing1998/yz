@@ -21,14 +21,14 @@
         <img src="image/logo.png" alt="" class="logo">
         <!--导航-->
         <ul class="navLink">
-            <li><a href="">首页</a></li>
-            <li><a href="">援藏工作</a></li>
-            <li><a href="">援藏政策</a></li>
-            <li><a href="">援藏需求</a></li>
-            <li><a href="">援藏路径</a></li>
-            <li><a href="">援藏高校</a></li>
-            <li><a href="">工作动态</a></li>
-            <li><a href="">人员招聘</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">援藏工作</a></li>
+            <li><a href="#">援藏政策</a></li>
+            <li><a href="#">援藏需求</a></li>
+            <li><a href="#">援藏路径</a></li>
+            <li><a href="#">援藏高校</a></li>
+            <li><a href="#">工作动态</a></li>
+            <li><a href="#">人员招聘</a></li>
         </ul>
         <!--登陆-->
         <a href="/user/toLogin" class="login">登录</a>
@@ -135,7 +135,7 @@
                     常见问题
                 </div>
                 <ul class="list">
-                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display03.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
+                    <li v-for="(value,index) in employment" style="color: #0C0C0C"><a href="display01.jsp" style="color: #0C0C0C">{{value.title}}</a></li>
                 </ul>
             </div>
         </div>
@@ -164,7 +164,7 @@
                 data:'',
                 success:(result)=>{
                 if(result.success){
-               // console.log(result.resultObj)
+                console.log(result.resultObj)
                 this.employment=result.resultObj;
             }
         },
@@ -176,7 +176,7 @@
                 data:'',
                 success:(result)=>{
                 if(result.success){
-               // console.log(result.resultObj)
+                console.log(result.resultObj)
                 this.demand=result.resultObj;
             }
         },
