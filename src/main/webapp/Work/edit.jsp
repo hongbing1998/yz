@@ -66,7 +66,7 @@
         <td class="tableleft"></td>
         <td>
             <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<a
-                href="/work/toindex">
+                href="/work/page_query/1/5">
             <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
         </a>
         </td>

@@ -61,7 +61,7 @@
         <td class="tableleft"></td>
         <td>
             <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;<a
-                href="/policy/toPindex">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
+                href="/policy/page_query/1/5">&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">
             返回列表
         </button>
         </a>
@@ -79,7 +79,7 @@
             alert("标题不能为空");
             return false;
         }
-        if(content == null || content == ""){
+        if(address == null || address == ""){
             alert("政策详情不能为空不能为空");
             return false;
         }

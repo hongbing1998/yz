@@ -33,7 +33,7 @@ public class School extends Model<School> {
     @TableField("school_operate_time")
     private String schoolOperateTime;
     @TableField("school_is_helping")
-    private String schoolIsHelping;
+    private Boolean schoolIsHelping;
 
     @Override
     protected Serializable pkVal() {

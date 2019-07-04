@@ -48,7 +48,7 @@
                     success: function (res) {
                         alert("删除成功！")
                         $.ajax({
-                            url: "/path/toindex",
+                            url: "/path/page_query/1/5",
                             type: "get",
                             async: false,
                             success: function (res) {
@@ -83,7 +83,7 @@
     </tr>
     </thead>
 
-    <c:forEach items="${resultObj.data}" var="data">
+    <c:forEach items="${page.records}" var="data">
         <tr>
             <td>${data.id}</td>
             <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
@@ -98,29 +98,24 @@
             </td>
         </tr>
     </c:forEach>
-    <c:forEach items="${paths}" var="data">
-        <tr>
-            <td>${data.id}</td>
-            <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                    ${data.title}
-            </td>
-            <td>${data.createDate}</td>
-            <td>${data.userName}</td>
-            <td>
-                <a class="option-button" href="/path/toedit/${data.id}">编辑与查看</a>
-                |
-                <button class="delete-button" id="delete-buttonb" onclick="test('${data.id}')">删除</button>
-			</td>
-		</tr>
-    </c:forEach>
 
 </table>
 <div class="inline pull-right page">
-    10 条记录 1/2页
-    <a href='#'>首页</a>
-    <a href='#'>上一页</a>
-    <a href='#'>下一页</a>
-    <a href='#'>尾页</a>
+    ${page.total}条记录 ${page.current}/${page.pages}页
+    <a href='/path/page_query/1/${page.size}'>首页 |</a>
+    <c:if test="${page.hasPrevious()}">
+        <a href='/path/page_query/${page.current - 1}/${page.size}'>上一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasPrevious()}">
+        上一页 |
+    </c:if>
+    <c:if test="${page.hasNext()}">
+        <a href='/path/page_query/${page.current + 1}/${page.size}'>下一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasNext()}">
+        下一页 |
+    </c:if>
+    <a href='/path/page_query/${page.pages}/${page.size}'>尾页</a>
 </div>
 </body>
 <script>

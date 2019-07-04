@@ -50,7 +50,7 @@ body {
                         alert("删除成功！")
                         // window.location.href("policy/toPindex");
                         $.ajax({
-                            url: "policy/toPindex",
+                            url: "/policy/page_query/1/5",
                             type: "get",
                             async: false,
                             success: function (res) {
@@ -85,7 +85,7 @@ body {
 			</tr>
 		</thead>
 
-        <c:forEach items="${resultObj.data}" var="data">
+        <c:forEach items="${page.records}" var="data">
             <tr>
                 <td>${data.id}</td>
                 <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
@@ -101,31 +101,25 @@ body {
                 </td>
             </tr>
         </c:forEach>
-        <c:forEach items="${policyes}" var="data">
-            <tr>
-                <td>${data.id}</td>
-                <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                        ${data.title}
-                </td>
-                <td>${data.createData}</td>
-                <td>${data.userName}</td>
-                <td>
-                    <a class="option-button" href="/policy/toedit/${data.id}">编辑</a>
-                    |
-                    <button class="delete-button" id="delete-buttonb" onclick="test('${data.id}')">删除</button>
-                    |<a class="option-button" href="/policy/toshow/${data.id}">查看</a>
-                </td>
-            </tr>
-        </c:forEach>
 
 	</table>
-	<div class="inline pull-right page">
-		10 条记录 1/2页 
-		<a href='#'>首页</a>
-		<a href='#'>上一页</a>
-		<a href='#'>下一页</a>
-		<a href='#'>尾页</a>
-	</div>
+<div class="inline pull-right page">
+    ${page.total}条记录 ${page.current}/${page.pages}页
+    <a href='/policy/page_query/1/${page.size}'>首页 |</a>
+    <c:if test="${page.hasPrevious()}">
+        <a href='/policy/page_query/${page.current - 1}/${page.size}'>上一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasPrevious()}">
+        上一页 |
+    </c:if>
+    <c:if test="${page.hasNext()}">
+        <a href='/policy/page_query/${page.current + 1}/${page.size}'>下一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasNext()}">
+        下一页 |
+    </c:if>
+    <a href='/policy/page_query/${page.pages}/${page.size}'>尾页</a>
+</div>
 </body>
 <script>
 </script>

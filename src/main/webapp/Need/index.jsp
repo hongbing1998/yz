@@ -72,7 +72,7 @@
             <td>${demand.userName}</td>
             <td>
                 <a class="option-button" href="/demand/edit/${demand.id}">编辑</a>
-                <a class="option-button" href="/demand/delete/${demand.id}">删除</a>
+                <a class="option-button" href="/demand/delete/${demand.id}" onclick="return confirm('是否确认删除？')">删除</a>
                 <a class="option-button" href="/demand/show/${demand.id}">查看</a>
             </td>
         </tr>

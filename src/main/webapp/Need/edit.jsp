@@ -5,7 +5,7 @@
 <html>
 <head>
     <base href="${pageContext.request.contextPath}/"/>
-    <title></title>
+    <title>编辑需求</title>
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css"/>
     <link rel="stylesheet" type="text/css" href="./Css/style.css"/>
@@ -21,11 +21,9 @@
         body {
             padding-bottom: 40px;
         }
-
         .sidebar-nav {
             padding: 9px 0;
         }
-
         @media (max-width: 980px) {
             /* Enable use of floated navbar text */
             .navbar-text.pull-right {
@@ -34,8 +32,6 @@
                 padding-right: 5px;
             }
         }
-
-
     </style>
 </head>
 <form action="/demand/save" method="post" id="form">
