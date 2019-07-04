@@ -64,7 +64,7 @@
             <td class="tableleft"></td>
             <td>
                 <a href="/employment/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
-                <input type="submit" class="btn btn-success" value="修改">
+                <input type="submit" class="btn btn-primary" value="修改">
                 <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
             </td>
         </tr>

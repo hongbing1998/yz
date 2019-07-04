@@ -59,7 +59,7 @@
 			data: JSON.stringify({"title": processName, "path": path,"id": id}),
 			success: function(res){
 				if (res.success) {
-					window.location.href = "path/toindex";
+					window.location.href = "/path/page_query/1/5";
 				} else {
 					alert(res);
 				}
@@ -97,6 +97,10 @@
 	                                                                    	<!--如果isEmpty 返回 、true才执行后面的函数-->
 		<input type="button" id="adbten" value="增加" onclick="if (isEmpty()) add();if (isEmpty2()) getVal()" />
 		<input type="button" value="提交" onclick="test()"/>
+		<a href="/path/page_query/1/5">
+
+		<input type="button" value="返回列表"/>
+		</a>
 	</div>
 </body>
 <script type="text/javascript">
