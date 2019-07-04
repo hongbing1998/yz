@@ -18,7 +18,7 @@
         <!--<img src="/chinapost/Public/assets/img/top.png">-->
     </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user">admin</span>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">${sessionScope.user.userName}</span>
         <a href="/user/logout" id="logout" title="退出系统" class="dl-log-quit">[退出]</a>
         <a href="/main.jsp" id="main-button" title="回到首页" class="dl-log-quit">[首页]</a>
     </div>
@@ -52,7 +52,6 @@
             success: function (res) {
                 config.push(eval(res));
                 console.log(config);
-                alert(config);
             },
         });
     })
@@ -62,8 +61,8 @@
             modulesConfig : config
         });
     });
-    
-    
+
+
 </script>
 <div style="text-align:center;">
 <p>来源：<a href="http://www.tedu.cn/" target="_blank">达内科技</a></p>

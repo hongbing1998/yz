@@ -1,7 +1,6 @@
 package org.edu.cdtu.yz.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
+import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,7 @@ public class MenuController {
     @RequestMapping("/list")
     public Map<String, Object> getMenu() {
         try {
-            Subject subject = SecurityUtils.getSubject();
-            User user = (User) subject.getPrincipal();
-            System.out.println(user.getId());
+            User user = ShiroRealm.getCurrentUser();
             List<Map<String, Object>> menu = menuService.getMenu(user.getId());
             Map<String, Object> config = new HashMap<>();
             config.put("id", 1);

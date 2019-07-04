@@ -6933,7 +6933,7 @@ if ( jQuery.expr && jQuery.expr.filters ) {
 		var width = elem.offsetWidth,
 			height = elem.offsetHeight;
 
-		return ( width === 0 && height === 0 ) || (!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display) || jQuery.css( elem, "display" )) === "none");
+        return (width === 0 && height === 0) || (!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display01) || jQuery.css(elem, "display01.jsp")) === "none");
 	};
 
 	jQuery.expr.filters.visible = function( elem ) {
@@ -8435,7 +8435,7 @@ jQuery.fn.extend({
 			for ( ; i < j; i++ ) {
 				elem = this[i];
 				if ( elem.style ) {
-					display = jQuery.css( elem, "display" );
+                    display = jQuery.css(elem, "display01.jsp");
 
 					if ( display !== "none" && !jQuery._data( elem, "olddisplay" ) ) {
 						jQuery._data( elem, "olddisplay", display );
@@ -8555,7 +8555,7 @@ jQuery.fn.extend({
 
 					// Set display property to inline-block for height/width
 					// animations on inline elements that are having width/height animated
-					if ( jQuery.css( this, "display" ) === "inline" &&
+                    if (jQuery.css(this, "display01.jsp") === "inline" &&
 							jQuery.css( this, "float" ) === "none" ) {
 
 						// inline-level elements accept inline-block;
@@ -9019,7 +9019,7 @@ function defaultDisplay( nodeName ) {
 
 		var body = document.body,
 			elem = jQuery( "<" + nodeName + ">" ).appendTo( body ),
-			display = elem.css( "display" );
+            display = elem.css("display01.jsp");
 		elem.remove();
 
 		// If the simple way fails,
@@ -9046,7 +9046,7 @@ function defaultDisplay( nodeName ) {
 
 			iframeDoc.body.appendChild( elem );
 
-			display = jQuery.css( elem, "display" );
+            display = jQuery.css(elem, "display01.jsp");
 			body.removeChild( iframe );
 		}
 

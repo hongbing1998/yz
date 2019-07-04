@@ -197,6 +197,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
         // 3.执行登录方法
         try{
             subject.login(token);
+
         } catch (UnknownAccountException e){
             e.printStackTrace();
             return AjaxResult.me().setSuccess(false).setMessage("账号或者密码错误");

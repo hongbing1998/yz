@@ -88,22 +88,24 @@
 		<a href='user/list'>首页</a>
 		
 		<c:choose>
-			<c:when test="${page.index - 1 > 0 }">
-				<a href='user/list?index=${page.index - 1 }'>上一页</a>
+            <c:when test="${page.index == 1 }">
+                上一页
 			</c:when>
 			<c:otherwise>
-				上一页
+                <a href='user/list?index=${page.index - 1 }'>上一页</a>
 			</c:otherwise>
 		</c:choose>
-		<c:choose>
-			<c:when test="${page.index + 1 > page.totalPage }">
+
+        <c:choose>
+            <c:when test="${page.index == page.totalPage }">
 				下一页
 			</c:when>
 			<c:otherwise>
 				<a href='user/list?index=${page.index + 1 }'>下一页</a>
 			</c:otherwise>
 		</c:choose>
-		<a href='user/list?index=${page.totalPage }'>尾页</a>
+
+        <a href='user/list?index=${page.totalPage }'>尾页</a>
 	</div>
 </body>
 </html>

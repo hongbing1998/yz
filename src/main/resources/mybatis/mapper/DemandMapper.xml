@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.edu.cdtu.yz.mapper.DemandMapper">
-    <select id="selectDemandsInfo" resultType="java.util.HashMap">
+    <select id="selectDemandsInfo" resultType="map">
         select title,
                level,
                content,
@@ -15,6 +15,6 @@
                  inner join tb_school ts on td.school_id = ts.id
                  inner join tb_user tu on td.user_id = tu.id
         order by level desc
-        limit ${page.start}, ${page.rows}
+        limit #{query.start}, #{query.rows}
     </select>
 </mapper>
