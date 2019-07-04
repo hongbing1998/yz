@@ -65,7 +65,7 @@
         </td>
     </tr>
     <tr>
-    	<td class="tableleft">详细信息</td>
+    	<td class="tableleft">学校详细信息</td>
     	<td>
     		<div>
 		    	<textarea rows="5" cols="5"></textarea>

@@ -43,7 +43,10 @@ public class EmploymentController {
                     employmentService.insert(employment);
             }
             ;
-            model.addAttribute("allAdver", employmentService.selectList(null));
+            List<Employment> employmentList = employmentService.selectList(new EntityWrapper<Employment>()
+                    .orderBy("create_date", false)
+            );
+            model.addAttribute("advers", employmentList);
             return "/Adver/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +70,6 @@ public class EmploymentController {
     public String delete(@PathVariable("id") String id, Model model) {
         try {
             employmentService.deleteById(id);
-            model.addAttribute("allAdver", employmentService.selectList(null));
             return "/Adver/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +80,8 @@ public class EmploymentController {
     //获取用户
     @RequestMapping(value = "/Adver/{id}", method = RequestMethod.GET)
     public String get(@PathVariable("id") String id, Model model) {
-        model.addAttribute("Adver", employmentService.selectById(id));
+        Employment employment = employmentService.selectById(id);
+        model.addAttribute("Adver", employment);
         return "/Adver/show";
     }
 
@@ -92,18 +95,11 @@ public class EmploymentController {
     }
 
 
-//    //查看所有的员工信息
-//    @RequestMapping(value = "/list",method = RequestMethod.GET)
-//    public String list(Model model) {
-//        model.addAttribute("allAdver",employmentService.selectList(null));
-//        return "/Adver/index";
-//    }
-
-    //条件查看所有的员工信息
+    //条件查看所有的招聘信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String qurelist(String title, Model model) {
         List<Employment> employmentList = employmentService.selectList(new EntityWrapper<Employment>()
-                .like("title", title)
+                .like("title", title).orderBy("create_date", false)
         );
         model.addAttribute("advers", employmentList);
         return "/Adver/index";

@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
 import org.edu.cdtu.yz.query.PageQuery;
@@ -28,6 +30,7 @@ public class PolicyController {
      * @param policy  传递的实体
      * @return Ajaxresult转换结果
      */
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public String save(Policy policy, Model model) {
         try {
@@ -53,6 +56,7 @@ public class PolicyController {
     }
 
     //删除对象信息
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
@@ -66,6 +70,7 @@ public class PolicyController {
     }
 
     //去修改页面
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "toedit/{id}", method = RequestMethod.GET)
     public String toedit(@PathVariable("id") String id, Model model) {
         model.addAttribute("policy", policyService.selectById(id));
@@ -73,6 +78,7 @@ public class PolicyController {
     }
 
     //去添加页面
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/toadd", method = RequestMethod.GET)
     public String toadd()
     {
@@ -80,6 +86,7 @@ public class PolicyController {
     }
 
     //去查看页面
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "toshow/{id}", method = RequestMethod.GET)
     public String toshow(@PathVariable("id") String id, Model model) {
         model.addAttribute("policy", policyService.selectById(id));
@@ -88,6 +95,7 @@ public class PolicyController {
 
     //查看所有的员工信息
     @ResponseBody
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(policyService.selectList(null));
@@ -100,13 +108,14 @@ public class PolicyController {
     * @return PageList 分页对象
     */
     @ResponseBody
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
         Page<Policy> page = new Page<Policy>(query.getPage(),query.getRows());
         page = policyService.selectPage(page);
         return AjaxResult.me().setResultObj(new PageList<Policy>(page.getPages(), page.getRecords()));
     }
-
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/toPindex", method = RequestMethod.GET)
     public String toIndex(Model model) {
         Page<Policy> page = new Page<Policy>(0, 10);
@@ -116,6 +125,7 @@ public class PolicyController {
     }
 
     //去查询据结果页面
+    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String toQueryBytitle(String title, Model model) {
         List<Policy> policyes = policyService.selectList(new EntityWrapper<Policy>()

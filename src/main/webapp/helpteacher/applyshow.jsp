@@ -39,19 +39,19 @@
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width="10%" class="tableleft">信息编号</td>
-            <td><input type="text" name="id" value="${Adver.id}" readonly="ture"></td>
+            <td>${Adver.id}</td>
         </tr>
         <tr>
             <td class="tableleft">标题</td>
-            <td><input type="text" name="title" value="${Adver.title} " readonly="ture"></td>
+            <td>${Adver.title}</td>
         </tr>
         <tr>
             <td class="tableleft">撰写人</td>
-            <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
+            <td>${Adver.userName}</td>
         </tr>
         <tr>
             <td class="tableleft">时间</td>
-            <td><input type="text" value="${Avter.createDate} " readonly="ture"></td>
+            <td>${Avter.createDate}</td>
         </tr>
         <tr>
 
@@ -62,11 +62,7 @@
         </tr>
         <tr>
             <td>
-                <%--<a href="/Adver/apply/${Adver.applyId}/${Adver.id}" class="btn btn-success" name="backid" id="backid">返回上一级</a>--%>
                 <a href="/apply/apply/${applyId}" class="btn btn-success" name="backid" id="backid">返回</a>
-                <%--<a href="/apply/delete/${Adver.applyId}" class="btn btn-success" name="backid" id="backid">不通过</a>--%>
-                <%--<input type="submit" class="btn btn-success">--%>
-                <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
             </td>
         </tr>
     </table>

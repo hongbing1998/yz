@@ -35,7 +35,10 @@ public class ApplyController {
             }else{
                     applyService.insert(apply);
             }
-            model.addAttribute("allApply", applyService.selectList(null));
+            List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
+                    .orderBy("applyDate", false)
+            );
+            model.addAttribute("allApply", employmentList);
             return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +51,10 @@ public class ApplyController {
     public String delete(@PathVariable("id") String id, Model model) {
         try {
             applyService.deleteById(id);
-            model.addAttribute("allApply", applyService.selectList(null));
+            List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
+                    .orderBy("applyDate", false)
+            );
+            model.addAttribute("allApply", employmentList);
             return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,11 +70,11 @@ public class ApplyController {
         return "/helpteacher/show";
     }
 
-    //查看所有的员工信息
+    //查看所有的报名人员信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(String name, Model model) {
         List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
-                .like("name", name)
+                .like("name", name).orderBy("applyDate", false)
         );
         model.addAttribute("allApply", employmentList);
         return "/helpteacher/index";

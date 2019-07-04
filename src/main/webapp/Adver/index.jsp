@@ -67,21 +67,33 @@ body {
                 <td>${data.createDate}</td>
                 <td>${data.userName}</td>
                 <td>
-                    <a class="btn btn-success" href="/employment/delete/${data.id}">删除</a>
+                    <button class="btn btn-success" id="delete-buttonb" onclick="del('${data.id}')">删除</button>
                 </td>
             </tr>
-        </c:forEach>
+        </c:forEach>s
 
 	</table>
-<%--<div class="inline pull-right page">--%>
-<%--10 条记录 1/2页 --%>
-<%--<a href='#'>首页</a>--%>
-<%--<a href='#'>上一页</a>--%>
-<%--<a href='#'>下一页</a>--%>
-<%--<a href='#'>尾页</a>--%>
-<%--</div>--%>
 </body>
 <script>
-    
+    $(function () {
+
+    });
+
+    function del(id) {
+        if (confirm("确定要删除吗？")) {
+            $.ajax({
+                url: "/employment/delete/" + id,
+                async: false,
+                type: "get",
+                success: function () {
+                    alert("删除成功");
+                    window.location.href = "/employment/list";
+                },
+                error: function () {
+                    alert("netword is error");
+                }
+            });
+        }
+    }
 </script>
 </html>

@@ -1,4 +1,15 @@
 function deletediv(obj) {
+    var patha = document.getElementById("hidden").value;
+
+    var arr = patha.split('%');
+    arr.pop();
+    arr.pop();
+    var path = " ";
+    for (var i = 0; i < arr.length; i++) {
+        path += arr[i]+"%";
+    }
+    document.getElementById("hidden").value =path;
+
     var div = obj.parentNode;
     var cs = document.body.children;
     var index = cs.length - 1;

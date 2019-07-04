@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Demand;
-import org.edu.cdtu.yz.query.PageQuery;
+import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.ISchoolService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -12,9 +12,10 @@ import org.edu.cdtu.yz.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @CrossOrigin
@@ -40,7 +41,10 @@ public class DemandController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Demand demand) {
         try {
+            School school = schoolService.selectById(demand.getSchoolId());
+            demand.setSchoolName(school.getSchoolName());
             demand.setUserId(ShiroRealm.getCurrentUser().getId());
+            demand.setUserName(ShiroRealm.getCurrentUser().getUsername());
             demand.setCreateDate(DateUtil.getFormatCurrentDate());
             if (demand.getId() != null) {
                 demandService.updateById(demand);
@@ -57,21 +61,24 @@ public class DemandController {
     /**
      * 根据id删除数据
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public AjaxResult delete(@PathVariable("id") String id) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") String id, Model model) {
         try {
             demandService.deleteById(id);
-            return AjaxResult.me();
+            Page page = new Page(1, 5);
+            page = demandService.selectPage(page, getOrderByEw("level", false));
+            model.addAttribute("page", page);
+            return "Need/index";
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("删除对象失败！" + e.getMessage());
+            return "error";
         }
     }
 
     /**
      * 根据id查询单条数据
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") String id) {
         return AjaxResult.me().setResultObj(demandService.selectById(id));
     }
@@ -80,18 +87,22 @@ public class DemandController {
      * 单表条件查询多条数据
      */
     @RequestMapping(value = "/condition_quey", method = RequestMethod.POST)
-    public AjaxResult conditionQuery(@RequestBody(required = false) Demand demand) {
-        EntityWrapper<Demand> demandEntity = new EntityWrapper<>(demand);
-        return AjaxResult.me().setResultObj(demandService.selectList(demandEntity));
+    public String conditionQuery(Demand demand, Model model) {
+        EntityWrapper<Demand> ew = new EntityWrapper<>();
+        ew.like("title", demand.getTitle());
+        Page page = new Page(1, 5);
+        demandService.selectPage(page, ew);
+        model.addAttribute("page", page);
+        return "Need/index";
     }
 
     /**
      * 初始进入需求管理
      */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String pageQuery(Model model) {
-        PageQuery query = new PageQuery(1, 5);// 默认第一页，5条数据
-        Page<Map<String, Object>> page = demandService.selectDemandsPage(query);
+    public String index(Model model) {
+        Page page = new Page(1, 5);
+        page = demandService.selectPage(page, getOrderByEw("level", false));
         model.addAttribute("page", page);
         return "Need/index";
     }
@@ -100,9 +111,15 @@ public class DemandController {
      * 多表分页查询数据
      */
     @RequestMapping(value = "/page_query", method = RequestMethod.POST)
-    public String pageQuery(Model model, PageQuery query) {
-        Page<Map<String, Object>> page = demandService.selectDemandsPage(query);
+    public String pageQuery(Model model, Page page) {
+        page = demandService.selectPage(page, getOrderByEw("level", false));
         model.addAttribute("page", page);
         return "Need/index";
+    }
+
+    private EntityWrapper<Demand> getOrderByEw(String columns, Boolean isAsc) {
+        EntityWrapper<Demand> ew = new EntityWrapper<>();
+        ew.orderBy(columns, isAsc);// 按level降序排列
+        return ew;
     }
 }

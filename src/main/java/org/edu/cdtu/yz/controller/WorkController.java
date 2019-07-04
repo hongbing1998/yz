@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
@@ -28,6 +30,7 @@ public class WorkController {
      * @param work  传递的实体
      * @return Ajaxresult转换结果
      */
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public String save(Work work, Model model) {
         try {
@@ -54,6 +57,7 @@ public class WorkController {
 
     //删除对象信息
     @ResponseBody
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
         try {
@@ -66,6 +70,7 @@ public class WorkController {
     }
 
     //获取用户
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") String id)
     {
@@ -74,6 +79,7 @@ public class WorkController {
 
 
     //查看所有的员工信息
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(workService.selectList(null));
@@ -85,6 +91,7 @@ public class WorkController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public AjaxResult json(@RequestBody PageQuery query) {
         Page<Work> page = new Page<Work>(query.getPage(),query.getRows());
@@ -92,15 +99,17 @@ public class WorkController {
         return AjaxResult.me().setResultObj(new PageList<Work>(page.getPages(), page.getRecords()));
     }
 
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/toindex", method = RequestMethod.GET)
     public String toIndex(Model model) {
         Page<Work> page = new Page<Work>(0, 10);
-        page = workService.selectPage(page);
+        page = workService.selectPage(page,new EntityWrapper<Work>().orderBy("create_date",false));
         model.addAttribute("resultObj", new PageList<Work>(page.getPages(), page.getCurrent(), page.getRecords()));
         return "Work/index";
     }
 
     //去修改页面
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "toedit/{id}", method = RequestMethod.GET)
     public String toedit(@PathVariable("id") String id, Model model) {
         model.addAttribute("work", workService.selectById(id));
@@ -108,12 +117,14 @@ public class WorkController {
     }
 
     //去添加页面
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/toadd", method = RequestMethod.GET)
     public String toadd() {
         return "Work/add";
     }
 
     //去查询据结果页面
+    @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String toQueryBytitle(String title, Model model) {
         List<Work> works = workService.selectList(new EntityWrapper<Work>()
