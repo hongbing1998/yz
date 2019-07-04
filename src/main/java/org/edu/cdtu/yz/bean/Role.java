@@ -25,7 +25,7 @@ public class Role extends Model<Role> {
     @TableField("role_name")
     private String roleName;
     @TableField(exist = false)
-    private boolean choice;
+    private Boolean choice;
 
 
     @Override

@@ -53,7 +53,7 @@
         hasClass: function (name) {
             var className = ' ' + name + ' ';
             if ((' ' + this[0].className + ' ').replace(rclass, ' ')
-                .indexOf(className) > -1) return true;
+                    .indexOf(className) > -1) return true;
 
             return false;
         },

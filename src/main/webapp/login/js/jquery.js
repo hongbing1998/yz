@@ -569,8 +569,8 @@
                 // Make sure the incoming data is actual JSON
                 // Logic borrowed from http://json.org/json2.js
                 if (rvalidchars.test(data.replace(rvalidescape, "@")
-                    .replace(rvalidtokens, "]")
-                    .replace(rvalidbraces, ""))) {
+                        .replace(rvalidtokens, "]")
+                        .replace(rvalidbraces, ""))) {
 
                     return (new Function("return " + data))();
 
@@ -2200,9 +2200,9 @@
 
             while (i--) {
                 if ((tmp = jQuery.data(elements[i], deferDataKey, undefined, true) ||
-                    (jQuery.data(elements[i], queueDataKey, undefined, true) ||
-                        jQuery.data(elements[i], markDataKey, undefined, true)) &&
-                    jQuery.data(elements[i], deferDataKey, jQuery.Callbacks("once memory"), true))) {
+                        (jQuery.data(elements[i], queueDataKey, undefined, true) ||
+                            jQuery.data(elements[i], markDataKey, undefined, true)) &&
+                        jQuery.data(elements[i], deferDataKey, jQuery.Callbacks("once memory"), true))) {
                     count++;
                     tmp.add(resolve);
                 }
@@ -8722,7 +8722,7 @@
         speed: function (speed, easing, fn) {
             var opt = speed && typeof speed === "object" ? jQuery.extend({}, speed) : {
                 complete: fn || !fn && easing ||
-                    jQuery.isFunction(speed) && speed,
+                jQuery.isFunction(speed) && speed,
                 duration: speed,
                 easing: fn && easing || easing && !jQuery.isFunction(easing) && easing
             };

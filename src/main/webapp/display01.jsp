@@ -35,37 +35,37 @@
 
     </style>
 </head>
-<div style="margin-left:2%;"><a href="main.jsp"class="btn btn-success">返回首页</a></div>
+<div style="margin-left:2%;"><a href="main.jsp" class="btn btn-success">返回首页</a></div>
 <div>
-<form action="work/edit" method="post" id="app">
+    <form action="work/edit" method="post" id="app">
 
-    <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in employment">
-        <tr>
-            <td width="10%" class="tableleft">编号</td>
-            <td>{{value.id}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">标题</td>
-            <td>{{value.title}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">学校</td>
-            <td>{{value.content}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">详细信息</td>
-            <td>
-                {{value.createDate}}
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft">援藏历史</td>
-            <td>
-                {{value.userId}}
-            </td>
-        </tr>
-    </table>
-</form>
+        <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in employment">
+            <tr>
+                <td width="10%" class="tableleft">编号</td>
+                <td>{{value.id}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">标题</td>
+                <td>{{value.title}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">学校</td>
+                <td>{{value.content}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">详细信息</td>
+                <td>
+                    {{value.createDate}}
+                </td>
+            </tr>
+            <tr>
+                <td class="tableleft">援藏历史</td>
+                <td>
+                    {{value.userId}}
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 </body>
 <script src="index/js/jquery-3.3.1.min.js"></script>

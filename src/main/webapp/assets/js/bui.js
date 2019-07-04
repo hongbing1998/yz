@@ -11591,7 +11591,7 @@ define('bui/cookie', function () {
 
             if (isNotEmptyString(name)) {
                 if ((m = String(doc.cookie).match(
-                    new RegExp('(?:^| )' + name + '(?:(?:=([^;]*))|;|$)')))) {
+                        new RegExp('(?:^| )' + name + '(?:(?:=([^;]*))|;|$)')))) {
                     ret = m[1] ? decode(m[1]) : '';
                 }
             }
@@ -23790,9 +23790,9 @@ define('bui/tab/navtab', ['bui/common', 'bui/menu'], function (require) {
                     tpl: {
                         view: true,
                         value: '<div class="tab-nav-bar">' +
-                            '<s class="tab-nav-arrow arrow-left"></s><div class="tab-nav-wrapper"><div class="tab-nav-inner"><ul class="' + CLS_NAV_LIST + '"></ul></div></div><s class="tab-nav-arrow arrow-right"></s>' +
-                            '</div>' +
-                            '<div class="tab-content-container"></div>'
+                        '<s class="tab-nav-arrow arrow-left"></s><div class="tab-nav-wrapper"><div class="tab-nav-inner"><ul class="' + CLS_NAV_LIST + '"></ul></div></div><s class="tab-nav-arrow arrow-right"></s>' +
+                        '</div>' +
+                        '<div class="tab-content-container"></div>'
                     },
                     xview: {
                         value: navTabView
@@ -24922,7 +24922,7 @@ define('bui/toolbar/pagingbar', ['bui/toolbar/bar'], function (require) {
                      */
                     curPageTpl: {
                         value: '\u7b2c <input type="text" ' +
-                            'autocomplete="off" class="' + PREFIX + 'pb-page" size="20" name="inputItem"> \u9875'
+                        'autocomplete="off" class="' + PREFIX + 'pb-page" size="20" name="inputItem"> \u9875'
                     },
                     /**
                      * the template of total count info
@@ -25699,10 +25699,10 @@ define('bui/calendar/monthpicker', ['bui/common', 'bui/overlay', 'bui/list', 'bu
             tpl: {
                 view: true,
                 value: '<div class="' + CLS_YEAR_NAV + '">' +
-                    '<span class="' + CLS_YEAR_NAV + '-prev x-icon x-icon-normal x-icon-small"><span class="icon icon-caret icon-caret-left"></span></span>' +
-                    '<span class="' + CLS_YEAR_NAV + '-next x-icon x-icon-normal x-icon-small"><span class="icon icon-caret icon-caret-right"></span></span>' +
-                    '</div>' +
-                    '<ul></ul>'
+                '<span class="' + CLS_YEAR_NAV + '-prev x-icon x-icon-normal x-icon-small"><span class="icon icon-caret icon-caret-left"></span></span>' +
+                '<span class="' + CLS_YEAR_NAV + '-next x-icon x-icon-normal x-icon-small"><span class="icon icon-caret icon-caret-right"></span></span>' +
+                '</div>' +
+                '<ul></ul>'
             }
         }
     }, {
@@ -25975,13 +25975,13 @@ define('bui/calendar/header', ['bui/common'], function (require) {
             tpl: {
                 view: true,
                 value: '<div class="' + CLS_ARROW + ' ' + CLS_PREV + '"><span class="icon icon-white icon-caret  icon-caret-left"></span></div>' +
-                    '<div class="x-datepicker-month">' +
-                    '<div class="month-text-container">' +
-                    '<span><span class="year-text">{year}</span>\u5e74 <span class="month-text">{monthText}</span>\u6708</span>' +
-                    '<span class="' + PREFIX + 'caret ' + PREFIX + 'caret-down"></span>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="' + CLS_ARROW + ' ' + CLS_NEXT + '"><span class="icon icon-white icon-caret  icon-caret-right"></span></div>'
+                '<div class="x-datepicker-month">' +
+                '<div class="month-text-container">' +
+                '<span><span class="year-text">{year}</span>\u5e74 <span class="month-text">{monthText}</span>\u6708</span>' +
+                '<span class="' + PREFIX + 'caret ' + PREFIX + 'caret-down"></span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="' + CLS_ARROW + ' ' + CLS_NEXT + '"><span class="icon icon-white icon-caret  icon-caret-right"></span></div>'
             },
             elCls: {
                 view: true,
@@ -26312,10 +26312,10 @@ define('bui/calendar/panel', ['bui/common'], function (require) {
                     dayTpl: {
                         view: true,
                         value: '<td class="x-datepicker-date x-datepicker-{dateType} {todayCls} day-{dayOfWeek}" title="{date}">' +
-                            '<a href="#" hidefocus="on" tabindex="1">' +
-                            '<em><span>{dateNumber}</span></em>' +
-                            '</a>' +
-                            '</td>'
+                        '<a href="#" hidefocus="on" tabindex="1">' +
+                        '<em><span>{dateNumber}</span></em>' +
+                        '</a>' +
+                        '</td>'
                     },
                     events: {
                         value: {
@@ -26376,20 +26376,20 @@ define('bui/calendar/panel', ['bui/common'], function (require) {
                     tpl: {
                         view: true,
                         value: '<table class="x-datepicker-inner" cellspacing="0">' +
-                            '<thead>' +
-                            '<tr>' +
-                            '<th  title="Sunday"><span>\u65e5</span></th>' +
-                            '<th  title="Monday"><span>\u4e00</span></th>' +
-                            '<th  title="Tuesday"><span>\u4e8c</span></th>' +
-                            '<th  title="Wednesday"><span>\u4e09</span></th>' +
-                            '<th  title="Thursday"><span>\u56db</span></th>' +
-                            '<th  title="Friday"><span>\u4e94</span></th>' +
-                            '<th  title="Saturday"><span>\u516d</span></th>' +
-                            '</tr>' +
-                            '</thead>' +
-                            '<tbody class="x-datepicker-body">' +
-                            '</tbody>' +
-                            '</table>'
+                        '<thead>' +
+                        '<tr>' +
+                        '<th  title="Sunday"><span>\u65e5</span></th>' +
+                        '<th  title="Monday"><span>\u4e00</span></th>' +
+                        '<th  title="Tuesday"><span>\u4e8c</span></th>' +
+                        '<th  title="Wednesday"><span>\u4e09</span></th>' +
+                        '<th  title="Thursday"><span>\u56db</span></th>' +
+                        '<th  title="Friday"><span>\u4e94</span></th>' +
+                        '<th  title="Saturday"><span>\u516d</span></th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody class="x-datepicker-body">' +
+                        '</tbody>' +
+                        '</table>'
                     },
                     xview: {value: panelView}
                 }
@@ -29146,8 +29146,8 @@ define('bui/grid/header', ['bui/common', 'bui/grid/column'], function (require) 
 
                         view: true,
                         value: '<table cellspacing="0" class="' + PREFIX + 'grid-table" cellpadding="0">' +
-                            '<thead><tr></tr></thead>' +
-                            '</table>'
+                        '<thead><tr></tr></thead>' +
+                        '</table>'
                     },
                     /**
                      * \u8868\u683c\u5e94\u7528\u7684\u6837\u5f0f.
@@ -30297,8 +30297,8 @@ define('bui/grid/grid', ['bui/common', 'bui/mask', 'bui/toolbar', 'bui/list', 'b
             cellTpl: {
                 view: true,
                 value: '<td  class="{elCls} {hideCls} ' + CLS_GRID_CELL + ' ' + CLS_TD_PREFIX + '{id}" data-column-id="{id}" data-column-field = "{dataIndex}" >' +
-                    '<div class="' + CLS_GRID_CELL_INNER + '" >{cellText}</div>' +
-                    '</td>'
+                '<div class="' + CLS_GRID_CELL_INNER + '" >{cellText}</div>' +
+                '</td>'
 
             },
             /**
@@ -30459,8 +30459,8 @@ define('bui/grid/grid', ['bui/common', 'bui/mask', 'bui/toolbar', 'bui/list', 'b
             tableTpl: {
                 view: true,
                 value: '<table cellspacing="0" cellpadding="0" >' +
-                    '<tbody></tbody>' +
-                    '</table>'
+                '<tbody></tbody>' +
+                '</table>'
             },
             tpl: {
                 value: '<div class="' + CLS_GRID_TBAR + '" style="display:none"></div><div class="' + CLS_GRID_HEADER_CONTAINER + '"></div><div class="' + CLS_GRID_BODY + '"></div><div style="display:none" class="' + CLS_GRID_BBAR + '"></div>'

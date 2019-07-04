@@ -840,19 +840,19 @@
 
                 if (
                     // 调用通过on方法注册的handler.
-                    Mediator.trigger.apply(this, arguments) === false ||
+                Mediator.trigger.apply(this, arguments) === false ||
 
-                    // 调用opts.onEvent
-                    $.isFunction(opts[name]) &&
-                    opts[name].apply(this, args) === false ||
+                // 调用opts.onEvent
+                $.isFunction(opts[name]) &&
+                opts[name].apply(this, args) === false ||
 
-                    // 调用this.onEvent
-                    $.isFunction(this[name]) &&
-                    this[name].apply(this, args) === false ||
+                // 调用this.onEvent
+                $.isFunction(this[name]) &&
+                this[name].apply(this, args) === false ||
 
-                    // 广播所有uploader的事件。
-                    Mediator.trigger.apply(Mediator,
-                        [this, type].concat(args)) === false) {
+                // 广播所有uploader的事件。
+                Mediator.trigger.apply(Mediator,
+                    [this, type].concat(args)) === false) {
 
                     return false;
                 }
