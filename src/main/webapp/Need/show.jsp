@@ -5,7 +5,7 @@
 <html>
 <head>
     <base href="${pageContext.request.contextPath}/"/>
-    <title></title>
+    <title>查看需求</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css"/>
