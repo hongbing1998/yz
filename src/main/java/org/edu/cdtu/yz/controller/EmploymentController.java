@@ -62,7 +62,7 @@ public class EmploymentController {
      *
      * @return
      */
-    @RequiresPermissions(value = {"employment"}, logical = Logical.OR)
+
     @ResponseBody
     @RequestMapping(value = "/employmentList", method = RequestMethod.GET)
     public AjaxResult list() {

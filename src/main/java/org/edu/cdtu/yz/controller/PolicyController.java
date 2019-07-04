@@ -6,20 +6,13 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
-import org.edu.cdtu.yz.bean.Policy;
-import org.edu.cdtu.yz.bean.Work;
-import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPolicyService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.DateUtil;
-import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
-import java.util.List;
 
 @CrossOrigin
 @Controller
@@ -140,7 +133,7 @@ public class PolicyController {
      * 分页查询数据：
      * @param
      */
-    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
+//    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "//page_query/{current}/{size}", method = RequestMethod.GET)
     public String toIndex(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
         Page<Policy> page = new Page<>(current, size);

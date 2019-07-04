@@ -12,7 +12,7 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler
     public String exceptiona(Exception ex) {
         Map<String, String> result = new HashMap<>();
-
+    
         return "error/error";
     }
 

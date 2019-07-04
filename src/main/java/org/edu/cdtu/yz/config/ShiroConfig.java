@@ -110,6 +110,7 @@ public class ShiroConfig {
         Map<String, String> definitionMap = new LinkedHashMap<>();
         definitionMap.put("/actuator*", "anon");
         definitionMap.put("/main.jsp", "anon");
+        definitionMap.put("/display*", "anon");
         definitionMap.put("/**/*.js", "anon");
         definitionMap.put("/**/*.css", "anon");
         definitionMap.put("/**/*.png", "anon");
