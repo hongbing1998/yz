@@ -35,7 +35,7 @@
 
     </style>
 </head>
-<form action="/employment/save" method="post">
+<form action="/employment/save" method="post" onsubmit="return check()">
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width="10%" class="tableleft">信息编号</td>
@@ -43,19 +43,20 @@
         </tr>
         <tr>
             <td class="tableleft">标题</td>
-            <td><input type="text" name="title" value="${Adver.title}"></td>
+            <td><input type="text" name="title" value="${Adver.title}" id="title"></td>
         </tr>
         <tr>
             <td class="tableleft">撰写人</td>
             <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
         </tr>
         <tr>
-            <td class="tableleft">时间</td>
-            <td><input type="text" value="${Avter.createDate} " readonly="ture"></td>
+            <td class="tableleft">标题11</td>
+            <td><input type="text" name="title" value="${Adver.createDate}" readonly="ture"></td>
         </tr>
         <tr>
 
-            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;">${Adver.content}</textarea>
+            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;"
+                                      id="content">${Adver.content}</textarea>
             </td>
 
         </tr>
@@ -71,6 +72,24 @@
 </form>
 </body>
 <script type="text/javascript">
+    function check() {
+        var title = $("#title").val();
+        var content = $("#content").val();
 
+        if (title == null || title == "") {
+            alert("标题不能为空");
+            return false;
+
+        }
+
+        if (content == null || content == "") {
+            alert("详情不能为空不能为空");
+            return false;
+
+        }
+
+        return true;
+
+    }
 </script>
 </html>

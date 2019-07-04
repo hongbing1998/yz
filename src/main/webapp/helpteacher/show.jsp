@@ -75,8 +75,8 @@
             <td class="tableleft"></td>
             <td>
                 <a href="/apply/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
-                <a href="/apply/delete/${Apply.id}" class="btn btn-success" name="backid" id="backid">不通过</a>
-                <%--<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>--%>
+                <a href="/apply/delete/${Apply.id}" class="btn btn-success" name="backid" id="backid">不满足条件</a>
+                <%--<button class="btn btn-success" id="delete-buttonb" onclick="del('${Apply.id}')">不通过</button>--%>
             </td>
         </tr>
     </table>
@@ -84,5 +84,24 @@
 </body>
 <script type="text/javascript">
 
+
+    //    function del(id)
+    //    {
+    //        if(confirm("确定要移出报名列表吗？"))
+    //        {
+    //            alert("mmmmmm");
+    //            // $.ajax({
+    //            //     url:"/apply/delete/" + id,
+    //            //     type: "get",
+    //            //     success: function(){
+    //            //         alert("移出成功");
+    //            //         window.location.href = "/apply/list";
+    //            //     },
+    //            //     error: function(){
+    //            //         alert("netword is error");
+    //            //     }
+    //            // });
+    //        }
+    //    }
 </script>
 </html>
