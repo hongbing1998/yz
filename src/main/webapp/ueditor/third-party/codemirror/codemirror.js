@@ -514,8 +514,7 @@ var CodeMirror = (function () {
                         if (draggingText) replaceRange("", curFrom, curTo);
                         focusInput();
                     }
-                }
-                catch (e) {
+                } catch (e) {
                 }
             }
         }
@@ -859,8 +858,7 @@ var CodeMirror = (function () {
                 if (!changed && !missed) {
                     missed = true;
                     poll.set(60, p);
-                }
-                else {
+                } else {
                     pollingFast = false;
                     slowPoll();
                 }
@@ -933,8 +931,7 @@ var CodeMirror = (function () {
             if (y1 < screentop) {
                 scroller.scrollTop = Math.max(0, y1 - 2 * lh);
                 scrolled = true;
-            }
-            else if (y2 > screentop + screen) {
+            } else if (y2 > screentop + screen) {
                 scroller.scrollTop = y2 + lh - screen;
                 scrolled = true;
             }
@@ -1123,8 +1120,7 @@ var CodeMirror = (function () {
                     if (sto == j) {
                         ch1 = sel.from.ch;
                         ch2 = sel.to.ch;
-                    }
-                    else {
+                    } else {
                         inSel = true;
                         ch1 = sel.from.ch;
                     }
@@ -1643,8 +1639,7 @@ var CodeMirror = (function () {
                 if (middleX > x) {
                     to = middle;
                     toX = middleX;
-                }
-                else {
+                } else {
                     from = middle;
                     fromX = middleX;
                 }
@@ -1732,8 +1727,7 @@ var CodeMirror = (function () {
                 if (middleX > x) {
                     to = middle;
                     toX = middleX;
-                }
-                else {
+                } else {
                     from = middle;
                     fromX = middleX;
                 }
@@ -2035,8 +2029,7 @@ var CodeMirror = (function () {
                 if (!nestedOperation++) startOperation();
                 try {
                     var result = f.apply(this, arguments);
-                }
-                finally {
+                } finally {
                     if (!--nestedOperation) endOperation();
                 }
                 return result;
@@ -3185,8 +3178,7 @@ var CodeMirror = (function () {
             if (n == bod) {
                 x += Math.abs(ol);
                 y += Math.abs(ot);
-            }
-            else {
+            } else {
                 x += ol, y += ot;
             }
             if (screen && computedStyle(n).position == "fixed")
@@ -3208,8 +3200,7 @@ var CodeMirror = (function () {
         try {
             var box = node.getBoundingClientRect();
             box = {top: box.top, left: box.left};
-        }
-        catch (e) {
+        } catch (e) {
             box = {top: 0, left: 0};
         }
         if (!screen) {
@@ -3307,15 +3298,13 @@ var CodeMirror = (function () {
     var hasSelection = window.getSelection ? function (te) {
         try {
             return te.selectionStart != te.selectionEnd;
-        }
-        catch (e) {
+        } catch (e) {
             return false;
         }
     } : function (te) {
         try {
             var range = te.ownerDocument.selection.createRange();
-        }
-        catch (e) {
+        } catch (e) {
         }
         if (!range || range.parentElement() != te) return false;
         return range.compareEndPoints("StartToEnd", range) != 0;

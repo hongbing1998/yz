@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <td class="tableleft">撰写人</td>
-            <td><input type="text"  value="${Adver.userName}" readonly="ture"></td>
+            <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
         </tr>
         <tr>
             <td class="tableleft">时间</td>

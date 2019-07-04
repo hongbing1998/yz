@@ -51,16 +51,16 @@
     <tr>
         <th>姓名</th>
         <th>报名标题</th>
-		<th>操作</th>
+        <th>操作</th>
     </tr>
     </thead>
-	<c:forEach items="${allApply }" var="s">
+    <c:forEach items="${allApply }" var="s">
 		<tr>
-			<td>${s.name }</td>
-			<td>${s.employTitle}</td>
-			<td>
-				<a class="btn btn-success" href="/apply/apply/${s.id}">查看</a>
-			</td>
+            <td>${s.name }</td>
+            <td>${s.employTitle}</td>
+            <td>
+                <a class="btn btn-success" href="/apply/apply/${s.id}">查看</a>
+            </td>
 		</tr>
 	</c:forEach>
 </body>

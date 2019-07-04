@@ -569,8 +569,8 @@
                 // Make sure the incoming data is actual JSON
                 // Logic borrowed from http://json.org/json2.js
                 if (rvalidchars.test(data.replace(rvalidescape, "@")
-                    .replace(rvalidtokens, "]")
-                    .replace(rvalidbraces, ""))) {
+                        .replace(rvalidtokens, "]")
+                        .replace(rvalidbraces, ""))) {
 
                     return (new Function("return " + data))();
 
@@ -2200,9 +2200,9 @@
 
             while (i--) {
                 if ((tmp = jQuery.data(elements[i], deferDataKey, undefined, true) ||
-                    (jQuery.data(elements[i], queueDataKey, undefined, true) ||
-                        jQuery.data(elements[i], markDataKey, undefined, true)) &&
-                    jQuery.data(elements[i], deferDataKey, jQuery.Callbacks("once memory"), true))) {
+                        (jQuery.data(elements[i], queueDataKey, undefined, true) ||
+                            jQuery.data(elements[i], markDataKey, undefined, true)) &&
+                        jQuery.data(elements[i], deferDataKey, jQuery.Callbacks("once memory"), true))) {
                     count++;
                     tmp.add(resolve);
                 }
@@ -4506,8 +4506,7 @@
                         // calculate the numbers (first)n+(last) including if they are negative
                         match[2] = (test[1] + (test[2] || 1)) - 0;
                         match[3] = test[3] - 0;
-                    }
-                    else if (match[2]) {
+                    } else if (match[2]) {
                         Sizzle.error(match[0]);
                     }
 

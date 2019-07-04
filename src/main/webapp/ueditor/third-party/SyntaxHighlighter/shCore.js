@@ -679,10 +679,10 @@ if (XRegExp) {
 //
 // Begin anonymous function. This is used to contain local scope variables without polutting global scope.
 //
-if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function () {
+if (typeof (SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function () {
 
 // CommonJS
-    if (typeof(require) != 'undefined' && typeof(XRegExp) == 'undefined') {
+    if (typeof (require) != 'undefined' && typeof (XRegExp) == 'undefined') {
         XRegExp = require('XRegExp').XRegExp;
     }
 
@@ -977,8 +977,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function (
                 if (params['html-script'] == 'true' || sh.defaults['html-script'] == true) {
                     highlighter = new sh.HtmlScript(brushName);
                     brushName = 'htmlscript';
-                }
-                else {
+                } else {
                     var brush = findBrush(brushName);
 
                     if (brush)
@@ -1262,8 +1261,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function (
 
         if (obj.attachEvent) {
             obj.attachEvent('on' + type, handler);
-        }
-        else {
+        } else {
             obj.addEventListener(type, handler, false);
         }
     };
@@ -2444,7 +2442,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Bash = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2526,7 +2524,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.ColdFusion = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2605,7 +2603,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Cpp = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2651,7 +2649,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.CSharp = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2722,7 +2720,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.CSS = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2759,7 +2757,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Delphi = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2782,7 +2780,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Diff = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2816,7 +2814,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Erland = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2865,7 +2863,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Groovy = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2904,7 +2902,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Java = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2944,7 +2942,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.JavaFX = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -2978,7 +2976,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.JScript = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3053,7 +3051,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Perl = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3123,7 +3121,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Php = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3138,7 +3136,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Plain = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3204,7 +3202,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.PowerShell = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3250,7 +3248,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Python = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3287,7 +3285,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Ruby = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3361,7 +3359,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Sass = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3394,7 +3392,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Scala = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3441,7 +3439,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Sql = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 
 ;(function () {
@@ -3480,7 +3478,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Vb = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();
 ;(function () {
     // CommonJS
@@ -3531,5 +3529,5 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
     SyntaxHighlighter.brushes.Xml = Brush;
 
     // CommonJS
-    typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+    typeof (exports) != 'undefined' ? exports.Brush = Brush : null;
 })();

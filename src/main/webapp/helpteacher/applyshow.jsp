@@ -43,11 +43,11 @@
         </tr>
         <tr>
             <td class="tableleft">标题</td>
-            <td><input type="text" name="title" value="${Adver.title} "readonly="ture"></td>
+            <td><input type="text" name="title" value="${Adver.title} " readonly="ture"></td>
         </tr>
         <tr>
             <td class="tableleft">撰写人</td>
-            <td><input type="text"  value="${Adver.userName}" readonly="ture"></td>
+            <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
         </tr>
         <tr>
             <td class="tableleft">时间</td>
@@ -55,7 +55,8 @@
         </tr>
         <tr>
 
-            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;" readonly="ture">${Adver.content}</textarea>
+            <td colspan="2"><textarea name="content" style="width:1000px;height:300px;"
+                                      readonly="ture">${Adver.content}</textarea>
             </td>
 
         </tr>

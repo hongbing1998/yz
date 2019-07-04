@@ -21,8 +21,7 @@
 
             // 当无数据或者数据少于每页的最多记录时的情况,不生成分页
             if (totalRecord == 0 && totalRecord < options.perPageRecord) {
-            }
-            else {
+            } else {
                 this._createPagination();
             }
 
@@ -44,8 +43,7 @@
             if (totalRecord == 0 && totalRecord < options.perPageRecord) {
                 // 删除先前生成的DOM节点
                 $el.children().remove();
-            }
-            else {
+            } else {
                 this._createPagination();
             }
         },
@@ -125,12 +123,10 @@
             if (currentPage == 0) {
                 $el.find('ul').find('.pagination-prev').addClass('ue-state-disable');
                 $el.find('ul').find('.pagination-next').removeClass('ue-state-disable');
-            }
-            else if (currentPage == self._getPageNums() - 1) {
+            } else if (currentPage == self._getPageNums() - 1) {
                 $el.find('ul').find('.pagination-prev').removeClass('ue-state-disable');
                 $el.find('ul').find('.pagination-next').addClass('ue-state-disable');
-            }
-            else {
+            } else {
                 $el.find('ul').find('.pagination-next').removeClass('ue-state-disable');
                 $el.find('ul').find('.pagination-prev').removeClass('ue-state-disable');
             }
@@ -140,8 +136,7 @@
                 var per = options.perPageRecord, nums = options.totalRecord;
                 // 无数据时显示的文字及样式
                 if (!options.totalRecord) {
-                }
-                else {
+                } else {
                     $el.prepend('<div class="uew-pagination-msg">本页显示第&nbsp;' + ((currentPage * per) + 1) + '-' + (((currentPage + 1) * per) > nums ? nums : ((currentPage + 1) * per)) + '&nbsp;条记录，总共&nbsp;' + nums + '&nbsp;条</div>');
                 }
             }
@@ -181,8 +176,7 @@
             if (id == currentPage) {
                 lnk = $("<a>" + appendopts.text + "</a>").bind("click", self._getClickHandler(id));
                 if (appendopts.classes.split(" ")[0] == 'pagination-prev' || appendopts.classes.split(" ")[0] == 'pagination-next') {
-                }
-                else {
+                } else {
                     $li.addClass('ue-state-current');
                 }
             } else {
@@ -192,8 +186,7 @@
                 $li.addClass(appendopts.classes);
                 if (appendopts.classes.split(" ")[0] === 'pagination-prev') {
                     lnk.text("").append('<span class="uew-icon uew-icon-carat-1-w"></span>');
-                }
-                else if (appendopts.classes.split(" ")[0] === 'pagination-next') {
+                } else if (appendopts.classes.split(" ")[0] === 'pagination-next') {
                     lnk.text("").append('<span class="uew-icon uew-icon-carat-1-e"></span>');
                 }
             }

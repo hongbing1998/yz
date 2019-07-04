@@ -2944,12 +2944,12 @@
                     otherElement = childNodes[i];
                     otherZIndex = attr(otherElement, 'zIndex');
                     if (otherElement !== element && (
-                        // insert before the first element with a higher zIndex
-                        pInt(otherZIndex) > zIndex ||
-                        // if no zIndex given, insert before the first element with a zIndex
-                        (!defined(zIndex) && defined(otherZIndex))
+                            // insert before the first element with a higher zIndex
+                            pInt(otherZIndex) > zIndex ||
+                            // if no zIndex given, insert before the first element with a zIndex
+                            (!defined(zIndex) && defined(otherZIndex))
 
-                    )) {
+                        )) {
                         parentNode.insertBefore(element, otherElement);
                         inserted = true;
                         break;
@@ -9661,7 +9661,7 @@
 
             // Show the tooltip and run mouse over events (#977)
             if ((this.inClass(e.target, 'highcharts-tracker') ||
-                chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) && !chart.openMenu) {
+                    chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) && !chart.openMenu) {
                 this.runPointActions(e);
             }
         },
@@ -12634,13 +12634,13 @@
 
             if (
                 // already has this state
-                state === point.state ||
-                // selected points don't respond to hover
-                (point.selected && state !== SELECT_STATE) ||
-                // series' state options is disabled
-                (stateOptions[state] && stateOptions[state].enabled === false) ||
-                // point marker's state options is disabled
-                (state && (stateDisabled || (normalDisabled && !markerStateOptions.enabled)))
+            state === point.state ||
+            // selected points don't respond to hover
+            (point.selected && state !== SELECT_STATE) ||
+            // series' state options is disabled
+            (stateOptions[state] && stateOptions[state].enabled === false) ||
+            // point marker's state options is disabled
+            (state && (stateDisabled || (normalDisabled && !markerStateOptions.enabled)))
 
             ) {
                 return;

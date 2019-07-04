@@ -1454,8 +1454,7 @@
                             this.containment[1] + co.top,
                             this.containment[2] + co.left,
                             this.containment[3] + co.top];
-                    }
-                    else {
+                    } else {
                         containment = this.containment;
                     }
 

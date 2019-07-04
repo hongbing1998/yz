@@ -78,14 +78,22 @@
             name = "history"
             style = "width: 600px;height: 400px;" ></script>
 	    </div>
-        </td>
+            < /td>
     </tr>
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<button
-                type="button" class="btn btn-success" name="backid" id="backid">返回列表
-        </button>
+            < button
+            type = "submit"
+            id = "submit-button"
+            class
+            = "btn btn-primary" > 保存 < /button> &nbsp;&nbsp;<button
+                type="button"
+                class
+                        ="btn btn-success"
+                name="backid"
+                id="backid"> 返回列表
+            < /button>
         </td>
     </tr>
 </table>
@@ -98,7 +106,7 @@
     var hist = UE.getEditor("history", {
         autoFloatEnabled: false
     });
-    
-  
+
+
 </script>
 </html>

@@ -7,10 +7,12 @@ import org.edu.cdtu.yz.service.IPermissionService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
-@RestController
+@Controller
 @RequestMapping("/permission")
 public class PermissionController {
     @Autowired
@@ -58,8 +60,10 @@ public class PermissionController {
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public AjaxResult list() {
-        return AjaxResult.me().setResultObj(permissionService.selectList(null));
+    public String list(Model model) {
+        model.addAttribute("permissions", permissionService.selectList(null));
+
+        return "Pems/index";
     }
 
 

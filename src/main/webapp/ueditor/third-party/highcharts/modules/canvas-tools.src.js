@@ -359,23 +359,20 @@ if (!Array.prototype.indexOf) {
         if (target.svg == null) {
             svg = build();
             target.svg = svg;
-        }
-        else {
+        } else {
             svg = target.svg;
             svg.stop();
         }
         svg.opts = opts;
 
         var ctx = target.getContext('2d');
-        if (typeof(s.documentElement) != 'undefined') {
+        if (typeof (s.documentElement) != 'undefined') {
             // load from xml doc
             svg.loadXmlDoc(ctx, s);
-        }
-        else if (s.substr(0, 1) == '<') {
+        } else if (s.substr(0, 1) == '<') {
             // load from xml string
             svg.loadXml(ctx, s);
-        }
-        else {
+        } else {
             // load from url
             svg.load(ctx, s);
         }
@@ -415,7 +412,7 @@ if (!Array.prototype.indexOf) {
                     return this.Current().height;
                 }
                 this.ComputeSize = function (d) {
-                    if (d != null && typeof(d) == 'number') return d;
+                    if (d != null && typeof (d) == 'number') return d;
                     if (d == 'x') return this.width();
                     if (d == 'y') return this.height();
                     return Math.sqrt(Math.pow(this.width(), 2) + Math.pow(this.height(), 2)) / Math.sqrt(2);
@@ -447,8 +444,7 @@ if (!Array.prototype.indexOf) {
             var AJAX;
             if (window.XMLHttpRequest) {
                 AJAX = new XMLHttpRequest();
-            }
-            else {
+            } else {
                 AJAX = new ActiveXObject('Microsoft.XMLHTTP');
             }
             if (AJAX) {
@@ -464,8 +460,7 @@ if (!Array.prototype.indexOf) {
             if (window.DOMParser) {
                 var parser = new DOMParser();
                 return parser.parseFromString(xml, 'text/xml');
-            }
-            else {
+            } else {
                 xml = xml.replace(/<!DOCTYPE svg[^>]*>/, '');
                 var xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
                 xmlDoc.async = 'false';
@@ -638,20 +633,16 @@ if (!Array.prototype.indexOf) {
                     if (!set.fontStyle && that.Styles.indexOf(d[i]) != -1) {
                         if (d[i] != 'inherit') f.fontStyle = d[i];
                         set.fontStyle = true;
-                    }
-                    else if (!set.fontVariant && that.Variants.indexOf(d[i]) != -1) {
+                    } else if (!set.fontVariant && that.Variants.indexOf(d[i]) != -1) {
                         if (d[i] != 'inherit') f.fontVariant = d[i];
                         set.fontStyle = set.fontVariant = true;
-                    }
-                    else if (!set.fontWeight && that.Weights.indexOf(d[i]) != -1) {
+                    } else if (!set.fontWeight && that.Weights.indexOf(d[i]) != -1) {
                         if (d[i] != 'inherit') f.fontWeight = d[i];
                         set.fontStyle = set.fontVariant = set.fontWeight = true;
-                    }
-                    else if (!set.fontSize) {
+                    } else if (!set.fontSize) {
                         if (d[i] != 'inherit') f.fontSize = d[i].split('/')[0];
                         set.fontStyle = set.fontVariant = set.fontWeight = set.fontSize = true;
-                    }
-                    else {
+                    } else {
                         if (d[i] != 'inherit') ff += d[i];
                     }
                 }
@@ -931,8 +922,7 @@ if (!Array.prototype.indexOf) {
             refY = new svg.Property('refY', refY);
             if (refX.hasValue() && refY.hasValue()) {
                 ctx.translate(-scaleMin * refX.Length.toPixels('x'), -scaleMin * refY.Length.toPixels('y'));
-            }
-            else {
+            } else {
                 // align
                 if (align.match(/^xMid/) && ((meetOrSlice == 'meet' && scaleMin == scaleY) || (meetOrSlice == 'slice' && scaleMax == scaleY))) ctx.translate(width / 2.0 - desiredWidth / 2.0, 0);
                 if (align.match(/YMid$/) && ((meetOrSlice == 'meet' && scaleMin == scaleX) || (meetOrSlice == 'slice' && scaleMax == scaleX))) ctx.translate(0, height / 2.0 - desiredHeight / 2.0);
@@ -1004,12 +994,10 @@ if (!Array.prototype.indexOf) {
                 if (this.attribute('mask').hasValue()) {
                     var mask = this.attribute('mask').Definition.getDefinition();
                     if (mask != null) mask.apply(ctx, this);
-                }
-                else if (this.style('filter').hasValue()) {
+                } else if (this.style('filter').hasValue()) {
                     var filter = this.style('filter').Definition.getDefinition();
                     if (filter != null) filter.apply(ctx, this);
-                }
-                else this.renderChildren(ctx);
+                } else this.renderChildren(ctx);
                 this.clearContext(ctx);
                 ctx.restore();
             }
@@ -1109,8 +1097,7 @@ if (!Array.prototype.indexOf) {
                 if (this.style('fill').Definition.isUrl()) {
                     var fs = this.style('fill').Definition.getFillStyle(this);
                     if (fs != null) ctx.fillStyle = fs;
-                }
-                else if (this.style('fill').hasValue()) {
+                } else if (this.style('fill').hasValue()) {
                     var fillStyle = this.style('fill');
                     if (this.style('fill-opacity').hasValue()) fillStyle = fillStyle.Color.addOpacity(this.style('fill-opacity').value);
                     ctx.fillStyle = (fillStyle.value == 'none' ? 'rgba(0,0,0,0)' : fillStyle.value);
@@ -1120,8 +1107,7 @@ if (!Array.prototype.indexOf) {
                 if (this.style('stroke').Definition.isUrl()) {
                     var fs = this.style('stroke').Definition.getFillStyle(this);
                     if (fs != null) ctx.strokeStyle = fs;
-                }
-                else if (this.style('stroke').hasValue()) {
+                } else if (this.style('stroke').hasValue()) {
                     var strokeStyle = this.style('stroke');
                     if (this.style('stroke-opacity').hasValue()) strokeStyle = strokeStyle.Color.addOpacity(this.style('stroke-opacity').value);
                     ctx.strokeStyle = (strokeStyle.value == 'none' ? 'rgba(0,0,0,0)' : strokeStyle.value);
@@ -1132,7 +1118,7 @@ if (!Array.prototype.indexOf) {
                 if (this.style('stroke-miterlimit').hasValue()) ctx.miterLimit = this.style('stroke-miterlimit').value;
 
                 // font
-                if (typeof(ctx.font) != 'undefined') {
+                if (typeof (ctx.font) != 'undefined') {
                     ctx.font = svg.Font.CreateFont(
                         this.style('font-style').value,
                         this.style('font-variant').value,
@@ -1233,7 +1219,7 @@ if (!Array.prototype.indexOf) {
 
                 var width = svg.ViewPort.width();
                 var height = svg.ViewPort.height();
-                if (typeof(this.root) == 'undefined' && this.attribute('width').hasValue() && this.attribute('height').hasValue()) {
+                if (typeof (this.root) == 'undefined' && this.attribute('width').hasValue() && this.attribute('height').hasValue()) {
                     width = this.attribute('width').Length.toPixels('x');
                     height = this.attribute('height').Length.toPixels('y');
 
@@ -2007,13 +1993,11 @@ if (!Array.prototype.indexOf) {
                     // loop for indefinitely repeating animations
                     if (this.attribute('repeatCount').value == 'indefinite') {
                         this.duration = 0.0
-                    }
-                    else if (this.attribute('fill').valueOrDefault('remove') == 'remove' && !this.removed) {
+                    } else if (this.attribute('fill').valueOrDefault('remove') == 'remove' && !this.removed) {
                         this.removed = true;
                         this.getProperty().value = this.initialValue;
                         return true;
-                    }
-                    else {
+                    } else {
                         return false; // no updates made
                     }
                 }
@@ -2106,16 +2090,14 @@ if (!Array.prototype.indexOf) {
                     if (child.style('font-family').hasValue()) {
                         svg.Definitions[child.style('font-family').value] = this;
                     }
-                }
-                else if (child.type == 'missing-glyph') this.missingGlyph = child;
+                } else if (child.type == 'missing-glyph') this.missingGlyph = child;
                 else if (child.type == 'glyph') {
                     if (child.arabicForm != '') {
                         this.isRTL = true;
                         this.isArabic = true;
-                        if (typeof(this.glyphs[child.unicode]) == 'undefined') this.glyphs[child.unicode] = [];
+                        if (typeof (this.glyphs[child.unicode]) == 'undefined') this.glyphs[child.unicode] = [];
                         this.glyphs[child.unicode][child.arabicForm] = child;
-                    }
-                    else {
+                    } else {
                         this.glyphs[child.unicode] = child;
                     }
                 }
@@ -2166,8 +2148,7 @@ if (!Array.prototype.indexOf) {
                     var childNode = node.childNodes[i];
                     if (childNode.nodeType == 1) { // capture tspan and tref nodes
                         this.addChild(childNode, true);
-                    }
-                    else if (childNode.nodeType == 3) { // capture text
+                    } else if (childNode.nodeType == 3) { // capture text
                         this.addChild(new svg.Element.tspan(childNode), false);
                     }
                 }
@@ -2189,8 +2170,7 @@ if (!Array.prototype.indexOf) {
 
                     if (child.attribute('x').hasValue()) {
                         child.x = child.attribute('x').Length.toPixels('x');
-                    }
-                    else {
+                    } else {
                         if (child.attribute('dx').hasValue()) x += child.attribute('dx').Length.toPixels('x');
                         child.x = x;
                     }
@@ -2210,8 +2190,7 @@ if (!Array.prototype.indexOf) {
 
                     if (child.attribute('y').hasValue()) {
                         child.y = child.attribute('y').Length.toPixels('y');
-                    }
-                    else {
+                    } else {
                         if (child.attribute('dy').hasValue()) y += child.attribute('dy').Length.toPixels('y');
                         child.y = y;
                     }
@@ -2236,12 +2215,11 @@ if (!Array.prototype.indexOf) {
                     if ((i == 0 || text[i - 1] == ' ') && i < text.length - 2 && text[i + 1] != ' ') arabicForm = 'terminal';
                     if (i > 0 && text[i - 1] != ' ' && i < text.length - 2 && text[i + 1] != ' ') arabicForm = 'medial';
                     if (i > 0 && text[i - 1] != ' ' && (i == text.length - 1 || text[i + 1] == ' ')) arabicForm = 'initial';
-                    if (typeof(font.glyphs[c]) != 'undefined') {
+                    if (typeof (font.glyphs[c]) != 'undefined') {
                         glyph = font.glyphs[c][arabicForm];
                         if (glyph == null && font.glyphs[c].type == 'glyph') glyph = font.glyphs[c];
                     }
-                }
-                else {
+                } else {
                     glyph = font.glyphs[c];
                 }
                 if (glyph == null) glyph = font.missingGlyph;
@@ -2272,7 +2250,7 @@ if (!Array.prototype.indexOf) {
                         ctx.translate(-this.x, -this.y);
 
                         this.x += fontSize * (glyph.horizAdvX || customFont.horizAdvX) / customFont.fontFace.unitsPerEm;
-                        if (typeof(dx[i]) != 'undefined' && !isNaN(dx[i])) {
+                        if (typeof (dx[i]) != 'undefined' && !isNaN(dx[i])) {
                             this.x += dx[i];
                         }
                     }
@@ -2298,7 +2276,7 @@ if (!Array.prototype.indexOf) {
                     for (var i = 0; i < text.length; i++) {
                         var glyph = this.getGlyph(customFont, text, i);
                         measure += (glyph.horizAdvX || customFont.horizAdvX) * fontSize / customFont.fontFace.unitsPerEm;
-                        if (typeof(dx[i]) != 'undefined' && !isNaN(dx[i])) {
+                        if (typeof (dx[i]) != 'undefined' && !isNaN(dx[i])) {
                             measure += dx[i];
                         }
                     }
@@ -2366,8 +2344,7 @@ if (!Array.prototype.indexOf) {
                     this.baseRenderChildren(ctx);
                     var fontSize = new svg.Property('fontSize', svg.Font.Parse(svg.ctx.font).fontSize);
                     svg.Mouse.checkBoundingBox(this, new svg.BoundingBox(this.x, this.y - fontSize.Length.toPixels('y'), this.x + this.measureText(ctx), this.y));
-                }
-                else {
+                } else {
                     // render as temporary group
                     var g = new svg.Element.g();
                     g.children = this.children;
@@ -2764,10 +2741,9 @@ if (!Array.prototype.indexOf) {
             var className = node.nodeName.replace(/^[^:]+:/, ''); // remove namespace
             className = className.replace(/\-/g, ''); // remove dashes
             var e = null;
-            if (typeof(svg.Element[className]) != 'undefined') {
+            if (typeof (svg.Element[className]) != 'undefined') {
                 e = new svg.Element[className](node);
-            }
-            else {
+            } else {
                 e = new svg.Element.MISSING(node);
             }
 
@@ -2856,7 +2832,7 @@ if (!Array.prototype.indexOf) {
                 e.render(ctx);
                 if (isFirstRender) {
                     isFirstRender = false;
-                    if (svg.opts != null && typeof(svg.opts['renderCallback']) == 'function') svg.opts['renderCallback']();
+                    if (svg.opts != null && typeof (svg.opts['renderCallback']) == 'function') svg.opts['renderCallback']();
                 }
             }
 
@@ -2886,7 +2862,7 @@ if (!Array.prototype.indexOf) {
                 }
 
                 // need update from redraw?
-                if (svg.opts != null && typeof(svg.opts['forceRedraw']) == 'function') {
+                if (svg.opts != null && typeof (svg.opts['forceRedraw']) == 'function') {
                     if (svg.opts['forceRedraw']() == true) needUpdate = true;
                 }
 

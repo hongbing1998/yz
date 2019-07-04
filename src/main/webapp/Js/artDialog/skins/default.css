@@ -59,7 +59,7 @@ table.aui_border, table.aui_dialog {
 .aui_main {
     text-align: center;
     min-width: 9em;
-    min-width: 0 \9/*IE8 BUG*/;
+    min-width: 0 \9 /*IE8 BUG*/;
 }
 
 .aui_content {

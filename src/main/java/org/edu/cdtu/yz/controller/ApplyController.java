@@ -3,10 +3,8 @@ package org.edu.cdtu.yz.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Apply;
-import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IApplyService;
-import org.edu.cdtu.yz.service.IEmploymentService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +28,14 @@ public class ApplyController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save(@RequestBody Apply apply,Model model){
+    public String save(@RequestBody Apply apply, Model model) {
         try {
             if(apply.getId()!=null){
                     applyService.updateById(apply);
             }else{
                     applyService.insert(apply);
             }
-            model.addAttribute("allApply",applyService.selectList(null));
+            model.addAttribute("allApply", applyService.selectList(null));
             return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,11 +44,11 @@ public class ApplyController {
     }
 
     //删除对象信息
-    @RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
-    public String delete(@PathVariable("id") String id,Model model){
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") String id, Model model) {
         try {
             applyService.deleteById(id);
-            model.addAttribute("allApply",applyService.selectList(null));
+            model.addAttribute("allApply", applyService.selectList(null));
             return "helpteacher/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,20 +57,20 @@ public class ApplyController {
     }
 
     //获取用户
-    @RequestMapping(value = "/apply/{id}",method = RequestMethod.GET)
-    public String get(@PathVariable("id") String id,Model model)
+    @RequestMapping(value = "/apply/{id}", method = RequestMethod.GET)
+    public String get(@PathVariable("id") String id, Model model)
     {
-        model.addAttribute("Apply",applyService.selectById(id));
+        model.addAttribute("Apply", applyService.selectById(id));
         return "/helpteacher/show";
     }
 
     //查看所有的员工信息
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(String name,Model model) {
-        List<Apply> employmentList =applyService.selectList(new EntityWrapper<Apply>()
+    public String list(String name, Model model) {
+        List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
                 .like("name", name)
         );
-        model.addAttribute("allApply",employmentList);
+        model.addAttribute("allApply", employmentList);
         return "/helpteacher/index";
     }
 

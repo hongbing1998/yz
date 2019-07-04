@@ -4460,12 +4460,10 @@ vjs.SeekBar.prototype.getPercent = function () {
         var cache = this.player_.getCache();
         if (cache.lastSetCurrentTime) {
             currentTime = cache.lastSetCurrentTime;
-        }
-        else {
+        } else {
             currentTime = this.player_.currentTime();
         }
-    }
-    else {
+    } else {
         currentTime = this.player_.currentTime();
     }
 
@@ -5565,8 +5563,7 @@ vjs.Flash = vjs.MediaTechController.extend({
                 var parts = vjs.Flash.streamToParts(source.src);
                 flashVars['rtmpConnection'] = encodeURIComponent(parts.connection);
                 flashVars['rtmpStream'] = encodeURIComponent(parts.stream);
-            }
-            else {
+            } else {
                 flashVars['src'] = encodeURIComponent(vjs.getAbsoluteURL(source.src));
             }
         }
@@ -5732,8 +5729,7 @@ vjs.Flash.prototype.src = function (src) {
         src = vjs.Flash.streamToParts(src);
         this.setRtmpConnection(src.connection);
         this.setRtmpStream(src.stream);
-    }
-    else {
+    } else {
         // Make sure source URL is abosolute.
         src = vjs.getAbsoluteURL(src);
         this.el_.vjs_src(src);
@@ -6016,8 +6012,7 @@ vjs.Flash.streamToParts = function (src) {
     var streamBegin;
     if (connEnd !== -1) {
         streamBegin = connEnd + 1;
-    }
-    else {
+    } else {
         // If there's not a '&', we use the last '/' as the delimiter.
         connEnd = streamBegin = src.lastIndexOf('/') + 1;
         if (connEnd === 0) {
@@ -7193,9 +7188,9 @@ if (typeof window.JSON !== 'undefined' && window.JSON.parse === 'function') {
         }
 
         if (/^[\],:{}\s]*$/
-            .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-                .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-                .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+                .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                    .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
             j = eval('(' + text + ')');
 

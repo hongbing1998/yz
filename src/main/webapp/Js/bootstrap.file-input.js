@@ -96,8 +96,7 @@ $(function () {
                 if (!!$(this).prop('files') && $(this).prop('files').length > 1) {
                     fileName = $(this)[0].files.length + ' files';
                     //$(this).parent().after('<span class="file-input-name">'+$(this)[0].files.length+' files</span>');
-                }
-                else {
+                } else {
                     // var fakepath = 'C:\\fakepath\\';
                     // fileName = $(this).val().replace('C:\\fakepath\\','');
                     fileName = fileName.substring(fileName.lastIndexOf('\\') + 1, fileName.length);

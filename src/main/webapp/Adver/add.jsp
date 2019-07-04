@@ -45,7 +45,7 @@
     	<td class="tableleft">详细信息</td>
     	<td>
 	    	<div>
-		    	<textarea name="content" rows="5" cols="5"></textarea>
+                <textarea name="content" rows="5" cols="5"></textarea>
 	    	</div>
     	</td>
     </tr>

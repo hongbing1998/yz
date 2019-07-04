@@ -37,58 +37,54 @@
     </style>
 </head>
 <body>
-<form action="" method="post" class="definewidth m20">
+<form action="/roleUser/save" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover ">
     <tr>
-        <td width="10%" class="tableleft">管理员编号</td>
-        <td><input type="text" id="id" name="id" value="1001" readonly="readonly"/></td>
+        <td><input type="text" id="id" name="id" value="${user.id}" readonly="readonly"/></td>
     </tr>
     <tr>
         <td class="tableleft">管理员名称</td>
-        <td ><input type="text" id="userName" name="userName" value="admin"/></td>
+        <td>${user.username}</td>
     </tr>
     <tr>
         <td class="tableleft">所属学校</td>
-        <td >北京大学</td>
+        <td>${user.schoolName}</td>
     </tr>
     <tr>
         <td class="tableleft">电话</td>
         <td >
-        	<input type="text" id="telephone" name="telephone" value="13800138000"/>
+            ${user.phone}
         </td>
     </tr>
     <tr>
-    	<td class="tableleft">级别</td>
-    	<td>
-    		<select id="roleId" name="roleId">
-    			<option value="1" selected="selected">超级管理员</option>
-    			<option value="2">权限管理员</option>
-    			<option value="3">菜单管理员</option>
-    			<option value="4">数据管理员</option>
-    			<option value="5">普通管理员</option>
-    		</select>
-    	</td>
+        <td class="tableleft">角色</td>
+        <td>
+            <c:forEach items="${roles}" var="role">
+                <input id="roleIds[]" type="checkbox" value="${role.id}" name="roleIds[]"
+                       <c:if test="${role.choice==true}">checked="checked"</c:if>>${role.roleName}
+
+            </c:forEach>
+        </td>
     </tr>
     <tr>
     	<td class="tableleft">创建时间</td>
-    	<td>2018-04-20 08:00:00</td>
+        <td> ${user.createDate}</td>
     </tr>
-    <tr>
-    	<td class="tableleft">创建者</td>
-    	<td>admin</td>
-    </tr>
+
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="button" id="submit-button" class="btn btn-primary">保存</button>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button>
             &nbsp;&nbsp;
-            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button onclick="toAdd()" type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
         </td>
     </tr>
 </table>
 </form>
 </body>
 <script type="text/javascript">
-    
+    var toAdd = function () {
+        window.location.href = "/user/list";
+    }
 </script>
 </html>

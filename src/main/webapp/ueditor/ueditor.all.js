@@ -4053,8 +4053,7 @@
                             x: win.pageXOffset || 0,
                             y: win.pageYOffset || 0
                         };
-                    }
-                    else {
+                    } else {
                         var doc = win.document;
                         return {
                             x: doc.documentElement.scrollLeft || doc.body.scrollLeft || 0,
@@ -10910,8 +10909,8 @@
                                 tmpNode = pN;
                                 if (tmpNode.tagName == 'P' && domUtils.getStyle(tmpNode, 'text-align') == 'center') {
                                     if (!domUtils.isBody(tmpNode) && domUtils.getChildCount(tmpNode, function (node) {
-                                        return !domUtils.isBr(node) && !domUtils.isWhitespace(node)
-                                    }) == 1) {
+                                            return !domUtils.isBr(node) && !domUtils.isWhitespace(node)
+                                        }) == 1) {
                                         pre = tmpNode.previousSibling;
                                         next = tmpNode.nextSibling;
                                         if (pre && next && pre.nodeType == 1 && next.nodeType == 1 && pre.tagName == next.tagName && domUtils.isBlockElm(pre)) {
@@ -11024,11 +11023,9 @@
             for (var i = 0; i < txtstring.length; i++) {
                 if (txtstring.charCodeAt(i) == 32) {
                     tmp = tmp + String.fromCharCode(12288);
-                }
-                else if (txtstring.charCodeAt(i) < 127) {
+                } else if (txtstring.charCodeAt(i) < 127) {
                     tmp = tmp + String.fromCharCode(txtstring.charCodeAt(i) + 65248);
-                }
-                else {
+                } else {
                     tmp += txtstring.charAt(i);
                 }
             }
@@ -11256,8 +11253,8 @@
                             tmpNode = pN;
                             if (tmpNode.tagName == 'P' && domUtils.getStyle(tmpNode, 'text-align') == 'center') {
                                 if (!domUtils.isBody(tmpNode) && domUtils.getChildCount(tmpNode, function (node) {
-                                    return !domUtils.isBr(node) && !domUtils.isWhitespace(node);
-                                }) == 1) {
+                                        return !domUtils.isBr(node) && !domUtils.isWhitespace(node);
+                                    }) == 1) {
                                     pre = tmpNode.previousSibling;
                                     next = tmpNode.nextSibling;
                                     if (pre && next && pre.nodeType == 1 && next.nodeType == 1 && pre.tagName == next.tagName && domUtils.isBlockElm(pre)) {
@@ -11770,8 +11767,8 @@
             var parent;
             while (parent = node.parentNode) {
                 if (parent.tagName == 'SPAN' && domUtils.getChildCount(parent, function (child) {
-                    return !domUtils.isBookmarkNode(child) && !domUtils.isBr(child)
-                }) == 1) {
+                        return !domUtils.isBookmarkNode(child) && !domUtils.isBr(child)
+                    }) == 1) {
                     parent.style.cssText += node.style.cssText;
                     domUtils.remove(node, true);
                     node = parent;
@@ -14884,18 +14881,18 @@
                 }
                 attrs = attrs.replace(/([\w\-]*?)\s*=\s*(("([^"]*)")|('([^']*)')|([^\s>]+))/gi, function (str, atr, val) {
                     if ({
-                        'src': 1,
-                        'href': 1,
-                        'name': 1
-                    }[atr.toLowerCase()]) {
+                            'src': 1,
+                            'href': 1,
+                            'name': 1
+                        }[atr.toLowerCase()]) {
                         return atr + '=' + val + ' '
                     }
                     return ''
                 });
                 if ({
-                    'span': 1,
-                    'div': 1
-                }[tagName]) {
+                        'span': 1,
+                        'div': 1
+                    }[tagName]) {
                     return ''
                 } else {
 
@@ -16986,12 +16983,12 @@
 
             //处理全选的情况
             if (!rng.collapsed && !(evt.ctrlKey || evt.shiftKey || evt.altKey || evt.metaKey) && (keyCode >= 65 && keyCode <= 90
-                || keyCode >= 48 && keyCode <= 57 ||
-                keyCode >= 96 && keyCode <= 111 || {
-                    13: 1,
-                    8: 1,
-                    46: 1
-                }[keyCode])
+                    || keyCode >= 48 && keyCode <= 57 ||
+                    keyCode >= 96 && keyCode <= 111 || {
+                        13: 1,
+                        8: 1,
+                        46: 1
+                    }[keyCode])
             ) {
 
                 var tmpNode = rng.startContainer;
@@ -24305,8 +24302,8 @@
             saveData = me.body.innerHTML;
 
             if (editor.fireEvent("beforeautosave", {
-                content: saveData
-            }) === false) {
+                    content: saveData
+                }) === false) {
                 return;
             }
 

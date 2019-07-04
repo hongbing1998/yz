@@ -1,21 +1,21 @@
 package org.edu.cdtu.yz.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import org.edu.cdtu.yz.bean.Role;
 import org.edu.cdtu.yz.bean.RoleUser;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IRoleUserService;
 import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @CrossOrigin
-@RestController
+@Controller
 @RequestMapping("/roleUser")
 public class RoleUserController {
     @Autowired
@@ -27,22 +27,21 @@ public class RoleUserController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public AjaxResult save(@RequestBody Map<String, Object> roleuser) {
+    public String save(@RequestParam(value = "id") String userId, @RequestParam(value = "roleIds[]", required = false) String[] roleIds, Model model) {
         try {
-
-            roleUserService.deleteById((String) roleuser.get("userId"));
-            List<Role> roles = (List<Role>) roleuser.get("roles");
-            for (Role role : roles) {
+            roleUserService.delete(new EntityWrapper<RoleUser>().eq("user_id", userId));
+            for (String roleId : roleIds) {
                 RoleUser r = new RoleUser();
                 r.setId(UUID.randomUUID().toString().replace("-", "").toLowerCase());
-                r.setRoleId(role.getId());
-                r.setUserId((String) roleuser.get("userId"));
+                r.setRoleId(roleId);
+                r.setUserId(userId);
                 roleUserService.insert(r);
             }
-            return AjaxResult.me();
+            model.addAttribute("msg", "success");
+            return "redirect:/user/list";
         } catch (Exception e) {
             e.printStackTrace();
-            return AjaxResult.me().setMessage("保存对象失败！"+e.getMessage());
+            return "error/error";
         }
     }
 
@@ -84,4 +83,5 @@ public class RoleUserController {
         page = roleUserService.selectPage(page);
         return AjaxResult.me().setResultObj(new PageList<RoleUser>(page.getPages(), page.getRecords()));
     }
+
 }
