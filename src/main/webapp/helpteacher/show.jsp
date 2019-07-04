@@ -74,7 +74,7 @@
         <tr>
             <td class="tableleft"></td>
             <td>
-                <a href="/apply/list" class="btn btn-success" name="backid" id="backid">返回列表</a>
+                <a href="/apply/list" class="btn btn-primary" name="backid" id="backid">返回列表</a>
                 <a href="/apply/delete/${Apply.id}" class="btn btn-success" name="backid" id="backid">不满足条件</a>
                 <%--<button class="btn btn-success" id="delete-buttonb" onclick="del('${Apply.id}')">不通过</button>--%>
             </td>

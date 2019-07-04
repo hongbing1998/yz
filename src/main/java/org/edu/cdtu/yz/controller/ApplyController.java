@@ -3,9 +3,14 @@ package org.edu.cdtu.yz.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.edu.cdtu.yz.bean.Apply;
+import org.edu.cdtu.yz.bean.Employment;
+import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IApplyService;
+import org.edu.cdtu.yz.service.IEmploymentService;
+import org.edu.cdtu.yz.service.ISchoolService;
 import org.edu.cdtu.yz.util.AjaxResult;
+import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +25,11 @@ import java.util.List;
 public class ApplyController {
     @Autowired
     public IApplyService applyService;
+    @Autowired
+    public ISchoolService schoolService;
+    @Autowired
+    public IEmploymentService employmentService;
+
 
 
     /**
@@ -28,21 +38,22 @@ public class ApplyController {
      * @return Ajaxresult转换结果
      */
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save(@RequestBody Apply apply, Model model) {
+    public String save(Apply apply, Model model) {
         try {
             if(apply.getId()!=null){
-                    applyService.updateById(apply);
+
             }else{
+                Employment employment = employmentService.selectById(apply.getEmployId());
+                apply.setEmployTitle(employment.getTitle());
+                apply.setApplyDate(DateUtil.getFormatCurrentDate());
                     applyService.insert(apply);
+                model.addAttribute("flag", 1);
             }
-            List<Apply> employmentList = applyService.selectList(new EntityWrapper<Apply>()
-                    .orderBy("applyDate", false)
-            );
-            model.addAttribute("allApply", employmentList);
-            return "helpteacher/index";
+            return "/main";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/error/unAuth";
+            model.addAttribute("flag", -1);
+            return "/main";
         }
     }
 
@@ -78,6 +89,20 @@ public class ApplyController {
         );
         model.addAttribute("allApply", employmentList);
         return "/helpteacher/index";
+    }
+
+    //报名
+    @RequestMapping(value = "/addlist", method = RequestMethod.GET)
+    public String getList(Model model) {
+        List<School> schools = schoolService.selectList(new EntityWrapper<School>()
+                .orderBy("school_name")
+        );
+        List<Employment> employs = employmentService.selectList(new EntityWrapper<Employment>()
+                .orderBy("title")
+        );
+        model.addAttribute("schools", schools);
+        model.addAttribute("employs", employs);
+        return "/helpteacher/add";
     }
 
 
