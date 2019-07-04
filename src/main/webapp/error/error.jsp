@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-服务器异常
+权限不足
 </body>
 </html>

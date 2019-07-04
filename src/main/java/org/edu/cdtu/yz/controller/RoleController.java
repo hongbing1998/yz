@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.bean.PermissionRole;
 import org.edu.cdtu.yz.bean.Role;
@@ -40,6 +42,7 @@ public class RoleController {
      * @return Ajaxresult转换结果
      */
     @ResponseBody
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody Role role) {
         try {
