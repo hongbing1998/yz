@@ -6,6 +6,8 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Policy;
+import org.edu.cdtu.yz.bean.Policy;
+import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IPolicyService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -33,7 +35,7 @@ public class PolicyController {
      */
     @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
-    public String save(@RequestParam("file") CommonsMultipartFile file, Policy policy, Model model) {
+    public String save(Policy policy, Model model) {
         try {
             if(policy.getId()!=null){
 //                if (!file.isEmpty()) {
@@ -70,9 +72,11 @@ public class PolicyController {
                 policy.setSchoolId(ShiroRealm.getCurrentUser().getSchoolId());
                     policyService.insert(policy);
             }
-            Page<Policy> page = new Page<Policy>(0, 10);
-            page = policyService.selectPage(page);
-            model.addAttribute("resultObj", new PageList<Policy>(page.getPages(), page.getCurrent(), page.getRecords()));
+            Page<Policy> page = new Page<>(1, 5);
+            EntityWrapper<Policy> ew = new EntityWrapper<>();
+            ew.orderBy("create_data", false);
+            page = policyService.selectPage(page, ew);
+            model.addAttribute("page", page);
             return "Policy/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,31 +136,39 @@ public class PolicyController {
     * @param query 查询对象
     * @return PageList 分页对象
     */
-    @ResponseBody
+    /**
+     * 分页查询数据：
+     * @param
+     */
     @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
-    @RequestMapping(value = "/json",method = RequestMethod.POST)
-    public AjaxResult json(@RequestBody PageQuery query) {
-        Page<Policy> page = new Page<Policy>(query.getPage(),query.getRows());
-        page = policyService.selectPage(page);
-        return AjaxResult.me().setResultObj(new PageList<Policy>(page.getPages(), page.getRecords()));
-    }
-    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
-    @RequestMapping(value = "/toPindex", method = RequestMethod.GET)
-    public String toIndex(Model model) {
-        Page<Policy> page = new Page<Policy>(0, 10);
-        page = policyService.selectPage(page);
-        model.addAttribute("resultObj", new PageList<Policy>(page.getPages(), page.getCurrent(), page.getRecords()));
+    @RequestMapping(value = "//page_query/{current}/{size}", method = RequestMethod.GET)
+    public String toIndex(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
+        Page<Policy> page = new Page<>(current, size);
+        EntityWrapper<Policy> ew = new EntityWrapper<>();
+        ew.orderBy("create_data", false);
+        page = policyService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Policy/index";
     }
+//    @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
+//    @RequestMapping(value = "/toPindex", method = RequestMethod.GET)
+//    public String toIndex(Model model) {
+//        Page<Policy> page = new Page<Policy>(0, 10);
+//        page = policyService.selectPage(page);
+//        model.addAttribute("resultObj", new PageList<Policy>(page.getPages(), page.getCurrent(), page.getRecords()));
+//        return "Policy/index";
+//    }
 
     //去查询据结果页面
     @RequiresPermissions(value = {"policy"}, logical = Logical.OR)
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String toQueryBytitle(String title, Model model) {
-        List<Policy> policyes = policyService.selectList(new EntityWrapper<Policy>()
-                .like("title", title)
-        );
-        model.addAttribute("policyes", policyes);
+        EntityWrapper<Policy> ew = new EntityWrapper<>();
+        ew.like("title", title);
+        ew.orderBy("create_data", false);
+        Page page = new Page(1, 10);
+        policyService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Policy/index";
     }
 }

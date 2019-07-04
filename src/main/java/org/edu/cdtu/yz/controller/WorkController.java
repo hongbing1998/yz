@@ -6,6 +6,8 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.bean.Work;
+import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IWorkService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -45,9 +47,11 @@ public class WorkController {
                 work.setSchoolId(ShiroRealm.getCurrentUser().getSchoolId());
                 workService.insert(work);
             }
-            Page<Work> page = new Page<Work>(0, 10);
-            page = workService.selectPage(page);
-            model.addAttribute("resultObj", new PageList<Work>(page.getPages(), page.getCurrent(), page.getRecords()));
+            Page<Work> page = new Page<>(1,5);
+            EntityWrapper<Work> ew = new EntityWrapper<>();
+            ew.orderBy("create_date", false);
+            page = workService.selectPage(page, ew);
+            model.addAttribute("page", page);
             return "Work/index";
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,13 +102,18 @@ public class WorkController {
         page = workService.selectPage(page);
         return AjaxResult.me().setResultObj(new PageList<Work>(page.getPages(), page.getRecords()));
     }
-
+    /**
+     * 分页查询数据：
+     * @param
+     */
     @RequiresPermissions(value = {"work"}, logical = Logical.OR)
-    @RequestMapping(value = "/toindex", method = RequestMethod.GET)
-    public String toIndex(Model model) {
-        Page<Work> page = new Page<Work>(0, 10);
-        page = workService.selectPage(page,new EntityWrapper<Work>().orderBy("create_date",false));
-        model.addAttribute("resultObj", new PageList<Work>(page.getPages(), page.getCurrent(), page.getRecords()));
+    @RequestMapping(value = "//page_query/{current}/{size}", method = RequestMethod.GET)
+    public String toIndex(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
+        Page<Work> page = new Page<>(current, size);
+        EntityWrapper<Work> ew = new EntityWrapper<>();
+        ew.orderBy("create_date", false);
+        page = workService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Work/index";
     }
 
@@ -127,10 +136,12 @@ public class WorkController {
     @RequiresPermissions(value = {"work"}, logical = Logical.OR)
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String toQueryBytitle(String title, Model model) {
-        List<Work> works = workService.selectList(new EntityWrapper<Work>()
-                .like("title", title)
-        );
-        model.addAttribute("works", works);
+        EntityWrapper<Work> ew = new EntityWrapper<>();
+        ew.like("title", title);
+        ew.orderBy("create_date", false);
+        Page page = new Page(1, 5);
+        workService.selectPage(page, ew);
+        model.addAttribute("page", page);
         return "Work/index";
     }
 }

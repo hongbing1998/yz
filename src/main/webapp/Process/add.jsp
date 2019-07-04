@@ -12,7 +12,6 @@
 	<script type="text/javascript">
 		var arr=[]
 		function getVal() {
-			alert("............")
 			var a=document.getElementById("name").value
 			arr.push(a)
 		}
@@ -40,7 +39,7 @@
 				data: JSON.stringify({"title": processName, "path": path}),
 				success: function(res){
 					if (res.success) {
-						window.location.href = "path/toindex";
+						window.location.href = "/path/page_query/1/5";
 					} else {
 						alert(res);
 					}
@@ -77,6 +76,10 @@
 			<input type="hidden" id="hidden" value="${path.path}"/>
 			<input type="button" value="增加" onclick="if (isEmpty()) add();if (isEmpty2()) getVal()" />
 			<input type="button" value="提交" onclick="test()"/>
+		<a href="/path/page_query/1/5">
+
+			<input type="button" value="返回列表"/>
+		</a>
 	</div>
 </body>
 

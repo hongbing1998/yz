@@ -60,7 +60,7 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <a href="/policy/toPindex">
+            <a href="/policy/page_query/1/5">
                 <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </a>
         </td>
