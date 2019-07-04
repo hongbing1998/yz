@@ -158,7 +158,7 @@
         },
         created: function employ(){
             $.ajax({
-                url:'/employment/list',
+                url: '/employment/employmentList',
                 type:'get',
                 dataType:'json',
                 data:'',
@@ -170,7 +170,7 @@
         },
         });
             $.ajax({
-                url:'/demand/list',
+                url: '/employment/employmentList',
                 type:'get',
                 dataType:'json',
                 data:'',

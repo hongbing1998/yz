@@ -78,7 +78,7 @@
         methods: {},
         created: function employ() {
             $.ajax({
-                url: '/employment/list',
+                url: '/employment/employmentList',
                 type: 'get',
                 dataType: 'json',
                 data: '',

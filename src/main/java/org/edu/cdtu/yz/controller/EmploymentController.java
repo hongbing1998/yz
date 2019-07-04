@@ -6,15 +6,13 @@ import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.Employment;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IEmploymentService;
+import org.edu.cdtu.yz.util.AjaxResult;
 import org.edu.cdtu.yz.util.DateUtil;
 import org.edu.cdtu.yz.util.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,6 +49,17 @@ public class EmploymentController {
             e.printStackTrace();
             return "/error/unAuth";
         }
+    }
+
+    /**
+     * 查询所有招聘
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/employmentList", method = RequestMethod.GET)
+    public AjaxResult list() {
+        return AjaxResult.me().setResultObj(employmentService.selectList(null));
     }
 
     //删除对象信息
