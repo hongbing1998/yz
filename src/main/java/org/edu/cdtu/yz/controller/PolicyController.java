@@ -28,6 +28,7 @@ public class PolicyController {
      * @param policy  传递的实体
      * @return Ajaxresult转换结果
      */
+
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public String save(Policy policy, Model model) {
         try {
