@@ -38,7 +38,7 @@
 
     </style>
 </head>
-<form action="/policy/save" method="post">
+<form action="/policy/save" method="post" onsubmit="return check()">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">编号</td>
@@ -71,5 +71,19 @@
 </form>
 </body>
 <script type="text/javascript">
+    function check(){
+        var title = $("#title").val();
+        var content = $("#address").val();
+
+        if(title == null || title == ""){
+            alert("标题不能为空");
+            return false;
+        }
+        if(content == null || content == ""){
+            alert("政策详情不能为空不能为空");
+            return false;
+        }
+        return true;
+    }
 </script>
 </html>

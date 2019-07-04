@@ -79,7 +79,6 @@
         <th>编号</th>
         <th>标题</th>
         <th>发布学校</th>
-        <th>阅读量</th>
         <th>最后更新时间</th>
         <th>发布者</th>
         <th>操作</th>
@@ -93,7 +92,6 @@
                     ${data.title}
             </td>
             <td>${data.schoolName}</td>
-            <td>${data.count}</td>
             <td>${data.createDate}</td>
             <td>${data.userName}</td>
             <td>
