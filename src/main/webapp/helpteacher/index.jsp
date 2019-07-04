@@ -66,26 +66,5 @@
 </body>
 </html>
 <script>
-    $(function () {
-		
-    });
 
-    function del(id)
-	{
-		if(confirm("确定要删除吗？"))
-		{
-			$.ajax({
-				url:"manager/del/" + id,
-				async: true,
-				type: "post",
-				success: function(result){
-					alert(result);
-					window.location.href = "manager/all";
-				},
-				error: function(){
-					alert("netword is error");
-				}
-			});		
-		}
-	}
 </script>
