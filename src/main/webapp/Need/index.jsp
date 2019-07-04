@@ -20,28 +20,24 @@
         body {
             padding-bottom: 40px;
         }
-
         .sidebar-nav {
             padding: 9px 0;
         }
-
         @media ( max-width: 980px) {
-            /* Enable use of floated navbar text */
             .navbar-text.pull-right {
                 float: none;
                 padding-left: 5px;
                 padding-right: 5px;
             }
         }
-
         .option-button:hover {
             color: red;
         }
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="demand/condition_quey" method="post">
-    标题： <input type="text" name="title" id="param" class="abc input-default" placeholder="输入查询标题" value="">&nbsp;&nbsp;
+<form class="form-inline definewidth m20" action="demand/condition_query" method="post">
+    标题： <input type="text" name="title" id="param" class="abc input-default" placeholder="输入查询标题" value="${title}">&nbsp;&nbsp;
     <button type="submit" class="btn btn-primary">查询</button>
     <button type="button" class="btn btn-success" onclick="window.location.href='demand/add'" id="addnew">发布需求</button>
 </form>
@@ -61,7 +57,7 @@
         <tr>
             <td>${status.count}</td>
             <td style="max-width: 220px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                <a title="点击查看全文" href="#">${demand.title}</a>
+                <a title="点击查看全文" href="/demand/show/${demand.id}">${demand.title}</a>
             </td>
             <td>
                 <c:choose>
@@ -75,43 +71,29 @@
             <td>${demand.createDate}</td>
             <td>${demand.userName}</td>
             <td>
-                <a class="option-button" href="#">编辑</a>
+                <a class="option-button" href="/demand/edit/${demand.id}">编辑</a>
                 <a class="option-button" href="/demand/delete/${demand.id}">删除</a>
-                <a class="option-button" href="#">查看</a>
+                <a class="option-button" href="/demand/show/${demand.id}">查看</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <div class="inline pull-right page">
     ${page.total}条记录 ${page.current}/${page.pages}页
-    <a href='#'>首页</a>
-    <a href='#'>上一页</a>
-    <a href='#'>下一页</a>
-    <a href='#'>尾页</a>
+    <a href='/demand/page_query/1/${page.size}'>首页 |</a>
+    <c:if test="${page.hasPrevious()}">
+        <a href='/demand/page_query/${page.current - 1}/${page.size}'>上一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasPrevious()}">
+        上一页 |
+    </c:if>
+    <c:if test="${page.hasNext()}">
+        <a href='/demand/page_query/${page.current + 1}/${page.size}'>下一页 |</a>
+    </c:if>
+    <c:if test="${not page.hasNext()}">
+        下一页 |
+    </c:if>
+    <a href='/demand/page_query/${page.pages}/${page.size}'>尾页</a>
 </div>
 </body>
-<%--<script type="text/javascript">--%>
-<%--    function conditionQuery() {--%>
-<%--        var title = $("#param").val();--%>
-<%--        $.ajax({--%>
-<%--            url: "demand/condition_quey",--%>
-<%--            type: "POST",--%>
-<%--            async: false,--%>
-<%--            dataType: "json",--%>
-<%--            data: {--%>
-<%--                "title": title--%>
-<%--            },--%>
-<%--            success: function (res) {--%>
-<%--                $.ajax({--%>
-<%--                    url: "policy/toPindex",--%>
-<%--                    type: "get",--%>
-<%--                    async: false,--%>
-<%--                    success: function (res) {--%>
-<%--                        window.location.reload();--%>
-<%--                    }--%>
-<%--                });--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--</script>--%>
 </html>
