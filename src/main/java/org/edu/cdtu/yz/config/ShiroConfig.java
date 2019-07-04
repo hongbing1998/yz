@@ -99,7 +99,7 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager);// 设置 SecurityManager
 //        shiroFilter.setSuccessUrl("/main.jsp");// 设置登录成功跳转Url
 //        shiroFilter.setLoginUrl("/main.jsp");// 设置登录跳转Url
-//        shiroFilter.setUnauthorizedUrl("/main.jsp");// 设置未授权提示Url
+        shiroFilter.setUnauthorizedUrl("/main.jsp");// 设置未授权提示Url
         /*
          * anon：匿名用户可访问
          * authc：认证用户可访问
@@ -110,6 +110,7 @@ public class ShiroConfig {
         Map<String, String> definitionMap = new LinkedHashMap<>();
         definitionMap.put("/actuator*", "anon");
         definitionMap.put("/main.jsp", "anon");
+        definitionMap.put("/display*", "anon");
         definitionMap.put("/**/*.js", "anon");
         definitionMap.put("/**/*.css", "anon");
         definitionMap.put("/**/*.png", "anon");

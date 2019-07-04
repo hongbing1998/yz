@@ -51,6 +51,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
      * @return Ajaxresult转换结果
      */
     @ResponseBody
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody User user) {
         Map<String, Object> msp = new HashMap<>();
@@ -113,6 +114,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
 
     //删除对象信息
     @ResponseBody
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
         try {
@@ -141,6 +143,7 @@ public class UserController extends GlobalDefaultExceptionHandler {
     //转跳到add.jsp
 //    @RequiresPermissions(value = {"toadd"}, logical = Logical.OR)
 //    @RolesAllowed({"ADMIN"})
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String toAdd(Model model) {
         model.addAttribute("roles", roleService.selectList(null));

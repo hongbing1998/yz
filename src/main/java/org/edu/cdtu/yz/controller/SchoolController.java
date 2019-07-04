@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.Relam.ShiroRealm;
 import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.service.ISchoolService;
@@ -24,6 +26,7 @@ public class SchoolController {
     /**
      * 跳转至编辑学校页面，将本条学校信息带过去
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable("id") String id) {
         model.addAttribute("school", schoolService.selectById(id));
@@ -33,6 +36,7 @@ public class SchoolController {
     /**
      * 跳转至显示学校页面，将本条学校信息带过去
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
     public String show(Model model, @PathVariable("id") String id) {
         model.addAttribute("school", schoolService.selectById(id));
@@ -42,6 +46,7 @@ public class SchoolController {
     /**
      * 根据id删除数据
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable("id") String id) {
         try {
@@ -56,6 +61,7 @@ public class SchoolController {
     /**
      * 保存数据，数据有id则根据id更新，无id则新增数据
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(School school) {
         try {
@@ -77,6 +83,7 @@ public class SchoolController {
     /**
      * 条件分页查询，跳转至学校管理主页
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/condition_query", method = RequestMethod.POST)
     public String conditionQuery(Model model, School school) {
         EntityWrapper<School> ew = new EntityWrapper<>();
@@ -91,6 +98,7 @@ public class SchoolController {
     /**
      * 分页查询数据
      */
+    @RequiresPermissions(value = {"school"}, logical = Logical.OR)
     @RequestMapping(value = "/page_query/{current}/{size}", method = RequestMethod.GET)
     public String pageQuery(Model model, @PathVariable("current") int current, @PathVariable("size") int size) {
         Page<School> page = new Page<>(current, size);

@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.bean.RoleUser;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IRoleUserService;
@@ -26,6 +28,7 @@ public class RoleUserController {
      * @param roleUser  传递的实体
      * @return Ajaxresult转换结果
      */
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public String save(@RequestParam(value = "id") String userId, @RequestParam(value = "roleIds[]", required = false) String[] roleIds, Model model) {
         try {
@@ -46,6 +49,7 @@ public class RoleUserController {
     }
 
     //删除对象信息
+
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") Long id){
         try {
@@ -66,6 +70,7 @@ public class RoleUserController {
 
 
     //查看所有的员工信息
+
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public AjaxResult list() {
         return AjaxResult.me().setResultObj(roleUserService.selectList(null));

@@ -2,6 +2,8 @@ package org.edu.cdtu.yz.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.edu.cdtu.yz.bean.Permission;
 import org.edu.cdtu.yz.bean.PermissionRole;
 import org.edu.cdtu.yz.bean.Role;
@@ -40,6 +42,7 @@ public class RoleController {
      * @return Ajaxresult转换结果
      */
     @ResponseBody
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value="/save",method= RequestMethod.POST)
     public AjaxResult save(@RequestBody Role role) {
         try {
@@ -59,6 +62,7 @@ public class RoleController {
         }
     }
 
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String get(String id, Model model) {
         model.addAttribute("role", roleService.selectById(id));
@@ -66,6 +70,7 @@ public class RoleController {
         return "Role/add";
     }
     //删除对象信息
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @ResponseBody
     @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
     public AjaxResult delete(@PathVariable("id") String id) {
@@ -79,6 +84,7 @@ public class RoleController {
     }
 
     //获取用户
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public AjaxResult get(@PathVariable("id") String id)
     {
@@ -87,12 +93,14 @@ public class RoleController {
 
 
     //查看所有的员工信息
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("roles", roleService.selectList(null));
         return "Role/index";
     }
 
+    @RequiresPermissions(value = {"role"}, logical = Logical.OR)
     @RequestMapping(value = "/getRolePerssion", method = RequestMethod.GET)
     public String getRolePerssion(String id, Model model) {
         System.out.println(id);
@@ -111,6 +119,7 @@ public class RoleController {
         return "Role/edit";
     }
 
+    @RequiresPermissions(value = {"admin"}, logical = Logical.OR)
     @RequestMapping(value = "/getUserRoles", method = RequestMethod.GET)
     public String getUserRoles(String id, Model model) {
         List<RoleUser> roleuser = roleUserService.selectList(new EntityWrapper<RoleUser>().eq("user_id", id));
