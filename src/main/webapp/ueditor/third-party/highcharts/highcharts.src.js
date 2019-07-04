@@ -2944,12 +2944,12 @@
                     otherElement = childNodes[i];
                     otherZIndex = attr(otherElement, 'zIndex');
                     if (otherElement !== element && (
-                        // insert before the first element with a higher zIndex
-                        pInt(otherZIndex) > zIndex ||
-                        // if no zIndex given, insert before the first element with a zIndex
-                        (!defined(zIndex) && defined(otherZIndex))
+                            // insert before the first element with a higher zIndex
+                            pInt(otherZIndex) > zIndex ||
+                            // if no zIndex given, insert before the first element with a zIndex
+                            (!defined(zIndex) && defined(otherZIndex))
 
-                    )) {
+                        )) {
                         parentNode.insertBefore(element, otherElement);
                         inserted = true;
                         break;
@@ -5178,10 +5178,10 @@
                             bottom = top + rect.height,
                             ret = {
                                 clip: 'rect(' +
-                                    mathRound(inverted ? left : top) + 'px,' +
-                                    mathRound(inverted ? bottom : right) + 'px,' +
-                                    mathRound(inverted ? right : bottom) + 'px,' +
-                                    mathRound(inverted ? top : left) + 'px)'
+                                mathRound(inverted ? left : top) + 'px,' +
+                                mathRound(inverted ? bottom : right) + 'px,' +
+                                mathRound(inverted ? right : bottom) + 'px,' +
+                                mathRound(inverted ? top : left) + 'px)'
                             };
 
                         // issue 74 workaround
@@ -8107,8 +8107,8 @@
                             zIndex: 7,
                             rotation: axisTitleOptions.rotation || 0,
                             align:
-                                axisTitleOptions.textAlign ||
-                                {low: 'left', middle: 'center', high: 'right'}[axisTitleOptions.align]
+                            axisTitleOptions.textAlign ||
+                            {low: 'left', middle: 'center', high: 'right'}[axisTitleOptions.align]
                         })
                         .css(axisTitleOptions.style)
                         .add(axis.axisGroup);
@@ -9661,7 +9661,7 @@
 
             // Show the tooltip and run mouse over events (#977)
             if ((this.inClass(e.target, 'highcharts-tracker') ||
-                chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) && !chart.openMenu) {
+                    chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) && !chart.openMenu) {
                 this.runPointActions(e);
             }
         },
@@ -9717,9 +9717,9 @@
                     // add page position info
                     extend(hoverPoint, {
                         pageX: chartPosition.left + plotLeft +
-                            (inverted ? chart.plotWidth - plotY : plotX),
+                        (inverted ? chart.plotWidth - plotY : plotX),
                         pageY: chartPosition.top + plotTop +
-                            (inverted ? chart.plotHeight - plotX : plotY)
+                        (inverted ? chart.plotHeight - plotX : plotY)
                     });
 
                     // the series click event
@@ -11387,7 +11387,7 @@
             // create the inner container
             chart.container = container = createElement(DIV, {
                     className: PREFIX + 'container' +
-                        (optionsChart.className ? ' ' + optionsChart.className : ''),
+                    (optionsChart.className ? ' ' + optionsChart.className : ''),
                     id: containerId
                 }, extend({
                     position: RELATIVE,
@@ -12634,13 +12634,13 @@
 
             if (
                 // already has this state
-                state === point.state ||
-                // selected points don't respond to hover
-                (point.selected && state !== SELECT_STATE) ||
-                // series' state options is disabled
-                (stateOptions[state] && stateOptions[state].enabled === false) ||
-                // point marker's state options is disabled
-                (state && (stateDisabled || (normalDisabled && !markerStateOptions.enabled)))
+            state === point.state ||
+            // selected points don't respond to hover
+            (point.selected && state !== SELECT_STATE) ||
+            // series' state options is disabled
+            (stateOptions[state] && stateOptions[state].enabled === false) ||
+            // point marker's state options is disabled
+            (state && (stateDisabled || (normalDisabled && !markerStateOptions.enabled)))
 
             ) {
                 return;
@@ -16751,7 +16751,7 @@
                     };
                     dataLabel._pos = {
                         x: x + options.x +
-                            ({left: connectorPadding, right: -connectorPadding}[labelPos[6]] || 0),
+                        ({left: connectorPadding, right: -connectorPadding}[labelPos[6]] || 0),
                         y: y + options.y - 10 // 10 is for the baseline (label vs text)
                     };
                     dataLabel.connX = x;

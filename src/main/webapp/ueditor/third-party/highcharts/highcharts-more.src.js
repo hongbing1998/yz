@@ -1147,11 +1147,11 @@
         threshold: null,
         tooltip: {
             pointFormat: '<span style="color:{series.color};font-weight:bold">{series.name}</span><br/>' +
-                'Maximum: {point.high}<br/>' +
-                'Upper quartile: {point.q3}<br/>' +
-                'Median: {point.median}<br/>' +
-                'Lower quartile: {point.q1}<br/>' +
-                'Minimum: {point.low}<br/>'
+            'Maximum: {point.high}<br/>' +
+            'Upper quartile: {point.q3}<br/>' +
+            'Median: {point.median}<br/>' +
+            'Lower quartile: {point.q1}<br/>' +
+            'Minimum: {point.low}<br/>'
 
         },
         //whiskerColor: null,

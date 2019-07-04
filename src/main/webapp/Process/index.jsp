@@ -84,14 +84,14 @@
     </thead>
 
     <c:forEach items="${resultObj.data}" var="data">
-		<tr>
+        <tr>
             <td>${data.id}</td>
             <td style="max-width: 260px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
                     ${data.title}
             </td>
             <td>${data.createDate}</td>
             <td>${data.userName}</td>
-			<td>
+            <td>
                 <a class="option-button" href="/path/toedit/${data.id}">编辑与查看</a>
                 |
                 <button class="delete-button" id="delete-button" onclick="test('${data.id}')">删除</button>
