@@ -6840,7 +6840,7 @@ function isHidden( elem, el ) {
 	// isHidden might be called from jQuery#filter function;
 	// in that case, element will be second argument
 	elem = el || elem;
-	return jQuery.css( elem, "display01.jsp" ) === "none" || !jQuery.contains( elem.ownerDocument, elem );
+    return jQuery.css(elem, "display01.jsp") === "none" || !jQuery.contains(elem.ownerDocument, elem);
 }
 
 function showHide( elements, show ) {
@@ -7297,7 +7297,7 @@ function css_defaultDisplay( nodeName ) {
 // Called ONLY from within css_defaultDisplay
 function actualDisplay( name, doc ) {
 	var elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
-		display = jQuery.css( elem[0], "display01.jsp" );
+        display = jQuery.css(elem[0], "display01.jsp");
 	elem.remove();
 	return display;
 }
@@ -7308,7 +7308,7 @@ jQuery.each([ "height", "width" ], function( i, name ) {
 			if ( computed ) {
 				// certain elements can have dimension info if we invisibly show them
 				// however, it must have a current display style that would benefit from this
-				return elem.offsetWidth === 0 && rdisplayswap.test( jQuery.css( elem, "display01.jsp" ) ) ?
+                return elem.offsetWidth === 0 && rdisplayswap.test(jQuery.css(elem, "display01.jsp")) ?
 					jQuery.swap( elem, cssShow, function() {
 						return getWidthOrHeight( elem, name, extra );
 					}) :
@@ -7417,7 +7417,7 @@ if ( jQuery.expr && jQuery.expr.filters ) {
 		// Support: Opera <= 12.12
 		// Opera reports offsetWidths and offsetHeights less than zero on some elements
 		return elem.offsetWidth <= 0 && elem.offsetHeight <= 0 ||
-			(!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display01) || jQuery.css( elem, "display01.jsp" )) === "none");
+            (!jQuery.support.reliableHiddenOffsets && ((elem.style && elem.style.display01) || jQuery.css(elem, "display01.jsp")) === "none");
 	};
 
 	jQuery.expr.filters.visible = function( elem ) {
@@ -9105,7 +9105,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 		// Set display property to inline-block for height/width
 		// animations on inline elements that are having width/height animated
-		if ( jQuery.css( elem, "display01.jsp" ) === "inline" &&
+        if (jQuery.css(elem, "display01.jsp") === "inline" &&
 				jQuery.css( elem, "float" ) === "none" ) {
 
 			// inline-level elements accept inline-block;

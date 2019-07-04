@@ -33,6 +33,8 @@ public class Employment extends Model<Employment> {
      * 招聘信息内容
      */
     private String content;
+    @TableField("user_name")
+    private String userName;
     @TableField("user_id")
     private String userId;
     @TableField("create_date")

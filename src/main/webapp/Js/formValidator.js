@@ -9,60 +9,62 @@
 // [注    意] 所有参数使用小写字母
 //====================================================================================================
 
-var jQuery_formValidator_initConfig; (function($) {
+var jQuery_formValidator_initConfig;
+(function ($) {
     $.formValidator = {
-        sustainType: function(id, setting) {
+        sustainType: function (id, setting) {
             var elem = $("#" + id).get(0);
             var srcTag = elem.tagName;
             var stype = elem.type;
             switch (setting.validatetype) {
-            case "InitValidator":
-                return true;
-            case "InputValidator":
-                if (srcTag == "INPUT" || srcTag == "TEXTAREA" || srcTag == "SELECT") {
-                    return true
-                } else {
-                    return false
-                }
-            case "CompareValidator":
-                if (srcTag == "INPUT" || srcTag == "TEXTAREA") {
-                    if (stype == "checkbox" || stype == "radio") {
-                        return false
-                    } else {
+                case "InitValidator":
+                    return true;
+                case "InputValidator":
+                    if (srcTag == "INPUT" || srcTag == "TEXTAREA" || srcTag == "SELECT") {
                         return true
-                    }
-                }
-                return false;
-            case "AjaxValidator":
-                if (stype == "text" || stype == "textarea" || stype == "file" || stype == "password" || stype == "select-one") {
-                    return true
-                } else {
-                    return false
-                }
-            case "RegexValidator":
-                if (srcTag == "INPUT" || srcTag == "TEXTAREA") {
-                    if (stype == "checkbox" || stype == "radio") {
-                        return false
                     } else {
-                        return true
+                        return false
                     }
-                }
-                return false;
-            case "FunctionValidator":
-                return true
+                case "CompareValidator":
+                    if (srcTag == "INPUT" || srcTag == "TEXTAREA") {
+                        if (stype == "checkbox" || stype == "radio") {
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+                    return false;
+                case "AjaxValidator":
+                    if (stype == "text" || stype == "textarea" || stype == "file" || stype == "password" || stype == "select-one") {
+                        return true
+                    } else {
+                        return false
+                    }
+                case "RegexValidator":
+                    if (srcTag == "INPUT" || srcTag == "TEXTAREA") {
+                        if (stype == "checkbox" || stype == "radio") {
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+                    return false;
+                case "FunctionValidator":
+                    return true
             }
         },
-        initConfig: function(controlOptions) {
+        initConfig: function (controlOptions) {
             var settings = {
                 debug: false,
                 validatorgroup: "1",
                 alertmessage: false,
                 validobjectids: "",
                 forcevalid: false,
-                onsuccess: function() {
+                onsuccess: function () {
                     return true
                 },
-                onerror: function() {},
+                onerror: function () {
+                },
                 submitonce: false,
                 formid: "",
                 autotip: false,
@@ -74,19 +76,21 @@ var jQuery_formValidator_initConfig; (function($) {
             $.extend(settings, controlOptions);
             if (settings.tidymode) {
                 settings.errorfocus = false
-            };
+            }
+            ;
             if (settings.formid != "") {
-                $("#" + settings.formid).submit(function() {
+                $("#" + settings.formid).submit(function () {
                     return $.formValidator.pageIsValid("1")
                 })
-            };
+            }
+            ;
             if (jQuery_formValidator_initConfig == null) {
                 jQuery_formValidator_initConfig = new Array()
             }
             jQuery_formValidator_initConfig.push(settings)
         },
-        appendValid: function(id, setting) {
-            if (!$.formValidator.sustainType(id, setting)) return - 1;
+        appendValid: function (id, setting) {
+            if (!$.formValidator.sustainType(id, setting)) return -1;
             var srcjo = $("#" + id).get(0);
             if (setting.validatetype == "InitValidator" || srcjo.settings == undefined) {
                 srcjo.settings = new Array()
@@ -95,7 +99,7 @@ var jQuery_formValidator_initConfig; (function($) {
             srcjo.settings[len - 1].index = len - 1;
             return len - 1
         },
-        getInitConfig: function(validatorgroup) {
+        getInitConfig: function (validatorgroup) {
             if (jQuery_formValidator_initConfig != null) {
                 for (i = 0; i < jQuery_formValidator_initConfig.length; i++) {
                     if (validatorgroup == jQuery_formValidator_initConfig[i].validatorgroup) {
@@ -105,26 +109,26 @@ var jQuery_formValidator_initConfig; (function($) {
             }
             return null
         },
-        triggerValidate: function(returnObj) {
+        triggerValidate: function (returnObj) {
             switch (returnObj.setting.validatetype) {
-            case "InputValidator":
-                $.formValidator.inputValid(returnObj);
-                break;
-            case "CompareValidator":
-                $.formValidator.compareValid(returnObj);
-                break;
-            case "AjaxValidator":
-                $.formValidator.ajaxValid(returnObj);
-                break;
-            case "RegexValidator":
-                $.formValidator.regexValid(returnObj);
-                break;
-            case "FunctionValidator":
-                $.formValidator.functionValid(returnObj);
-                break
+                case "InputValidator":
+                    $.formValidator.inputValid(returnObj);
+                    break;
+                case "CompareValidator":
+                    $.formValidator.compareValid(returnObj);
+                    break;
+                case "AjaxValidator":
+                    $.formValidator.ajaxValid(returnObj);
+                    break;
+                case "RegexValidator":
+                    $.formValidator.regexValid(returnObj);
+                    break;
+                case "FunctionValidator":
+                    $.formValidator.functionValid(returnObj);
+                    break
             }
         },
-        setTipState: function(elem, showclass, showmsg) {
+        setTipState: function (elem, showclass, showmsg) {
             var setting0 = elem.settings[0];
             var initConfig = $.formValidator.getInitConfig(setting0.validatorgroup);
             var tip = $("#" + setting0.tipid);
@@ -143,25 +147,25 @@ var jQuery_formValidator_initConfig; (function($) {
                 tip.html(showmsg)
             }
         },
-        resetTipState: function(validatorgroup) {
+        resetTipState: function (validatorgroup) {
             var initConfig = $.formValidator.getInitConfig(validatorgroup);
-            $(initConfig.validobjectids).each(function() {
+            $(initConfig.validobjectids).each(function () {
                 $.formValidator.setTipState(this, "onShow", this.settings[0].onshow)
             })
         },
-        setFailState: function(tipid, showmsg) {
+        setFailState: function (tipid, showmsg) {
             var tip = $("#" + tipid);
             tip.removeClass();
             tip.addClass("onError");
             tip.html(showmsg)
         },
-        showMessage: function(returnObj) {
+        showMessage: function (returnObj) {
             var id = returnObj.id;
             var elem = $("#" + id).get(0);
             var isvalid = returnObj.isvalid;
             var setting = returnObj.setting;
             var showmsg = "",
-            showclass = "";
+                showclass = "";
             var settings = $("#" + id).get(0).settings;
             var intiConfig = $.formValidator.getInitConfig(settings[0].validatorgroup);
             if (!isvalid) {
@@ -174,7 +178,7 @@ var jQuery_formValidator_initConfig; (function($) {
                         showmsg = setting.onerror
                     }
                 } else {
-                    showmsg = (returnObj.errormsg == "" ? setting.onerror: returnObj.errormsg)
+                    showmsg = (returnObj.errormsg == "" ? setting.onerror : returnObj.errormsg)
                 }
                 if (intiConfig.alertmessage) {
                     var elem = $("#" + id).get(0);
@@ -185,12 +189,12 @@ var jQuery_formValidator_initConfig; (function($) {
                     $.formValidator.setTipState(elem, showclass, showmsg)
                 }
             } else {
-                showmsg = $.formValidator.isEmpty(id) ? setting.onempty: setting.oncorrect;
+                showmsg = $.formValidator.isEmpty(id) ? setting.onempty : setting.oncorrect;
                 $.formValidator.setTipState(elem, "onCorrect", showmsg)
             }
             return showmsg
         },
-        showAjaxMessage: function(returnObj) {
+        showAjaxMessage: function (returnObj) {
             var setting = returnObj.setting;
             var elem = $("#" + returnObj.id).get(0);
             if ((elem.settings[returnObj.ajax].cached ? elem.validoldvalue != $(elem).val() : true)) {
@@ -203,55 +207,55 @@ var jQuery_formValidator_initConfig; (function($) {
                 $.formValidator.setTipState(elem, elem.lastshowclass, elem.lastshowmsg)
             }
         },
-        getLength: function(id) {
+        getLength: function (id) {
             var srcjo = $("#" + id);
             var elem = srcjo.get(0);
             sType = elem.type;
             var len = 0;
             switch (sType) {
-            case "text":
-            case "hidden":
-            case "password":
-            case "textarea":
-            case "file":
-                var val = srcjo.val();
-                var initConfig = $.formValidator.getInitConfig(elem.settings[0].validatorgroup);
-                if (initConfig.wideword) {
-                    for (var i = 0; i < val.length; i++) {
-                        if (val.charCodeAt(i) >= 0x4e00 && val.charCodeAt(i) <= 0x9fa5) {
-                            len += 2
-                        } else {
-                            len++
+                case "text":
+                case "hidden":
+                case "password":
+                case "textarea":
+                case "file":
+                    var val = srcjo.val();
+                    var initConfig = $.formValidator.getInitConfig(elem.settings[0].validatorgroup);
+                    if (initConfig.wideword) {
+                        for (var i = 0; i < val.length; i++) {
+                            if (val.charCodeAt(i) >= 0x4e00 && val.charCodeAt(i) <= 0x9fa5) {
+                                len += 2
+                            } else {
+                                len++
+                            }
                         }
+                    } else {
+                        len = val.length
                     }
-                } else {
-                    len = val.length
-                }
-                break;
-            case "checkbox":
-            case "radio":
-                len = $("input[type='" + sType + "'][name='" + srcjo.attr("name") + "']:checked").length;
-                break;
-            case "select-one":
-                len = elem.options ? elem.options.selectedIndex: -1;
-                break;
-            case "select-multiple":
-                len = $("select[name=" + elem.name + "] option:selected").length;
-                break
+                    break;
+                case "checkbox":
+                case "radio":
+                    len = $("input[type='" + sType + "'][name='" + srcjo.attr("name") + "']:checked").length;
+                    break;
+                case "select-one":
+                    len = elem.options ? elem.options.selectedIndex : -1;
+                    break;
+                case "select-multiple":
+                    len = $("select[name=" + elem.name + "] option:selected").length;
+                    break
             }
             return len
         },
-        isEmpty: function(id) {
+        isEmpty: function (id) {
             if ($("#" + id).get(0).settings[0].empty && $.formValidator.getLength(id) == 0) {
                 return true
             } else {
                 return false
             }
         },
-        isOneValid: function(id) {
+        isOneValid: function (id) {
             return $.formValidator.oneIsValid(id, 1).isvalid
         },
-        oneIsValid: function(id, index) {
+        oneIsValid: function (id, index) {
             var returnObj = new Object();
             returnObj.id = id;
             returnObj.ajax = -1;
@@ -292,18 +296,19 @@ var jQuery_formValidator_initConfig; (function($) {
             }
             return returnObj
         },
-        pageIsValid: function(validatorgroup) {
+        pageIsValid: function (validatorgroup) {
             if (validatorgroup == null || validatorgroup == undefined) {
                 validatorgroup = "1"
-            };
+            }
+            ;
             var isvalid = true;
             var thefirstid = "",
-            thefirsterrmsg;
+                thefirsterrmsg;
             var returnObj, setting;
             var error_tip = "^";
             var initConfig = $.formValidator.getInitConfig(validatorgroup);
             var jqObjs = $(initConfig.validobjectids);
-            jqObjs.each(function(i, elem) {
+            jqObjs.each(function (i, elem) {
                 if (elem.settings[0].bind) {
                     returnObj = $.formValidator.oneIsValid(elem.id, 1);
                     if (returnObj) {
@@ -312,7 +317,7 @@ var jQuery_formValidator_initConfig; (function($) {
                             isvalid = false;
                             if (thefirstid == "") {
                                 thefirstid = returnObj.id;
-                                thefirsterrmsg = (returnObj.errormsg == "" ? returnObj.setting.onerror: returnObj.errormsg)
+                                thefirsterrmsg = (returnObj.errormsg == "" ? returnObj.setting.onerror : returnObj.errormsg)
                             }
                         }
                         if (!initConfig.alertmessage) {
@@ -338,9 +343,9 @@ var jQuery_formValidator_initConfig; (function($) {
                     $("#" + thefirstid).focus()
                 }
             }
-            return ! initConfig.debug && isvalid
+            return !initConfig.debug && isvalid
         },
-        ajaxValid: function(returnObj) {
+        ajaxValid: function (returnObj) {
             var id = returnObj.id;
             var srcjo = $("#" + id);
             var elem = srcjo.get(0);
@@ -358,9 +363,9 @@ var jQuery_formValidator_initConfig; (function($) {
                 var parm = "clientid=" + id + "&" + id + "=" + encodeURIComponent(srcjo.val());
                 if (setting.getdata) {
                     $.each(setting.getdata,
-                    function(i, n) {
-                        parm += "&" + i + "=" + $('#' + n).val()
-                    })
+                        function (i, n) {
+                            parm += "&" + i + "=" + $('#' + n).val()
+                        })
                 }
                 ls_url = ls_url + (ls_url.indexOf("?") > -1 ? ("&" + parm) : ("?" + parm));
                 if (typeof(pc_hash) != 'undefined') {
@@ -375,7 +380,7 @@ var jQuery_formValidator_initConfig; (function($) {
                 data: setting.data,
                 async: setting.async,
                 dataType: setting.datatype,
-                success: function(data) {
+                success: function (data) {
                     if (setting.success(data)) {
                         $.formValidator.setTipState(elem, "onCorrect", settings[0].oncorrect);
                         setting.isvalid = true
@@ -384,20 +389,22 @@ var jQuery_formValidator_initConfig; (function($) {
                         setting.isvalid = false
                     }
                 },
-                complete: function() {
+                complete: function () {
                     if (setting.buttons && setting.buttons.length > 0) {
                         setting.buttons.attr({
                             "disabled": false
                         })
-                    };
+                    }
+                    ;
                     setting.complete
                 },
-                beforeSend: function(xhr) {
+                beforeSend: function (xhr) {
                     if (setting.buttons && setting.buttons.length > 0) {
                         setting.buttons.attr({
                             "disabled": true
                         })
-                    };
+                    }
+                    ;
                     var isvalid = setting.beforesend(xhr);
                     if (isvalid) {
                         setting.isvalid = false;
@@ -406,7 +413,7 @@ var jQuery_formValidator_initConfig; (function($) {
                     setting.lastValid = "-1";
                     return isvalid
                 },
-                error: function() {
+                error: function () {
                     $.formValidator.setTipState(elem, "onError", setting.onerror);
                     setting.isvalid = false;
                     setting.error()
@@ -414,7 +421,7 @@ var jQuery_formValidator_initConfig; (function($) {
                 processData: setting.processdata
             })
         },
-        regexValid: function(returnObj) {
+        regexValid: function (returnObj) {
             var id = returnObj.id;
             var setting = returnObj.setting;
             var srcTag = $("#" + id).get(0).tagName;
@@ -433,7 +440,7 @@ var jQuery_formValidator_initConfig; (function($) {
                 setting.isvalid = (new RegExp(regexpress, setting.param)).test($("#" + id).val())
             }
         },
-        functionValid: function(returnObj) {
+        functionValid: function (returnObj) {
             var id = returnObj.id;
             var setting = returnObj.setting;
             var srcjo = $("#" + id);
@@ -447,7 +454,7 @@ var jQuery_formValidator_initConfig; (function($) {
                 }
             }
         },
-        inputValid: function(returnObj) {
+        inputValid: function (returnObj) {
             var id = returnObj.id;
             var setting = returnObj.setting;
             var srcjo = $("#" + id);
@@ -456,83 +463,85 @@ var jQuery_formValidator_initConfig; (function($) {
             var sType = elem.type;
             var len = $.formValidator.getLength(id);
             var empty = setting.empty,
-            emptyerror = false;
+                emptyerror = false;
             switch (sType) {
-            case "text":
-            case "hidden":
-            case "password":
-            case "textarea":
-            case "file":
-                if (setting.type == "size") {
-                    empty = setting.empty;
-                    if (!empty.leftempty) {
-                        emptyerror = (val.replace(/^[ \s]+/, '').length != val.length)
+                case "text":
+                case "hidden":
+                case "password":
+                case "textarea":
+                case "file":
+                    if (setting.type == "size") {
+                        empty = setting.empty;
+                        if (!empty.leftempty) {
+                            emptyerror = (val.replace(/^[ \s]+/, '').length != val.length)
+                        }
+                        if (!emptyerror && !empty.rightempty) {
+                            emptyerror = (val.replace(/[ \s]+$/, '').length != val.length)
+                        }
+                        if (emptyerror && empty.emptyerror) {
+                            returnObj.errormsg = empty.emptyerror
+                        }
                     }
-                    if (!emptyerror && !empty.rightempty) {
-                        emptyerror = (val.replace(/[ \s]+$/, '').length != val.length)
+                case "checkbox":
+                case "select-one":
+                case "select-multiple":
+                case "radio":
+                    var lb_go_on = false;
+                    if (sType == "select-one" || sType == "select-multiple") {
+                        setting.type = "size"
                     }
-                    if (emptyerror && empty.emptyerror) {
-                        returnObj.errormsg = empty.emptyerror
-                    }
-                }
-            case "checkbox":
-            case "select-one":
-            case "select-multiple":
-            case "radio":
-                var lb_go_on = false;
-                if (sType == "select-one" || sType == "select-multiple") {
-                    setting.type = "size"
-                }
-                var type = setting.type;
-                if (type == "size") {
-                    if (!emptyerror) {
-                        lb_go_on = true
-                    }
-                    if (lb_go_on) {
-                        val = len
-                    }
-                } else if (type == "date" || type == "datetime") {
-                    var isok = false;
-                    if (type == "date") {
-                        lb_go_on = isDate(val)
-                    };
-                    if (type == "datetime") {
-                        lb_go_on = isDate(val)
-                    };
-                    if (lb_go_on) {
-                        val = new Date(val);
-                        setting.min = new Date(setting.min);
-                        setting.max = new Date(setting.max)
-                    }
-                } else {
-                    stype = (typeof setting.min);
-                    if (stype == "number") {
-                        val = (new Number(val)).valueOf();
-                        if (!isNaN(val)) {
+                    var type = setting.type;
+                    if (type == "size") {
+                        if (!emptyerror) {
+                            lb_go_on = true
+                        }
+                        if (lb_go_on) {
+                            val = len
+                        }
+                    } else if (type == "date" || type == "datetime") {
+                        var isok = false;
+                        if (type == "date") {
+                            lb_go_on = isDate(val)
+                        }
+                        ;
+                        if (type == "datetime") {
+                            lb_go_on = isDate(val)
+                        }
+                        ;
+                        if (lb_go_on) {
+                            val = new Date(val);
+                            setting.min = new Date(setting.min);
+                            setting.max = new Date(setting.max)
+                        }
+                    } else {
+                        stype = (typeof setting.min);
+                        if (stype == "number") {
+                            val = (new Number(val)).valueOf();
+                            if (!isNaN(val)) {
+                                lb_go_on = true
+                            }
+                        }
+                        if (stype == "string") {
                             lb_go_on = true
                         }
                     }
-                    if (stype == "string") {
-                        lb_go_on = true
-                    }
-                }
-                setting.isvalid = false;
-                if (lb_go_on) {
-                    if (val < setting.min || val > setting.max) {
-                        if (val < setting.min && setting.onerrormin) {
-                            returnObj.errormsg = setting.onerrormin
+                    setting.isvalid = false;
+                    if (lb_go_on) {
+                        if (val < setting.min || val > setting.max) {
+                            if (val < setting.min && setting.onerrormin) {
+                                returnObj.errormsg = setting.onerrormin
+                            }
+                            if (val > setting.min && setting.onerrormax) {
+                                returnObj.errormsg = setting.onerrormax
+                            }
+                        } else {
+                            setting.isvalid = true
                         }
-                        if (val > setting.min && setting.onerrormax) {
-                            returnObj.errormsg = setting.onerrormax
-                        }
-                    } else {
-                        setting.isvalid = true
                     }
-                }
-                break
+                    break
             }
         },
-        compareValid: function(returnObj) {
+        compareValid: function (returnObj) {
             var id = returnObj.id;
             var setting = returnObj.setting;
             var srcjo = $("#" + id);
@@ -553,10 +562,12 @@ var jQuery_formValidator_initConfig; (function($) {
                 var isok = false;
                 if (ls_datatype == "date") {
                     isok = (isDate(curvalue) && isDate(ls_data))
-                };
+                }
+                ;
                 if (ls_datatype == "datetime") {
                     isok = (isDateTime(curvalue) && isDateTime(ls_data))
-                };
+                }
+                ;
                 if (isok) {
                     curvalue = new Date(curvalue);
                     ls_data = new Date(ls_data)
@@ -565,49 +576,49 @@ var jQuery_formValidator_initConfig; (function($) {
                 }
             }
             switch (setting.operateor) {
-            case "=":
-                if (curvalue == ls_data) {
-                    setting.isvalid = true
-                }
-                break;
-            case "!=":
-                if (curvalue != ls_data) {
-                    setting.isvalid = true
-                }
-                break;
-            case ">":
-                if (curvalue > ls_data) {
-                    setting.isvalid = true
-                }
-                break;
-            case ">=":
-                if (curvalue >= ls_data) {
-                    setting.isvalid = true
-                }
-                break;
-            case "<":
-                if (curvalue < ls_data) {
-                    setting.isvalid = true
-                }
-                break;
-            case "<=":
-                if (curvalue <= ls_data) {
-                    setting.isvalid = true
-                }
-                break
+                case "=":
+                    if (curvalue == ls_data) {
+                        setting.isvalid = true
+                    }
+                    break;
+                case "!=":
+                    if (curvalue != ls_data) {
+                        setting.isvalid = true
+                    }
+                    break;
+                case ">":
+                    if (curvalue > ls_data) {
+                        setting.isvalid = true
+                    }
+                    break;
+                case ">=":
+                    if (curvalue >= ls_data) {
+                        setting.isvalid = true
+                    }
+                    break;
+                case "<":
+                    if (curvalue < ls_data) {
+                        setting.isvalid = true
+                    }
+                    break;
+                case "<=":
+                    if (curvalue <= ls_data) {
+                        setting.isvalid = true
+                    }
+                    break
             }
         },
-        localTooltip: function(e) {
+        localTooltip: function (e) {
             e = e || window.event;
-            var mouseX = e.pageX || (e.clientX ? e.clientX + document.body.scrollLeft: 0);
-            var mouseY = e.pageY || (e.clientY ? e.clientY + document.body.scrollTop: 0);
+            var mouseX = e.pageX || (e.clientX ? e.clientX + document.body.scrollLeft : 0);
+            var mouseY = e.pageY || (e.clientY ? e.clientY + document.body.scrollTop : 0);
             $("#fvtt").css({
                 "top": (mouseY + 2) + "px",
                 "left": (mouseX - 40) + "px"
             })
         }
     };
-    $.fn.formValidator = function(cs) {
+    $.fn.formValidator = function (cs) {
         var setting = {
             validatorgroup: "1",
             empty: false,
@@ -632,7 +643,8 @@ var jQuery_formValidator_initConfig; (function($) {
         cs = cs || {};
         if (cs.validatorgroup == undefined) {
             cs.validatorgroup = "1"
-        };
+        }
+        ;
         var initConfig = $.formValidator.getInitConfig(cs.validatorgroup);
         if (initConfig.tidymode) {
             setting.tipcss = {
@@ -641,16 +653,17 @@ var jQuery_formValidator_initConfig; (function($) {
                 "height": "22px",
                 "display": "none"
             }
-        };
+        }
+        ;
         $.extend(true, setting, cs);
-        return this.each(function(e) {
+        return this.each(function (e) {
             var jqobj = $(this);
             var setting_temp = {};
             $.extend(true, setting_temp, setting);
-            var tip = setting_temp.tipid ? setting_temp.tipid: this.id + "Tip";
+            var tip = setting_temp.tipid ? setting_temp.tipid : this.id + "Tip";
             if (initConfig.autotip) {
                 if ($("body [id=" + tip + "]").length == 0) {
-                    aftertip = setting_temp.relativeid ? setting_temp.relativeid: this.id;
+                    aftertip = setting_temp.relativeid ? setting_temp.relativeid : this.id;
                     $('#' + aftertip).parent().append("<div id='" + tip + "'></div>")
                 }
                 if (initConfig.tidymode) {
@@ -661,7 +674,7 @@ var jQuery_formValidator_initConfig; (function($) {
             $.formValidator.appendValid(this.id, setting);
             var validobjectids = initConfig.validobjectids;
             if (validobjectids.indexOf("#" + this.id + " ") == -1) {
-                initConfig.validobjectids = (validobjectids == "" ? "#" + this.id: validobjectids + ",#" + this.id)
+                initConfig.validobjectids = (validobjectids == "" ? "#" + this.id : validobjectids + ",#" + this.id)
             }
             if (!initConfig.alertmessage) {
                 $.formValidator.setTipState(this, "onShow", setting.onshow)
@@ -673,7 +686,7 @@ var jQuery_formValidator_initConfig; (function($) {
                 jqobj.val(defaultval)
             }
             if (srcTag == "input" || srcTag == "textarea") {
-                jqobj.focus(function() {
+                jqobj.focus(function () {
                     if (!initConfig.alertmessage) {
                         var tipjq = $("#" + tip);
                         this.lastshowclass = tipjq.attr("class");
@@ -682,57 +695,57 @@ var jQuery_formValidator_initConfig; (function($) {
                     }
                 });
                 jqobj.bind(setting.triggerevent,
-                function() {
-                    var settings = this.settings;
-                    var returnObj = $.formValidator.oneIsValid(this.id, 1);
-                    if (returnObj == null) {
-                        return
-                    }
-                    if (returnObj.ajax >= 0) {
-                        $.formValidator.showAjaxMessage(returnObj)
-                    } else {
-                        var showmsg = $.formValidator.showMessage(returnObj);
-                        if (!returnObj.isvalid) {
-                            var auto = setting.automodify && (this.type == "text" || this.type == "textarea" || this.type == "file");
-                            if (auto && !initConfig.alertmessage) {
-                                alert(showmsg);
-                                $.formValidator.setTipState(this, "onShow", setting.onshow)
-                            } else {
-                                if (initConfig.forcevalid || setting.forcevalid) {
+                    function () {
+                        var settings = this.settings;
+                        var returnObj = $.formValidator.oneIsValid(this.id, 1);
+                        if (returnObj == null) {
+                            return
+                        }
+                        if (returnObj.ajax >= 0) {
+                            $.formValidator.showAjaxMessage(returnObj)
+                        } else {
+                            var showmsg = $.formValidator.showMessage(returnObj);
+                            if (!returnObj.isvalid) {
+                                var auto = setting.automodify && (this.type == "text" || this.type == "textarea" || this.type == "file");
+                                if (auto && !initConfig.alertmessage) {
                                     alert(showmsg);
-                                    this.focus()
+                                    $.formValidator.setTipState(this, "onShow", setting.onshow)
+                                } else {
+                                    if (initConfig.forcevalid || setting.forcevalid) {
+                                        alert(showmsg);
+                                        this.focus()
+                                    }
                                 }
                             }
                         }
-                    }
-                })
+                    })
             } else if (srcTag == "select") {
                 jqobj.bind("focus",
-                function() {
-                    if (!initConfig.alertmessage) {
-                        $.formValidator.setTipState(this, "onFocus", setting.onfocus)
-                    }
-                });
+                    function () {
+                        if (!initConfig.alertmessage) {
+                            $.formValidator.setTipState(this, "onFocus", setting.onfocus)
+                        }
+                    });
                 jqobj.bind("blur",
-                function() {
-                    jqobj.trigger("change")
-                });
+                    function () {
+                        jqobj.trigger("change")
+                    });
                 jqobj.bind("change",
-                function() {
-                    var returnObj = $.formValidator.oneIsValid(this.id, 1);
-                    if (returnObj == null) {
-                        return
-                    }
-                    if (returnObj.ajax >= 0) {
-                        $.formValidator.showAjaxMessage(returnObj)
-                    } else {
-                        $.formValidator.showMessage(returnObj)
-                    }
-                })
+                    function () {
+                        var returnObj = $.formValidator.oneIsValid(this.id, 1);
+                        if (returnObj == null) {
+                            return
+                        }
+                        if (returnObj.ajax >= 0) {
+                            $.formValidator.showAjaxMessage(returnObj)
+                        } else {
+                            $.formValidator.showMessage(returnObj)
+                        }
+                    })
             }
         })
     };
-    $.fn.inputValidator = function(controlOptions) {
+    $.fn.inputValidator = function (controlOptions) {
         var settings = {
             isvalid: false,
             min: 0,
@@ -750,11 +763,11 @@ var jQuery_formValidator_initConfig; (function($) {
         };
         controlOptions = controlOptions || {};
         $.extend(true, settings, controlOptions);
-        return this.each(function() {
+        return this.each(function () {
             $.formValidator.appendValid(this.id, settings)
         })
     };
-    $.fn.compareValidator = function(controlOptions) {
+    $.fn.compareValidator = function (controlOptions) {
         var settings = {
             isvalid: false,
             desid: "",
@@ -764,11 +777,11 @@ var jQuery_formValidator_initConfig; (function($) {
         };
         controlOptions = controlOptions || {};
         $.extend(true, settings, controlOptions);
-        return this.each(function() {
+        return this.each(function () {
             $.formValidator.appendValid(this.id, settings)
         })
     };
-    $.fn.regexValidator = function(controlOptions) {
+    $.fn.regexValidator = function (controlOptions) {
         var settings = {
             isvalid: false,
             regexp: "",
@@ -779,14 +792,14 @@ var jQuery_formValidator_initConfig; (function($) {
         };
         controlOptions = controlOptions || {};
         $.extend(true, settings, controlOptions);
-        return this.each(function() {
+        return this.each(function () {
             $.formValidator.appendValid(this.id, settings)
         })
     };
-    $.fn.functionValidator = function(controlOptions) {
+    $.fn.functionValidator = function (controlOptions) {
         var settings = {
             isvalid: true,
-            fun: function() {
+            fun: function () {
                 this.isvalid = true
             },
             validatetype: "FunctionValidator",
@@ -794,11 +807,11 @@ var jQuery_formValidator_initConfig; (function($) {
         };
         controlOptions = controlOptions || {};
         $.extend(true, settings, controlOptions);
-        return this.each(function() {
+        return this.each(function () {
             $.formValidator.appendValid(this.id, settings)
         })
     };
-    $.fn.ajaxValidator = function(controlOptions) {
+    $.fn.ajaxValidator = function (controlOptions) {
         var settings = {
             isvalid: false,
             lastValid: "",
@@ -811,15 +824,17 @@ var jQuery_formValidator_initConfig; (function($) {
             cache: false,
             cached: true,
             getdata: '',
-            beforesend: function() {
+            beforesend: function () {
                 return true
             },
-            success: function() {
+            success: function () {
                 return true
             },
-            complete: function() {},
+            complete: function () {
+            },
             processdata: false,
-            error: function() {},
+            error: function () {
+            },
             buttons: null,
             onerror: "服务器校验没有通过",
             onwait: "正在等待服务器返回数据",
@@ -827,24 +842,24 @@ var jQuery_formValidator_initConfig; (function($) {
         };
         controlOptions = controlOptions || {};
         $.extend(true, settings, controlOptions);
-        return this.each(function() {
+        return this.each(function () {
             $.formValidator.appendValid(this.id, settings)
         })
     };
-    $.fn.defaultPassed = function(onshow) {
-        return this.each(function() {
+    $.fn.defaultPassed = function (onshow) {
+        return this.each(function () {
             var settings = this.settings;
             for (var i = 1; i < settings.length; i++) {
                 settings[i].isvalid = true;
                 if (!$.formValidator.getInitConfig(settings[0].validatorgroup).alertmessage) {
-                    var ls_style = onshow ? "onShow": "onCorrect";
+                    var ls_style = onshow ? "onShow" : "onCorrect";
                     $.formValidator.setTipState(this, ls_style, settings[0].oncorrect)
                 }
             }
         })
     };
-    $.fn.unFormValidator = function(unbind) {
-        return this.each(function() {
+    $.fn.unFormValidator = function (unbind) {
+        return this.each(function () {
             this.settings[0].bind = !unbind;
             if (unbind) {
                 $("#" + this.settings[0].tipid).hide()
@@ -853,13 +868,13 @@ var jQuery_formValidator_initConfig; (function($) {
             }
         })
     };
-    $.fn.showTooltips = function() {
+    $.fn.showTooltips = function () {
         if ($("body [id=fvtt]").length == 0) {
             fvtt = $("<div id='fvtt' style='position:absolute;z-index:56002'></div>");
             $("body").append(fvtt);
             fvtt.before("<iframe src='about:blank' class='fv_iframe' scrolling='no' frameborder='0'></iframe>")
         }
-        return this.each(function() {
+        return this.each(function () {
             jqobj = $(this);
             s = $("<span class='top' id=fv_content style='display:block'></span>");
             b = $("<b class='bottom' style='display:block' />");
@@ -869,15 +884,15 @@ var jQuery_formValidator_initConfig; (function($) {
                 "MozOpacity": "0.95",
                 "opacity": "0.95"
             });
-            jqobj.mouseover(function(e) {
+            jqobj.mouseover(function (e) {
                 $("#fvtt").append(this.tooltip);
                 $("#fv_content").html(this.Tooltip);
                 $.formValidator.localTooltip(e)
             });
-            jqobj.mouseout(function() {
+            jqobj.mouseout(function () {
                 $("#fvtt").empty()
             });
-            jqobj.mousemove(function(e) {
+            jqobj.mousemove(function (e) {
                 $("#fv_content").html(this.Tooltip);
                 $.formValidator.localTooltip(e)
             })

@@ -1,15 +1,15 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page deferredSyntaxAllowedAsLiteral="true"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page deferredSyntaxAllowedAsLiteral="true" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="${pageContext.request.contextPath}/" />
+    <base href="${pageContext.request.contextPath}/"/>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="./Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="./Css/style.css"/>
     <script type="text/javascript" src="./Js/jquery.js"></script>
     <script type="text/javascript" src="./Js/bootstrap.js"></script>
     <script type="text/javascript" src="./Js/ckform.js"></script>
@@ -18,6 +18,7 @@
         body {
             padding-bottom: 40px;
         }
+
         .sidebar-nav {
             padding: 9px 0;
         }
@@ -34,58 +35,62 @@
 
     </style>
 </head>
-<form action="work/edit" method="post" id="app">
-    <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in demand">
-        <tr>
-            <td width="10%" class="tableleft">编号</td>
-            <td>{{value.id}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">标题</td>
-            <td >{{value.title}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">学校</td>
-            <td>{{value.content}}</td>
-        </tr>
-        <tr>
-            <td class="tableleft">详细信息</td>
-            <td>
-                {{value.createDate}}
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft">援藏历史</td>
-            <td>
-                {{value.userId}}
-            </td>
-        </tr>
-    </table>
-</form>
+<div style="margin-left:2%;"><a href="main.jsp" class="btn btn-success">返回首页</a></div>
+<div>
+    <form action="work/edit" method="post" id="app">
+        <table class="table table-bordered table-hover definewidth m10" v-for="(value,index) in demand">
+            <tr>
+                <td width="10%" class="tableleft">编号</td>
+                <td>{{value.id}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">标题</td>
+                <td>{{value.title}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">学校</td>
+                <td>{{value.content}}</td>
+            </tr>
+            <tr>
+                <td class="tableleft">详细信息</td>
+                <td>
+                    {{value.createDate}}
+                </td>
+            </tr>
+            <tr>
+                <td class="tableleft">援藏历史</td>
+                <td>
+                    {{value.userId}}
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 <script src="index/js/jquery-3.3.1.min.js"></script>
 <script src="index/js/vue.js"></script>
 <script type="text/javascript">
     new Vue({
-        el:'#app',
-        data:{
-            demand:[],
+        el: '#app',
+        data: {
+            demand: [],
         },
-        methods:{
-        },
-        created: function employ(){
+        methods: {},
+        created: function employ() {
             $.ajax({
-                url:'/demand/list',
-                type:'get',
-                dataType:'json',
-                data:'',
-                success:(result)=>{
-                if(result.success){
+                url: '/demand/list',
+                type: 'get',
+                dataType: 'json',
+                data: '',
+                success: (result) = > {
+                if(result.success)
+            {
                 console.log(result.resultObj)
-                this.demand=result.resultObj;
+                this.demand = result.resultObj;
             }
         },
-        });
+        })
+            ;
         }
     })
 </script>

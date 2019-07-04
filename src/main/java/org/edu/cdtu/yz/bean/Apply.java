@@ -28,27 +28,32 @@ public class Apply extends Model<Apply> {
     /**
      * 报名时间
      */
-    @TableField("apply_date")
+    @TableField("applyDate")
     private String applyDate;
     /**
      * 报名人id
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("name")
+    private String name;
     /**
-     * 简历路径
+     * 电话
      */
-    @TableField("resume_url")
-    private String resumeUrl;
-    /**
-     * 报名状态（1:投递成功 2：简历已被查看 3：已被录取 4：你不适合）
-     */
-    private Integer status;
+    @TableField("telephone")
+    private String telephone;
     /**
      * 招聘信息  id
      */
-    @TableField("epmloyment_id")
-    private String epmloymentId;
+    @TableField("QQ")
+    private String qq;
+    @TableField("crouse")
+    private String crouse;
+    @TableField("school")
+    private String school;
+    @TableField("employ_id")
+    private String employId;
+
+    @TableField("employ_title")
+    private String employTitle;
 
 
     @Override

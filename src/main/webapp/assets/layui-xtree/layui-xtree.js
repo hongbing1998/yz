@@ -34,7 +34,7 @@ layuiXtree.prototype.dataBind = function (d) {
                 _this._domStr += '<i class="layui-icon layui-xtree-icon-null">' + _this._iconEnd + '</i>';
                 xtree_isend = 'data-xend="1"';
             }
-            _this._domStr += '<input type="checkbox" id="input-'+ d[i].value +'" class="layui-xtree-checkbox" ' + xtree_isend + ' value="' + d[i].value + '" title="' + d[i].title + '" lay-skin="primary" lay-filter="xtreeck">';
+            _this._domStr += '<input type="checkbox" id="input-' + d[i].value + '" class="layui-xtree-checkbox" ' + xtree_isend + ' value="' + d[i].value + '" title="' + d[i].title + '" lay-skin="primary" lay-filter="xtreeck">';
             _this.dataBind(d[i].data);
             _this._domStr += '</div>';
         }
@@ -138,7 +138,8 @@ layuiXtree.prototype.GetChecked = function () {
     var cks = document.getElementsByClassName('layui-xtree-checkbox');
     for (var i = 0; i < cks.length; i++) {
         if (cks[i].checked && cks[i].getAttribute('data-xend') == '1') {
-            arr[arrIndex] = cks[i]; arrIndex++;
+            arr[arrIndex] = cks[i];
+            arrIndex++;
         }
     }
     return arr;

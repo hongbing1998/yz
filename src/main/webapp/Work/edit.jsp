@@ -46,18 +46,18 @@
     </tr>
     <tr>
         <td class="tableleft">标题</td>
-        <td ><input type="text" id="title" name="title" value="${work.title}" style="width: 360px;"/></td>
+        <td><input type="text" id="title" name="title" value="${work.title}" style="width: 360px;"/></td>
     </tr>
     <tr>
     	<td class="tableleft">学校</td>
-    	<td>${work.schoolName}</td>
+        <td>${work.schoolName}</td>
     </tr>
     <tr>
     	<td class="tableleft">详细信息</td>
     	<td>
     		<div>
-		    	<textarea type="text" id="content" name="content"  rows="5" cols="5">
-                ${work.content}
+		    	<textarea type="text" id="content" name="content" rows="5" cols="5">
+                    ${work.content}
 				</textarea>
 	    	</div>
     	</td>
@@ -65,7 +65,10 @@
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<a href="/work/toindex"><button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></a>
+            <button type="submit" id="submit-button" class="btn btn-primary">保存</button> &nbsp;&nbsp;<a
+                href="/work/toindex">
+            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </a>
         </td>
     </tr>
 </table>

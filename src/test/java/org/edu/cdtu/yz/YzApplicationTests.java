@@ -4,13 +4,11 @@ package org.edu.cdtu.yz;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.edu.cdtu.yz.bean.School;
 import org.edu.cdtu.yz.bean.User;
 import org.edu.cdtu.yz.bean.Work;
 import org.edu.cdtu.yz.query.PageQuery;
 import org.edu.cdtu.yz.service.IDemandService;
 import org.edu.cdtu.yz.service.IMenuService;
-import org.edu.cdtu.yz.service.ISchoolService;
 import org.edu.cdtu.yz.service.IUserService;
 import org.edu.cdtu.yz.service.IWorkService;
 import org.edu.cdtu.yz.util.AjaxResult;
@@ -34,8 +32,6 @@ public class YzApplicationTests {
     private IUserService iUserService;
     @Autowired
     private IMenuService iMenuService;
-    @Autowired
-    public ISchoolService schoolService;
     @Autowired
     private IDemandService demandService;
     @Autowired
@@ -72,15 +68,5 @@ public class YzApplicationTests {
         AjaxResult ajaxResult = AjaxResult.me().setResultObj(works);
         Object resultObj = ajaxResult.getResultObj();
         System.out.println(resultObj.toString());
-    }
-
-    @Test
-    public void SchoolTest() {
-        EntityWrapper<School> entityWrapper = new EntityWrapper<>();
-        entityWrapper.setSqlSelect("id", "school_name", "school_info", "school_need_help");
-        List<School> schools = schoolService.selectList(entityWrapper);
-        for (School school : schools) {
-            System.out.println("school = " + school);
-        }
     }
 }
