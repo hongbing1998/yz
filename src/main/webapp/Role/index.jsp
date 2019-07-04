@@ -48,7 +48,7 @@
     <thead>
     <tr>
         <th>id</th>
-        <th>权限名称</th>
+        <th>角色名称</th>
 
 
         <th>操作</th>

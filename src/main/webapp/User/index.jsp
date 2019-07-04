@@ -63,20 +63,16 @@
     	<tr>
 			<td>${user.account }</td>
 			<td>
-				<a title="点击查看详情" href="#">
 					${user.username }
-				</a>
 			</td>
 			<td>${user.schoolName }</td>
 			<td>${user.phone }</td>
 				<%--<td>${user.level }</td>--%>
 			<td>${user.email }</td>
-			schoolName
 			<td>
 				<a class="option-button" href="/user/update?id=${user.id}">编辑</a>
 				|
 				<button class="delete-button" id="delete-button" onclick="test('${user.id}')">删除</button>
-				|<a class="option-button" href="#">查看</a>
 				|<a class="option-button" href="/role/getUserRoles?id=${user.id}">绑定角色</a>
 			</td>
 		</tr>

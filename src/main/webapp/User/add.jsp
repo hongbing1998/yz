@@ -107,20 +107,21 @@ body {
         var phone = $("#phone").val();
         var email = $("#email").val();
         var schoolId = $("#schoolId").val();
-        if (username == null || path == "") {
+        if (username == null || username == "") {
             alert("用户名不能为空");
             return;
         }
-        if (id == null || path == "") {
+        if (id == null || id == "") {
             if (password == null) {
                 alert("密码不能为空");
+                return;
             }
         }
-        if (account == null || path == "") {
+        if (account == null || account == "") {
             alert("账户不能为空");
             return;
         }
-        if (schoolId == null || path == "") {
+        if (schoolId == null || schoolId == "") {
             alert("学校不能为空");
             return;
         }

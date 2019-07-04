@@ -50,7 +50,7 @@
             <td><input type="text" value="${Adver.userName}" readonly="ture"></td>
         </tr>
         <tr>
-            <td class="tableleft">标题11</td>
+            <td class="tableleft">编辑时间</td>
             <td><input type="text" name="title" value="${Adver.createDate}" readonly="ture"></td>
         </tr>
         <tr>

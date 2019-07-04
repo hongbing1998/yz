@@ -70,7 +70,7 @@ body {
                     <button class="btn btn-success" id="delete-buttonb" onclick="del('${data.id}')">删除</button>
                 </td>
             </tr>
-        </c:forEach>s
+        </c:forEach>
 
 	</table>
 </body>
